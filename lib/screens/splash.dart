@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:stockapp/screens/homepage.dart';
+import 'package:stockapp/screens/loginscreen.dart';
 
 class StockApp extends StatefulWidget {
   const StockApp({Key? key});
@@ -20,7 +21,7 @@ class _StockAppState extends State<StockApp> {
       () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) =>homepage(),
+            builder: (context) =>Userlogin(),
           ),
         );
       },
