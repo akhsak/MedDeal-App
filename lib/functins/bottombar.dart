@@ -1,4 +1,6 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:stockapp/screens/Addpage.dart';
 import 'package:stockapp/screens/homepage.dart';
@@ -6,7 +8,7 @@ import 'package:stockapp/screens/itemspage.dart';
 import 'package:stockapp/screens/settingspage.dart';
 
 class Bottombar extends StatefulWidget {
-  const Bottombar({super.key});
+  const Bottombar({Key? key}) : super(key: key);
 
   @override
   State<Bottombar> createState() => _BottombarState();
@@ -14,59 +16,38 @@ class Bottombar extends StatefulWidget {
 
 class _BottombarState extends State<Bottombar> {
   int _myIndex = 0;
-  void navigatebottombar(int index) {
+
+  void navigateBottomBar(int index) {
     setState(() {
       _myIndex = index;
     });
   }
 
-  final home = [
+  final List<Widget> home = [
     homepage(),
     Itemspage(),
     Addpage(),
-    Settingpage(), 
+    Settingpage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: home[_myIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black,
-        selectedFontSize: 10,
-        unselectedFontSize: 10,
-        showUnselectedLabels: true,
-        onTap: navigatebottombar,
-        currentIndex: _myIndex,
+      bottomNavigationBar: CurvedNavigationBar(
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-            ),
-            label: "home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.category,
-            ),
-            label: "items",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add_box,
-            ),
-            label: 'Add',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.settings,
-            ),
-            label: 'Settings',
-          ),
+          Icon(Icons.home, color: Colors.black),
+          Icon(Icons.category, color: Colors.black),
+          Icon(Icons.add_box, color: Colors.black),
+          Icon(Icons.settings, color: Colors.black),
         ],
+        onTap: (index) {
+          navigateBottomBar(index);
+        },
       ),
     );
   }
 }
+
+        
+   

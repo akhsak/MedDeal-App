@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class homepage extends StatefulWidget {
-  const homepage({super.key});
+  const homepage({Key? key}) : super(key: key);
 
   @override
   State<homepage> createState() => _homepageState();
@@ -22,17 +24,19 @@ class _homepageState extends State<homepage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hello',
+                        'Hello!',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 10),
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: 3),
                       Text(
-                        'MedDeAl',
-                        style: TextStyle(fontSize: 20),
+                        'MedDeaL',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 24),
                       )
                     ],
-                  )
+                  ),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
@@ -42,3 +46,4 @@ class _homepageState extends State<homepage> {
     );
   }
 }
+

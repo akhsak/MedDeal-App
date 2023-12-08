@@ -2,7 +2,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:stockapp/screens/homepage.dart';
 import 'package:stockapp/screens/loginscreen.dart';
 
 class StockApp extends StatefulWidget {
