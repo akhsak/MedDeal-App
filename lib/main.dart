@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:stockapp/screens/splash.dart';
+import 'package:stockapp/functins/bottombar.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
       ),
-      home: StockApp(),
+      home: Bottombar(),
     );
   }
 }

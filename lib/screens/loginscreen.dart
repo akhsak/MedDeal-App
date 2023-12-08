@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stockapp/screens/homepage.dart';
 
 class Userlogin extends StatelessWidget {
   Userlogin({super.key});
@@ -46,7 +47,7 @@ class Userlogin extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (contex) => BottomAppBar()));
+                        MaterialPageRoute(builder: (contex) => homepage()));
                   },
                   icon: Icon(Icons.check),
                   label: Text('Login'),
