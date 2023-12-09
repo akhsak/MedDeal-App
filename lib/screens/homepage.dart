@@ -19,6 +19,7 @@ class _homepageState extends State<homepage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 25),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,13 +37,41 @@ class _homepageState extends State<homepage> {
                       )
                     ],
                   ),
-                  SizedBox(height: 20),
+                  Container(
+                  child: IconButton(onPressed: (){}, icon:Icon(Icons.search)),
+
+                  ),
                 ],
               ),
             ),
+            SizedBox(height: 25),
+            Container(
+              padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(color: const Color.fromARGB(255, 210, 210, 210)),
+              child: Row(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    color: Color.fromARGB(255, 66, 141, 203),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Center(child: Text('welcome to MedDeal')),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
+        
       ),
+     
+
     );
   }
 }

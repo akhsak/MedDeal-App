@@ -6,6 +6,12 @@ class Detailspage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     appBar: AppBar(
+       title: Container(
+        alignment:Alignment.center,
+        child: Text('Details'),
+        ),
+     ),
       
     );
   }

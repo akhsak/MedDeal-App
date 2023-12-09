@@ -5,6 +5,13 @@ class ResetApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+       appBar: AppBar(
+       title: Container(
+        alignment:Alignment.center,
+        child: Text('ResetApp'),
+        ),
+      ),
+    );
   }
 }

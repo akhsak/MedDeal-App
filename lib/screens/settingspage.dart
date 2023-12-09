@@ -1,5 +1,12 @@
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:stockapp/screens/Settings/Category.dart';
+import 'package:stockapp/screens/Settings/Details.dart';
+import 'package:stockapp/screens/Settings/Feedback.dart';
+import 'package:stockapp/screens/Settings/RateApp.dart';
+import 'package:stockapp/screens/Settings/ResetApp.dart';
 
 class Settingpage extends StatelessWidget {
   Settingpage({Key? key});
@@ -11,6 +18,11 @@ class Settingpage extends StatelessWidget {
     'Category',
   ];
   final screens = [
+    Detailspage(),
+    ResetApp(),
+    Feedbackpage(),
+    RateApp(),
+    Categorypage()
   ];
 
   final listicons=[
@@ -19,7 +31,6 @@ class Settingpage extends StatelessWidget {
     Icon(Icons.feedback),
     Icon(Icons.star_border),
     Icon(Icons.file_copy)
-
   ];
   @override
   Widget build(BuildContext context) {
@@ -37,9 +48,9 @@ class Settingpage extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) => ListTile(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return screens[index];
-                }));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>screens[index],
+                
+                ));
               },
               leading: listicons[index],
               trailing: Icon(

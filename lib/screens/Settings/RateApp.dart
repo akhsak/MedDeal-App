@@ -5,6 +5,13 @@ class RateApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+       title: Container(
+        alignment:Alignment.center,
+        child: Text('RateApp'),
+        ),
+      ),
+    );
   }
 }
