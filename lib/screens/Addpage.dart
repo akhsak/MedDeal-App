@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
 
 class Addpage extends StatefulWidget {
@@ -10,36 +8,44 @@ class Addpage extends StatefulWidget {
 }
 
 class _AddpageState extends State<Addpage> {
+  String selectedValue='Meaddeal';
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Items', style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(50),
+        padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Container(
-                  height: 100,
-                  width: 150,
+                  margin: EdgeInsets.only(bottom: 20),
+                  height: 150,
+                  width: screenWidth,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: Colors.grey),
                   ),
-                  child: Center(
-                      child: IconButton(
-                          onPressed: () {}, icon: Icon(Icons.add_a_photo))),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.add_a_photo, size: 50),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: 'Item Name'),
+                  decoration: InputDecoration(
+                    labelText: 'Item Name',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
@@ -48,7 +54,10 @@ class _AddpageState extends State<Addpage> {
                   Expanded(
                     child: Container(
                       child: TextField(
-                        decoration: InputDecoration(labelText: 'Opening Stock'),
+                        decoration: InputDecoration(
+                          labelText: 'Opening Stock',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
                   ),
@@ -56,7 +65,10 @@ class _AddpageState extends State<Addpage> {
                   Expanded(
                     child: Container(
                       child: TextField(
-                        decoration: InputDecoration(labelText: 'Reorder Stock'),
+                        decoration: InputDecoration(
+                          labelText: 'Reorder Stock',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
                   ),
@@ -65,22 +77,53 @@ class _AddpageState extends State<Addpage> {
               SizedBox(height: 20),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: 'Stall Number'),
+                  decoration: InputDecoration(
+                    labelText: 'Stall Number',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: 'Category'),
+              DropdownButtonFormField(    
+                decoration: InputDecoration(
+                  hintText: 'cateqory',
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 ),
-              ),
+                items: [
+                
+                  DropdownMenuItem(
+                    value: "Meaddeal",
+                    child:Text('Medicines'),
+                     ),
+                     DropdownMenuItem(
+                    value: "Meaddeal",
+                    child:Text('Equipments'),
+                     ),
+                     DropdownMenuItem(
+                    value: "Meaddeal",
+                    child:Text('Machines'),
+                     ),
+                       DropdownMenuItem(
+                    value: "Meaddeal",
+                    child:Text('Others'),
+                     ),
+                ],
+               onChanged: (String? newValue){
+                setState(() {
+                  selectedValue = newValue!;
+                });
+               }),
+               
               SizedBox(height: 20),
               Row(
                 children: [
                   Expanded(
                     child: Container(
                       child: TextField(
-                        decoration: InputDecoration(labelText: 'Selling Price'),
+                        decoration: InputDecoration(
+                          labelText: 'Selling Price',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
                   ),
@@ -88,7 +131,10 @@ class _AddpageState extends State<Addpage> {
                   Expanded(
                     child: Container(
                       child: TextField(
-                        decoration: InputDecoration(labelText: 'Cost Price'),
+                        decoration: InputDecoration(
+                          labelText: 'Cost Price',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
                   ),
@@ -96,8 +142,10 @@ class _AddpageState extends State<Addpage> {
               ),
               SizedBox(height: 20),
               Center(
-                child: ElevatedButton(onPressed: (){}, child:
-                Text('save')),
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text('Save'),
+                ),
               ),
             ],
           ),

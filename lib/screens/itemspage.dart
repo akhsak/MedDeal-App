@@ -18,23 +18,26 @@ class Itemspage extends StatelessWidget {
         ],
       ),
       body: GridView.count(
-        crossAxisCount: 2, 
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
-        padding: EdgeInsets.all(8.0),
+        crossAxisCount: 2,
+        crossAxisSpacing: 16.0,
+        mainAxisSpacing: 16.0,
+        padding: EdgeInsets.all(16.0),
         children: [
-          _buildCategoryCard('firs aid', Icons.medical_services_outlined),
-          _buildCategoryCard('Electrical', Icons.electrical_services),
-          _buildCategoryCard('Machine', Icons.equalizer_sharp),
-          _buildCategoryCard('', Icons.book),
+          _buildCategoryCard('Medicine', Icons.medical_services_outlined, Colors.red),
+          _buildCategoryCard('Equipments', Icons.electrical_services, Colors.orange),
+          _buildCategoryCard('Machines', Icons.equalizer_sharp, Colors.green),
+          _buildCategoryCard('others', Icons.abc, Colors.blue),
         ],
       ),
     );
   }
 
-  Widget _buildCategoryCard(String title, IconData icon) {
+  Widget _buildCategoryCard(String title, IconData icon, Color color) {
     return Card(
-      elevation: 2.0,
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
       child: InkWell(
         onTap: () {
           // Add your navigation logic here
@@ -45,12 +48,15 @@ class Itemspage extends StatelessWidget {
             Icon(
               icon,
               size: 48.0,
-              color: Colors.blue, // You can change the color
+              color: color,
             ),
-            SizedBox(height: 8.0),
+            SizedBox(height: 12.0),
             Text(
               title,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16.0,
+              ),
             ),
           ],
         ),
@@ -58,4 +64,5 @@ class Itemspage extends StatelessWidget {
     );
   }
 }
+
 

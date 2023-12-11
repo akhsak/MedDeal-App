@@ -13,6 +13,6 @@ class Detailspage extends StatelessWidget {
         ),
      ),
       
-    );
+  );
   }
 }

@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class homepage extends StatefulWidget {
-  const homepage({Key? key}) : super(key: key);
+class Homepage extends StatefulWidget {
+  const Homepage({Key? key}) : super(key: key);
 
   @override
-  State<homepage> createState() => _homepageState();
+  State<Homepage> createState() => _HomepageState();
 }
 
-class _homepageState extends State<homepage> {
+class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +23,7 @@ class _homepageState extends State<homepage> {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    
                     children: [
                       Text(
                         'Hello!',
@@ -37,23 +38,23 @@ class _homepageState extends State<homepage> {
                       )
                     ],
                   ),
-                  Container(
-                  child: IconButton(onPressed: (){}, icon:Icon(Icons.search)),
+                  // Container(
+                  // child: IconButton(onPressed: (){}, icon:Icon(Icons.search)),
 
-                  ),
+                  // ),
                 ],
               ),
             ),
             SizedBox(height: 25),
             Container(
               padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(color: const Color.fromARGB(255, 210, 210, 210)),
+            decoration: BoxDecoration(color: Color.fromARGB(255, 13, 186, 56)),
               child: Row(
                 children: [
                   Container(
                     height: 100,
                     width: 100,
-                    color: Color.fromARGB(255, 66, 141, 203),
+                    color: Color.fromARGB(255, 66, 203, 139),
                   ),
                   Column(
                     children: [
@@ -61,6 +62,9 @@ class _homepageState extends State<homepage> {
                         padding: const EdgeInsets.all(20),
                         child: Center(child: Text('welcome to MedDeal')),
                       ),
+                      SizedBox(height: 25,
+                      ),
+                      TextField()
                     ],
                   ),
                 ],
