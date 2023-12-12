@@ -7,11 +7,10 @@ class RateApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       title: Container(
-        alignment:Alignment.center,
-        child: Text('RateApp'),
+       title:  Text('RateApp',),
+       centerTitle: true,
+       backgroundColor: Colors.green,
         ),
-      ),
     );
   }
 }

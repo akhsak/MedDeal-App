@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:stockapp/screens/Settings/Category.dart';
+import 'package:stockapp/screens/Settings/Logout.dart';
 import 'package:stockapp/screens/Settings/Details.dart';
 import 'package:stockapp/screens/Settings/Feedback.dart';
 import 'package:stockapp/screens/Settings/RateApp.dart';
@@ -19,9 +19,9 @@ class Settingpage extends StatelessWidget {
   final screens = [
     Detailspage(),
     ResetApp(),
-    Feedbackpage(),
+    Appinfopage(),
     RateApp(),
-    Categorypage()
+    Logoutpage()
   ];
 
   final listicons = [
@@ -29,18 +29,20 @@ class Settingpage extends StatelessWidget {
     Icon(Icons.restart_alt),
     Icon(Icons.feedback),
     Icon(Icons.star_border),
-    Icon(Icons.file_copy)
+    Icon(Icons.logout)
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        backgroundColor: Colors.green,
+        title: Text('Settings', style: TextStyle(color: Colors.white)),
+
         leading: (IconButton(
             onPressed: () {
             },
-            icon: Icon(Icons.arrow_back))),
+            icon: Icon(Icons.arrow_back),color: Colors.white,)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -89,7 +91,7 @@ class Settingpage extends StatelessWidget {
                   Divider(),
                   ListTile(
                     title: Text(
-                      'Send Feedback',
+                      'App info',
                       style: TextStyle(fontSize: 18),
                     ),
                     leading: Icon(Icons.feedback),
@@ -100,7 +102,7 @@ class Settingpage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Feedbackpage()),
+                        MaterialPageRoute(builder: (context) => Appinfopage()),
                       );
                     },
                   ),
@@ -125,10 +127,10 @@ class Settingpage extends StatelessWidget {
                   Divider(),
                   ListTile(
                     title: Text(
-                      'Category',
+                      'Logout',
                       style: TextStyle(fontSize: 18),
                     ),
-                    leading: Icon(Icons.file_copy),
+                    leading: Icon(Icons.logout),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
                       size: 15,
@@ -136,7 +138,7 @@ class Settingpage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Categorypage()),
+                        MaterialPageRoute(builder: (context) =>Logoutpage()),
                       );
                     },
                   ),

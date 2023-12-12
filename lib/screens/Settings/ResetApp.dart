@@ -7,11 +7,10 @@ class ResetApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
-       title: Container(
-        alignment:Alignment.center,
-        child: Text('ResetApp'),
+       title: Text('ResetApp',style: TextStyle(color: Colors.white),),
+       centerTitle: true,
+       backgroundColor: Colors.green,
         ),
-      ),
     );
   }
 }

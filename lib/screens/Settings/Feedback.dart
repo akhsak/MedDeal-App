@@ -2,18 +2,17 @@
 
 import 'package:flutter/material.dart';
 
-class Feedbackpage extends StatelessWidget {
-  const Feedbackpage({super.key});
+class Appinfopage extends StatelessWidget {
+  const Appinfopage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       title: Container(
-        alignment:Alignment.center,
-        child: Text('feedback'),
+       title: Text('feedback',style: TextStyle(color: Colors.white),),
+       centerTitle: true,
+       backgroundColor: Colors.green,
         ),
-      ),
-    );
+      );
   }
 }

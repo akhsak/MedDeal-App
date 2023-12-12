@@ -7,12 +7,10 @@ class Detailspage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
      appBar: AppBar(
-       title: Container(
-        alignment:Alignment.center,
-        child: Text('Details'),
+       title: Text('Details',style: TextStyle(color: Colors.white),),
+       centerTitle: true,
+       backgroundColor: Colors.green,
         ),
-     ),
-      
   );
   }
 }

@@ -16,14 +16,12 @@ class _HomepageState extends State<Homepage> {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25),
+            Padding(     padding: EdgeInsets.symmetric(horizontal: 25),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    
                     children: [
                       Text(
                         'Hello!',
@@ -40,7 +38,6 @@ class _HomepageState extends State<Homepage> {
                   ),
                   // Container(
                   // child: IconButton(onPressed: (){}, icon:Icon(Icons.search)),
-
                   // ),
                 ],
               ),
@@ -48,35 +45,54 @@ class _HomepageState extends State<Homepage> {
             SizedBox(height: 25),
             Container(
               padding: EdgeInsets.all(20),
-            decoration: BoxDecoration(color: Color.fromARGB(255, 13, 186, 56)),
+              decoration: BoxDecoration(color: Color.fromARGB(255, 141, 206, 232)),
               child: Row(
                 children: [
                   Container(
                     height: 100,
                     width: 100,
-                    color: Color.fromARGB(255, 66, 203, 139),
+                    color: Color.fromARGB(255, 212, 225, 219),
                   ),
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Center(child: Text('welcome to MedDeal')),
+                        padding: const EdgeInsets.all(50),
+                        child: Center(child: Text('Welcome to MedDeal')),
                       ),
-                      SizedBox(height: 25,
-                      ),
-                      TextField()
+                      SizedBox(height: 25),
                     ],
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 20,),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: Color.fromARGB(255, 250, 251, 252), // Set card color
+                    child: ListTile(
+                      title: Text('Item $index', style: TextStyle(color: Color.fromARGB(255, 3, 3, 3))),
+                      subtitle: Text('Description of Item $index', style: TextStyle(color: Color.fromARGB(255, 8, 8, 8))),
+                      leading: Icon(Icons.shopping_cart, color: Color.fromARGB(255, 6, 6, 6)),
+                      // Add more properties or customize ListTile as needed
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
-        
       ),
-     
-
     );
   }
 }
 
+void main() {
+  runApp(
+    MaterialApp(
+      home: Homepage(),
+    ),
+  );
+}
