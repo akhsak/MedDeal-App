@@ -29,16 +29,13 @@ class _BottombarState extends State<Bottombar> {
     Itemspage(),
     // Addpage(),
     Historypage(),
-    Settingpage(),
+    PieChart(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-       
-        // Add more app bar customization if needed
-      ),
+      
       body: pages[_myIndex],
       bottomNavigationBar: BottomAppBar(
         color: Colors.green,
@@ -67,7 +64,7 @@ class _BottombarState extends State<Bottombar> {
                 onPressed: () => navigateBottomBar(2),
               ),
               IconButton(
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.pie_chart),
                 color: Colors.black,
                 onPressed: () => navigateBottomBar(3),
               ),

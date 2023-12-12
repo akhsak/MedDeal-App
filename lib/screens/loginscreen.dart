@@ -14,48 +14,46 @@ class Userlogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Form(
-            key: _formkey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  controller: _usernamecontroller,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'User Name',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'please enter username';
-                    } else {
-                      return null;
-                    }
-                  },
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Form(
+          key: _formkey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormField(
+                controller: _usernamecontroller,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'User Name',
                 ),
-                SizedBox(height: 20),
-                TextFormField(
-                  controller: _passwordcontroller,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Password',
-                  ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'please enter username';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                controller: _passwordcontroller,
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Password',
                 ),
-                SizedBox(height: 20),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (contex) => Homepage()));
-                  },
-                  icon: Icon(Icons.check),
-                  label: Text('Login'),
-                ),
-              ],
-            ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (contex) => Homepage()));
+                },
+                icon: Icon(Icons.check),
+                label: Text('Login'),
+              ),
+            ],
           ),
         ),
       ),

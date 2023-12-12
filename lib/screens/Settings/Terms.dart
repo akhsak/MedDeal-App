@@ -1,18 +1,16 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
-class Appinfopage extends StatelessWidget {
-  const Appinfopage({super.key});
+class Termsprivacy extends StatelessWidget {
+  const Termsprivacy({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       title: Text('feedback',style: TextStyle(color: Colors.white),),
+       title:  Text('Terms&Privacy'),
        centerTitle: true,
        backgroundColor: Colors.green,
         ),
-      );
+    );
   }
 }
