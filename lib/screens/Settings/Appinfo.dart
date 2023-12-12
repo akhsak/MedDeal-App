@@ -12,8 +12,19 @@ class Appinfopage extends StatelessWidget {
        title: Text('App info',style: TextStyle(color: Colors.white),),
        centerTitle: true,
        backgroundColor: Colors.green,
-       
-        ),
+         ),
+         body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(80),
+              child: Center(
+                child: Text(
+                  'helloo',style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            )
+          ],
+         ),
       );
   }
 }

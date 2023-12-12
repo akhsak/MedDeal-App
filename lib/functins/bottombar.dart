@@ -1,12 +1,12 @@
 
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:stockapp/screens/Addpage.dart';
-import 'package:stockapp/screens/history.dart';
+import 'package:stockapp/screens/Profit.dart';
 import 'package:stockapp/screens/homepage.dart';
 import 'package:stockapp/screens/itemspage.dart';
-import 'package:stockapp/screens/settingspage.dart';
+import 'package:stockapp/screens/Chartpage.dart';
 
 class Bottombar extends StatefulWidget {
   const Bottombar({Key? key}) : super(key: key);
@@ -27,8 +27,7 @@ class _BottombarState extends State<Bottombar> {
   final List<Widget> pages = [
     Homepage(),
     Itemspage(),
-    // Addpage(),
-    Historypage(),
+    profitpage(),
     PieChart(),
   ];
 
@@ -38,7 +37,7 @@ class _BottombarState extends State<Bottombar> {
       
       body: pages[_myIndex],
       bottomNavigationBar: BottomAppBar(
-        color: Colors.green,
+        color: Color(0xFFF7F7F8),
         shape: CircularNotchedRectangle(),
         notchMargin: 8.0,
         child: Container(
@@ -57,14 +56,14 @@ class _BottombarState extends State<Bottombar> {
                color: Colors.black,
                 onPressed: () => navigateBottomBar(1),
               ),
-              SizedBox(), // SizedBox to create space for the FloatingActionButton
+              SizedBox(), 
               IconButton(
                 icon: Icon(Icons.history),
                 color: Colors.black,
                 onPressed: () => navigateBottomBar(2),
               ),
               IconButton(
-                icon: Icon(Icons.pie_chart),
+                icon: Icon(Icons.equalizer_rounded),
                 color: Colors.black,
                 onPressed: () => navigateBottomBar(3),
               ),

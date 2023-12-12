@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Historypage extends StatefulWidget {
-  const Historypage({Key? key}) : super(key: key);
+class profitpage extends StatefulWidget {
+  const profitpage({Key? key}) : super(key: key);
 
   @override
-  State<Historypage> createState() => _HistorypageState();
+  State<profitpage> createState() => _ProfitpageState();
 }
 
-class _HistorypageState extends State<Historypage> {
+class _ProfitpageState extends State<profitpage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -17,7 +17,7 @@ class _HistorypageState extends State<Historypage> {
         backgroundColor: Colors.green,
         title: const Center(
           child: Text(
-            'History',
+            'Profit',
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -28,7 +28,7 @@ class _HistorypageState extends State<Historypage> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               padding: const EdgeInsets.all(16.0),
-              width: screenWidth * 0.9, // Set container width to 90% of the screen width
+              width: screenWidth * 0.9, 
               color: const Color.fromARGB(255, 244, 244, 244),
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
