@@ -1,7 +1,80 @@
 
+// // ignore_for_file: prefer_const_constructors
+
+// import 'package:flutter/material.dart';
+
+// class Itemspage extends StatelessWidget {
+//   const Itemspage({Key? key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: Colors.green,
+//         title: Text(
+//           'Items',
+//           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+//         ),
+//         actions: [
+//           IconButton(onPressed: () {}, icon: Icon(Icons.favorite_border_rounded),color: Colors.white,),
+//           IconButton(onPressed: () {}, icon: Icon(Icons.search),color: Colors.white,),
+//         ],
+//       ),
+//       body: GridView.count(
+//         crossAxisCount: 2,
+//         crossAxisSpacing: 16.0,
+//         mainAxisSpacing: 16.0,
+//         padding: EdgeInsets.all(16.0),
+//         children: [
+//           _buildCategoryCard('Medicine',
+//           IconButton(onPressed:(){}, icon: Icons.medical_services_outlined, Colors.red) ),
+//           _buildCategoryCard('Equipments',IconButton(onPressed: (){}, icon: Icons.electrical_services, Colors.orange) ),
+//           _buildCategoryCard('Machines',IconButton(onPressed: (){}, icon:  Icons.equalizer_sharp, Colors.green)),
+//           _buildCategoryCard('others',IconButton(onPressed: (){}, icon: Icons.abc, Colors.blue) ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   Widget _buildCategoryCard(String title, IconData icon, Color color) {
+//     return Card(
+//       elevation: 4.0,
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(16.0),
+//       ),
+//       // child: InkWell(
+//       //   onTap: () {
+//       //     // Add your navigation logic here
+//       //   },
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             Icon(
+//               icon,
+//               size: 48.0,
+//               color: color,
+//             ),
+//             SizedBox(height: 12.0),
+//             Text(
+//               title,
+//               style: TextStyle(
+//                 fontWeight: FontWeight.bold,
+//                 fontSize: 16.0,
+//               ),
+//             ),
+//           ],
+//         ),
+//       );
+//    // );
+//   }
+// }
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:stockapp/screens/Cateqory/Equipments.dart';
+import 'package:stockapp/screens/Cateqory/Medicine.dart';
+import 'package:stockapp/screens/Cateqory/Saniters.dart';
+import 'package:stockapp/screens/Cateqory/others.dart';
 
 class Itemspage extends StatelessWidget {
   const Itemspage({Key? key});
@@ -16,8 +89,16 @@ class Itemspage extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.favorite_border_rounded),color: Colors.white,),
-          IconButton(onPressed: () {}, icon: Icon(Icons.search),color: Colors.white,),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.favorite_border_rounded),
+            color: Colors.white,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.search),
+            color: Colors.white,
+          ),
         ],
       ),
       body: GridView.count(
@@ -26,34 +107,55 @@ class Itemspage extends StatelessWidget {
         mainAxisSpacing: 16.0,
         padding: EdgeInsets.all(16.0),
         children: [
-          _buildCategoryCard('Medicine', Icons.medical_services_outlined, Colors.red),
-          _buildCategoryCard('Equipments', Icons.electrical_services, Colors.orange),
-          _buildCategoryCard('Machines', Icons.equalizer_sharp, Colors.green),
-          _buildCategoryCard('others', Icons.abc, Colors.blue),
+          _buildCategoryCard('Medicine', IconButton(
+            onPressed: () {
+              Navigator.push(context,MaterialPageRoute(builder: (context)=>Medicinepage()));
+            },
+            icon: Icon(Icons.medical_services_outlined),
+            color: Colors.red,
+          )),
+          _buildCategoryCard('Equipments', IconButton(
+            onPressed: () {
+          Navigator.push(context,MaterialPageRoute(builder: (context)=>Equipmentspage()));
+            },
+            icon: Icon(Icons.electrical_services),
+            color: Colors.orange,
+          )),
+          _buildCategoryCard('Saniters', IconButton(
+            onPressed: () {
+              Navigator.push(context,MaterialPageRoute(builder: (context)=>Saniterspage()));
+},
+            icon: Icon(Icons.equalizer_sharp),
+            color: Colors.green,
+          )),
+          _buildCategoryCard('others', IconButton(
+            onPressed: () {
+            Navigator.push(context,MaterialPageRoute(builder: (context)=>Otherspage()));
+            },
+            icon: Icon(Icons.abc),
+            color: Colors.blue,
+          )),
         ],
       ),
     );
   }
 
-  Widget _buildCategoryCard(String title, IconData icon, Color color) {
+  Widget _buildCategoryCard(String title, IconButton iconButton) {
     return Card(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
-      child: InkWell(
-        onTap: () {
-          // Add your navigation logic here
-        },
+    //  child: 
+      // InkWell(
+      //   onTap: () {
+      //     // Add your navigation logic here
+      //   },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: 48.0,
-              color: color,
-            ),
-            SizedBox(height: 12.0),
+            iconButton,
+            SizedBox(height: 20.0),
             Text(
               title,
               style: TextStyle(
@@ -63,8 +165,8 @@ class Itemspage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
+      
   }
 }
 

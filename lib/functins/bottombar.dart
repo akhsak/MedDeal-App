@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:stockapp/screens/Addpage.dart';
-import 'package:stockapp/screens/Profit.dart';
+import 'package:stockapp/screens/Profitpage.dart';
 import 'package:stockapp/screens/homepage.dart';
 import 'package:stockapp/screens/itemspage.dart';
 import 'package:stockapp/screens/Chartpage.dart';

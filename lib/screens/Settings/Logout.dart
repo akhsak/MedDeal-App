@@ -8,6 +8,27 @@ class Logoutpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+//      return showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: Text("Confirm Exit"),
+//         content: Text("Are you sure you want to exit app?"),
+//         actions: [
+//           TextButton(
+//             child: Text("cancel"),
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//           ),
+//           TextButton(
+//             child: Text("ok"),
+//             onPressed: () {
+//               SystemNavigator.pop();
+//             },
+//           ),
+//         ],
+//       );
     return Scaffold(
       appBar: AppBar(
         title: Text('Logout'),
@@ -18,5 +39,7 @@ class Logoutpage extends StatelessWidget {
         child: Text('Logout Content Goes Here'),
       ),
     );
+
   }
 }
+

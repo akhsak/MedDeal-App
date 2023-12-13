@@ -183,7 +183,10 @@ class _HomepageState extends State<Homepage> {
                   child: ListTile(
                     title: Text('Item $index', style: TextStyle(color: Color.fromARGB(255, 3, 3, 3))),
                     subtitle: Text('Description of Item $index', style: TextStyle(color: Color.fromARGB(255, 8, 8, 8))),
-                    leading: Icon(Icons.shopping_cart, color: Color.fromARGB(255, 6, 6, 6)),
+                  //  leading: Icon(Icons.shopping_cart, color: Color.fromARGB(255, 6, 6, 6)),
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.black,
+                  ),
                   ),
                 );
               },

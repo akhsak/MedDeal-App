@@ -62,10 +62,11 @@ class _ProfitpageState extends State<profitpage> {
                   child: ListTile(
                     title: Text('Item $index',
                         style: const TextStyle(color: Color.fromARGB(255, 7, 7, 7))),
-                    subtitle: Text('Description of Item $index',
+                    subtitle: Text('Date',
                         style: const TextStyle(color: Color.fromARGB(255, 13, 13, 13))),
-                    leading: const Icon(Icons.shopping_cart,
-                        color: Color.fromARGB(255, 9, 8, 8)),
+                   // leading: const Icon(Icons.shopping_cart,
+                     //   color: Color.fromARGB(255, 9, 8, 8)),
+                  trailing: Text('Stall:no A2'),
                   ),
                 );
               },
