@@ -16,10 +16,125 @@ class _SaniterspageState extends State<Saniterspage> {
         title: Text('saniters'),
         centerTitle: true,
         backgroundColor: Colors.green,
+        actions: [
+        IconButton(onPressed: (){}, icon: Icon(Icons.search))
+      ],
       ),
-      body: Center(
-        child: Text('saniters'),
+      body:Column(
+    children: [
+      Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListTile(
+          title: Text("afad"),
+          leading: Icon(Icons.image),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [Icon(Icons.add),
+            Icon(Icons.remove)],
+          ),
+        ),
       ),
-    );
+      Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListTile(
+          title: Text("afad"),
+          leading: Icon(Icons.image),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [Icon(Icons.add),
+            Icon(Icons.remove)],
+          ),
+        ),
+      ),
+      Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListTile(
+          title: Text("afad"),
+          leading: Icon(Icons.image),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [Icon(Icons.add),
+            Icon(Icons.remove)],
+          ),
+        ),
+      ),
+      Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListTile(
+          title: Text("afad"),
+          leading: Icon(Icons.image),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [Icon(Icons.add),
+            Icon(Icons.remove)],
+          ),
+        ),
+      ),
+      Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListTile(
+          title: Text("afad"),
+          leading: Icon(Icons.image),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [Icon(Icons.add),
+            Icon(Icons.remove)],
+          ),
+        ),
+      ),
+      Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListTile(
+          title: Text("afad"),
+          leading: Icon(Icons.image),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [Icon(Icons.add),
+            Icon(Icons.remove)],
+          ),
+        ),
+      ),
+      Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ListTile(
+          title: Text("afad"),
+          leading: Icon(Icons.image),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [Icon(Icons.add),
+            Icon(Icons.remove)],
+          ),
+        ),
+      ),
+      
+    ],
+   ) ,
+   );
+    
   }
-}
+    
+  }
+    
+  
+

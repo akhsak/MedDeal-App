@@ -67,7 +67,6 @@ class _HomepageState extends State<Homepage> {
                 onTap: () { Navigator.of(context).push(MaterialPageRoute(
                  builder: (context) => Appinfopage(),
                ));
-                  // Add navigation logic for "About" screen
                 },
                 child: DrawerItem(text: "App info", icon: Icons.info),
               ),
@@ -78,7 +77,6 @@ class _HomepageState extends State<Homepage> {
                          context,
                          MaterialPageRoute(builder: (context) => Termsprivacy()),
                        );
-                  // Add navigation logic for "Terms and Conditions" screen
                 },
                 child: DrawerItem(
                   text: "Terms and Conditions",
@@ -92,7 +90,6 @@ class _HomepageState extends State<Homepage> {
                          context,
                          MaterialPageRoute(builder: (context) => ResetApp()),
                        );
-                  // Add logic for "Reset" action
                 },
                 child: DrawerItem(
                   text: "ResetApp",
@@ -104,7 +101,6 @@ class _HomepageState extends State<Homepage> {
                 onTap: () {
                   Navigator.push(context,MaterialPageRoute(builder: (context)=>Logoutpage()),
                   );
-                  // Add logic for "Exit" action
                 },
                 child: DrawerItem(text: "Logout", icon: Icons.exit_to_app),
               ),
@@ -183,9 +179,15 @@ class _HomepageState extends State<Homepage> {
                   child: ListTile(
                     title: Text('Item $index', style: TextStyle(color: Color.fromARGB(255, 3, 3, 3))),
                     subtitle: Text('Description of Item $index', style: TextStyle(color: Color.fromARGB(255, 8, 8, 8))),
-                  //  leading: Icon(Icons.shopping_cart, color: Color.fromARGB(255, 6, 6, 6)),
                   leading: CircleAvatar(
                     backgroundColor: Colors.black,
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(onPressed: (){}, icon: Icon(Icons.edit),color: Colors.black,),
+                      IconButton(onPressed: (){}, icon: Icon(Icons.delete),color: Colors.black,),
+                    ],
                   ),
                   ),
                 );
@@ -198,10 +200,4 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
-void main() {
-  runApp(
-    MaterialApp(
-      home: Homepage(),
-    ),
-  );
-}
+

@@ -20,13 +20,12 @@ class _StockAppState extends State<StockApp> {
       () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) =>Userlogin(),
+            builder: (context) =>ScreenLogin(),
           ),
         );
       },
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

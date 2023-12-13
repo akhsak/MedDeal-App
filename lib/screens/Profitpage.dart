@@ -29,26 +29,69 @@ class _ProfitpageState extends State<profitpage> {
             child: Container(
               padding: const EdgeInsets.all(16.0),
               width: screenWidth * 0.9, 
-              color: const Color.fromARGB(255, 244, 244, 244),
+              color: Color.fromARGB(255, 159, 156, 156),
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Sold Quantity',
+                  Row(
+                    children: [
+                      Text(
+                        'Sold Quantity',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(width: 70),
+                      Text(
+                    'Purchase Quantity  ',
                     style: TextStyle(color: Colors.black),
                   ),
-                  Text(
-                    'Purchase Quantity',
+
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                   Row(
+                    children: [
+                      Text(
+                        '5',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(width: 200),
+                      Text(
+                    '10 ',
                     style: TextStyle(color: Colors.black),
                   ),
-                  Text(
-                    'Spending',
+
+                    ],
+                  ),
+                  
+                  Row(
+                    children: [
+                      Text(
+                        'Spending(₹)',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(width: 100),
+                       Text(
+                    'Earning(₹)',
                     style: TextStyle(color: Colors.black),
                   ),
-                  Text(
-                    'Earning',
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                   Row(
+                    children: [
+                      Text(
+                        '50',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(width: 190),
+                      Text(
+                    '100',
                     style: TextStyle(color: Colors.black),
                   ),
+
+                    ],
+                  ),
+                 
                 ],
               ),
             ),
@@ -64,8 +107,6 @@ class _ProfitpageState extends State<profitpage> {
                         style: const TextStyle(color: Color.fromARGB(255, 7, 7, 7))),
                     subtitle: Text('Date',
                         style: const TextStyle(color: Color.fromARGB(255, 13, 13, 13))),
-                   // leading: const Icon(Icons.shopping_cart,
-                     //   color: Color.fromARGB(255, 9, 8, 8)),
                   trailing: Text('Stall:no A2'),
                   ),
                 );

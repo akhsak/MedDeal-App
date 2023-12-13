@@ -34,7 +34,7 @@ class Termsprivacy extends StatelessWidget {
                 ),
                 Text(
                   """
-                  Welcome to the EXPLORER (file organizer)! By using this app, you agree to these simple terms:
+         Welcome to  MedDeaL stock management, your comprehensive solution for efficient medical equipment stock management. Our app is designed to streamline the inventory processes in healthcare facilities, ensuring the availability of essential equipment, reducing wastage, and enhancing overall operational efficiency.
 
           1. Use Responsibly: The Explorer App is designed to help you organize and arrange your personal files. Use it responsibly and keep your data accordingly!
 

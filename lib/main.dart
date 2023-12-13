@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stockapp/functins/bottombar.dart';
+import 'package:stockapp/screens/splash.dart';
 
 
 void main() {
@@ -13,10 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-      ),
-      home: Bottombar(),
+      home: StockApp(),
     );
   }
 }
