@@ -54,14 +54,14 @@ class Itemspage extends StatelessWidget {
           )),
           _buildCategoryCard('Saniters', IconButton(
             onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context)=>Saniterspage()));
+              Navigator.push(context,MaterialPageRoute(builder: (context)=>saniterspage()));
 },
             icon: Icon(Icons.equalizer_sharp),
             color: Colors.green,
           )),
           _buildCategoryCard('others', IconButton(
             onPressed: () {
-            Navigator.push(context,MaterialPageRoute(builder: (context)=>Otherspage()));
+            Navigator.push(context,MaterialPageRoute(builder: (context)=>Othrespage()));
             },
             icon: Icon(Icons.abc),
             color: Colors.blue,
