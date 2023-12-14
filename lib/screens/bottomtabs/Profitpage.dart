@@ -103,8 +103,8 @@ class _ProfitpageState extends State<profitpage> {
                 return Card(
                   color: const Color.fromARGB(255, 251, 251, 252),
                   child: ListTile(
-                    title: Text('Item $index',
-                        style: const TextStyle(color: Color.fromARGB(255, 7, 7, 7))),
+                   // title: Text('Item $index',
+                    //    style: const TextStyle(color: Color.fromARGB(255, 7, 7, 7))),
                     subtitle: Text('Date',
                         style: const TextStyle(color: Color.fromARGB(255, 13, 13, 13))),
                   trailing: Text('Stall:no A2'),

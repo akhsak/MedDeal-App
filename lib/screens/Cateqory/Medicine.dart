@@ -1,4 +1,28 @@
 
+// // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
+// import 'package:flutter/material.dart';
+
+// class Medicinepage extends StatefulWidget {
+//   const Medicinepage({Key? key}) : super(key: key);
+
+//   @override
+//   State<Medicinepage> createState() => _MedicinepageState();
+// }
+
+// class _MedicinepageState extends State<Medicinepage> {
+  
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Medicine List'),
+//       ),
+//     );
+//   }
+// }
+//
 import 'package:flutter/material.dart';
 
 class Medicinepage extends StatefulWidget {
@@ -9,128 +33,28 @@ class Medicinepage extends StatefulWidget {
 }
 
 class _MedicinepageState extends State<Medicinepage> {
+  List<String> medicineList = [
+    'Medicine 1',
+    'Medicine 2',
+    'Medicine 3',
+  ];
+
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-    appBar: AppBar(
-      title: Text('Medicines'),
-      centerTitle: true,
-      backgroundColor: Colors.green,
-      actions: [
-        IconButton(onPressed: (){}, icon: Icon(Icons.search))
-      ],
-    ),
-   body:Column(
-    children: [
-      Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ListTile(
-          title: Text("afad"),
-          leading: Icon(Icons.image),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [Icon(Icons.add),
-            Icon(Icons.remove)],
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Medicine List'),
       ),
-      Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ListTile(
-          title: Text("afad"),
-          leading: Icon(Icons.image),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [Icon(Icons.add),
-            Icon(Icons.remove)],
-          ),
-        ),
+      body: ListView.builder(
+        itemCount: medicineList.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(medicineList[index]),
+          );
+        },
       ),
-      Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ListTile(
-          title: Text("afad"),
-          leading: Icon(Icons.image),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [Icon(Icons.add),
-            Icon(Icons.remove)],
-          ),
-        ),
-      ),
-      Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ListTile(
-          title: Text("afad"),
-          leading: Icon(Icons.image),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [Icon(Icons.add),
-            Icon(Icons.remove)],
-          ),
-        ),
-      ),
-      Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ListTile(
-          title: Text("afad"),
-          leading: Icon(Icons.image),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [Icon(Icons.add),
-            Icon(Icons.remove)],
-          ),
-        ),
-      ),
-      Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ListTile(
-          title: Text("afad"),
-          leading: Icon(Icons.image),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [Icon(Icons.add),
-            Icon(Icons.remove)],
-          ),
-        ),
-      ),
-      Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ListTile(
-          title: Text("afad"),
-          leading: Icon(Icons.image),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [Icon(Icons.add),
-            Icon(Icons.remove)],
-          ),
-        ),
-      ),
-      
-    ],
-   ) ,
-   );
-    
+    );
   }
 }
+   
+
