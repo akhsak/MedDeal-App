@@ -134,7 +134,7 @@ class _AddpageState extends State<Addpage> {
                               child:Text("Medicines",style: TextStyle(
                                 color: Color.fromARGB(255, 19, 19, 19)
                               ),)),
-                            DropdownMenuItem(
+                            DropdownMenuItem(                                     
                               value: "Equipments",
                               child:Text("Equipments",style: TextStyle(color: Color.fromARGB(255, 7, 6, 6)),)),
                                DropdownMenuItem(

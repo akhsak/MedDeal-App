@@ -9,25 +9,40 @@ class Equipmentspage extends StatefulWidget {
 }
 
 class _EquipmentspageState extends State<Equipmentspage> {
-  List<String> medicineList = [
-    'Medicine 1',
-    'Medicine 2',
-    'Medicine 3',
-  ];
+  // List<String> medicineList = [
+  //   'Medicine 1',
+  //   'Medicine 2',
+  //   'Medicine 3',
+  // ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Equipments List'),
-      ),
-      body: ListView.builder(
-        itemCount: medicineList.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(medicineList[index]),
-          );
-        },
+     // appBar: AppBar(
+      //   title: Text('Equipments List'),
+      // ),
+      // body: ListView.builder
+      //   itemCount: medicineList.length,
+      //   itemBuilder: (context, index) {
+      //     return ListTile(
+      //       title: Text(medicineList[index]),
+      //     );
+      //   },
+      // ),
+      body: SafeArea(
+        child: ListView(children:
+          List.generate(100, (index) {
+            return Column(
+             children: [
+              Text('ithem $index'),
+              Divider(),
+             ],
+            );
+          }
+       //   => Text('item 1')
+       )
+        
+        ),
       ),
     );
   }
