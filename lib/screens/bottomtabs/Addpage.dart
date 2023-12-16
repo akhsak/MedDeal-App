@@ -13,14 +13,15 @@ class Addpage extends StatefulWidget {
 }
 
 class _AddpageState extends State<Addpage> {
-  String selectedValue='Meaddeal';
-  final _namecontroller=TextEditingController();
-  final _numcontroller=TextEditingController();
-  final _itemcontroller=TextEditingController();
-  final _pricecontroller=TextEditingController();
+  String selectedValue = 'Meaddeal';
+  final _namecontroller = TextEditingController();
+  final _numcontroller = TextEditingController();
+  final _itemcontroller = TextEditingController();
+  final _pricecontroller = TextEditingController();
+
+  bool _isDataMatched = true;
 
   final _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,33 +39,35 @@ class _AddpageState extends State<Addpage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    height: 150,
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.add_a_photo, size: 50),
+                GestureDetector(
+                  child: Center(
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      height: 150,
+                      width: screenWidth,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.add_a_photo, size: 50),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(height: 20),
                 Container(
                   child: TextFormField(
-                    controller:_namecontroller ,
+                    controller: _namecontroller,
                     decoration: InputDecoration(
                       labelText: 'Item Name',
                       border: OutlineInputBorder(),
                     ),
-                     validator: (value) {
+                    validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter itemname';
+                        return 'value is empty';
                       } else {
                         return null;
                       }
@@ -72,20 +75,88 @@ class _AddpageState extends State<Addpage> {
                   ),
                 ),
                 SizedBox(height: 20),
+                Container(
+                  child: TextFormField(
+                    controller: _numcontroller,
+                    decoration: InputDecoration(
+                      labelText: 'Stall Number',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'value is empty';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(height: 20),
+                DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                      hintText: "Select Item",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'value is Empty';
+                    } else {
+                      return null;
+                    }
+                  },
+                  dropdownColor: const Color.fromARGB(255, 208, 203, 203),
+                  borderRadius: BorderRadius.circular(30),
+                  isExpanded: true,
+                  onChanged: (String? newvalue) {
+                    setState(() {
+                      selectedValue = newvalue.toString();
+                    });
+                  },
+                  items: const [
+                    DropdownMenuItem(
+                      value: "Medicines",
+                      child: Text(
+                        "Medicines",
+                        style: TextStyle(color: Color.fromARGB(255, 19, 19, 19)),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: "Equipments",
+                      child: Text(
+                        "Equipments",
+                        style: TextStyle(color: Color.fromARGB(255, 7, 6, 6)),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: "Sanitizers",
+                      child: Text(
+                        "Sanitizers",
+                        style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
+                      ),
+                    ),
+                    DropdownMenuItem(
+                      value: "Others",
+                      child: Text(
+                        "Others",
+                        style: TextStyle(color: Color.fromARGB(255, 12, 12, 12)),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
                 Row(
                   children: [
                     Expanded(
                       child: Container(
                         child: TextFormField(
-                          controller: _itemcontroller,
                           decoration: InputDecoration(
-                            labelText: 'Opening Stock',
+                            labelText: 'Selling Price',
                             border: OutlineInputBorder(),
                           ),
-                          validator: (value){
-                            if(value==null||value.isEmpty){
-                              return 'enter openstock' ;
-                            }else{
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Value is empty';
+                            } else {
                               return null;
                             }
                           },
@@ -96,130 +167,41 @@ class _AddpageState extends State<Addpage> {
                     Expanded(
                       child: Container(
                         child: TextFormField(
-                          controller: _pricecontroller,
                           decoration: InputDecoration(
-                            labelText: 'Reorder Stock',
+                            labelText: 'Cost Price',
                             border: OutlineInputBorder(),
                           ),
-                          validator: (value){
-                            if(value==null ||value.isEmpty){
-                            return 'enter reorder stock';
-                            }else{
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'value is Empty';
+                            } else {
                               return null;
                             }
-                          }
-                          ,
+                          },
                         ),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(height: 20),
-                Container(
-                  child: TextFormField(
-                    controller: _numcontroller,
-                    decoration: InputDecoration(
-                      labelText: 'Stall Number',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value){
-                      if (value==null||value.isEmpty) {
-                        return 'value is empty';                       
-                      }else{
-                        return null;
-                      }
-                    },
-                  ),
-                ),
-                SizedBox(height: 20),              
-                  DropdownButtonFormField <String>(
-                            decoration: InputDecoration(
-                              hintText: "Select Item",
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))
-                            ),
-                             validator: (value){
-                      if (value==null||value.isEmpty) {
-                        return 'value is empty';                       
-                      }else{
-                        return null;
-                      }
-                    },
-                            dropdownColor: const Color.fromARGB(255, 208, 203, 203),
-                            borderRadius: BorderRadius.circular(30),
-                            isExpanded: true,
-                            onChanged: (String? newvalue) {
-                              setState(() {
-                                selectedValue = newvalue.toString();
-                              });
-                            },
-                            items: const [
-                              DropdownMenuItem(
-                                value: "Medicines",
-                                child:Text("Medicines",style: TextStyle(
-                                  color: Color.fromARGB(255, 19, 19, 19)
-                                ),)),
-                              DropdownMenuItem(                                     
-                                value: "Equipments",
-                                child:Text("Equipments",style: TextStyle(color: Color.fromARGB(255, 7, 6, 6)),)),
-                                 DropdownMenuItem(
-                                value: "saniters",
-                                child:Text("saniters",style: TextStyle(
-                                  color: Color.fromARGB(255, 8, 8, 8)
-                                ),)),
-                              DropdownMenuItem(
-                                value: "others",
-                                child:Text("others",style: TextStyle(color: Color.fromARGB(255, 12, 12, 12)),)),
-                            ],
-                          ),
-            
-                 SizedBox(height: 20),
-                 Row(
+                Row(
                   children: [
-                    Expanded(
-                      child: Container(
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Selling Price',
-                            border: OutlineInputBorder(),
-                          ),
-                           validator: (value){
-                      if (value==null||value.isEmpty) {
-                        return 'value is empty';                       
-                      }else{
-                        return null;
-                      }
-                    },
-                        ),
-                        
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: Container(
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Cost Price',
-                            border: OutlineInputBorder(),
-                          ),
-                           validator: (value){
-                      if (value==null||value.isEmpty) {
-                        return 'value is empty';                       
-                      }else{
-                        return null;
-                      }
-                    },
-                        ),
-                      ),
+                    Visibility(
+                      visible: !_isDataMatched,
+                      child: Text('Please fill in all the fields'),
                     ),
                   ],
-                 ),
-                 SizedBox(height: 20),
+                ),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      onadditembuttonclicked();
-                   //   Navigator.push(context, MaterialPageRoute(builder:(context)=>Homepage()));
-                      
+                      if (_formKey.currentState!.validate()) {
+                        onAddItemButtonClicked();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Homepage()));
+                      }
                     },
                     child: Text('Save'),
                   ),
@@ -231,18 +213,25 @@ class _AddpageState extends State<Addpage> {
       ),
     );
   }
-  Future<void>onadditembuttonclicked()async{
-    final _name=_namecontroller.text.trim();
-    final _num=_numcontroller.text.trim();
-    final _item=_numcontroller.text.trim();
-    final _price=_numcontroller.text.trim();
 
+  Future<void> onAddItemButtonClicked() async {
+    final _name = _namecontroller.text.trim();
+    final _num = _numcontroller.text.trim();
+    final _item = _itemcontroller.text.trim();
+    final _price = _pricecontroller.text.trim();
 
-   if(_name.isEmpty || _num.isEmpty ||_item.isEmpty || _price.isEmpty){
-    return;
-   }
-    print('$_name $_num  $_item $_price');
-   final _additem= Items(name: _name, num: _num, item: _item, price: _price);
-    additems(_additem);
+    if (_formKey.currentState?.validate() ?? false) {
+      print('$_name $_num $_item $_price');
+      final _addItem =
+          Items(name: _name, num: _num, item: _item, price: _price);
+
+       additems(_addItem);
+
+      Navigator.pop(context);
+    } else {
+      setState(() {
+        _isDataMatched = false;
+      });
+    }
   }
 }

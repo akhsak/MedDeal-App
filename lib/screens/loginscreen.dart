@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:stockapp/screens/bottomtabs/bottombar.dart';
-import 'package:stockapp/screens/bottomtabs/homepage.dart';
+//import 'package:stockapp/screens/bottomtabs/homepage.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({Key? key}) : super(key: key);

@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -18,8 +17,8 @@ class DrawerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(text),
-       leading: Icon(icon),
-       );
+      leading: Icon(icon),
+    );
   }
 }
 
@@ -64,19 +63,20 @@ class _HomepageState extends State<Homepage> {
               ),
               SizedBox(height: 25),
               GestureDetector(
-                onTap: () { Navigator.of(context).push(MaterialPageRoute(
-                 builder: (context) => Appinfopage(),
-               ));
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Appinfopage(),
+                  ));
                 },
                 child: DrawerItem(text: "App info", icon: Icons.info),
               ),
               Divider(),
               GestureDetector(
                 onTap: () {
-                   Navigator.push(
-                         context,
-                         MaterialPageRoute(builder: (context) => Termsprivacy()),
-                       );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Termsprivacy()),
+                  );
                 },
                 child: DrawerItem(
                   text: "Terms and Conditions",
@@ -87,9 +87,9 @@ class _HomepageState extends State<Homepage> {
               GestureDetector(
                 onTap: () {
                   Navigator.push(
-                         context,
-                         MaterialPageRoute(builder: (context) => ResetApp()),
-                       );
+                    context,
+                    MaterialPageRoute(builder: (context) => ResetApp()),
+                  );
                 },
                 child: DrawerItem(
                   text: "ResetApp",
@@ -99,7 +99,9 @@ class _HomepageState extends State<Homepage> {
               Divider(),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context)=>Logoutpage()),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Logoutpage()),
                   );
                 },
                 child: DrawerItem(text: "Logout", icon: Icons.exit_to_app),
@@ -129,12 +131,14 @@ class _HomepageState extends State<Homepage> {
                   children: [
                     Text(
                       'Hello!',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     SizedBox(height: 3),
                     Text(
                       'MedDeaL',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     )
                   ],
                 ),
@@ -177,18 +181,28 @@ class _HomepageState extends State<Homepage> {
                 return Card(
                   color: Color.fromARGB(255, 250, 251, 252),
                   child: ListTile(
-                    title: Text('Item $index', style: TextStyle(color: Color.fromARGB(255, 3, 3, 3))),
-                    subtitle: Text('Description of Item $index', style: TextStyle(color: Color.fromARGB(255, 8, 8, 8))),
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.black,
-                  ),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(onPressed: (){}, icon: Icon(Icons.edit),color: Colors.black,),
-                      IconButton(onPressed: (){}, icon: Icon(Icons.delete),color: Colors.black,),
-                    ],
-                  ),
+                    title: Text('Item $index',
+                        style: TextStyle(color: Color.fromARGB(255, 3, 3, 3))),
+                    subtitle: Text('Description of Item $index',
+                        style: TextStyle(color: Color.fromARGB(255, 8, 8, 8))),
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.black,
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.edit),
+                          color: Colors.black,
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.delete),
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -199,5 +213,3 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
-
-
