@@ -103,7 +103,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
   void checkLogin(BuildContext ctx) {
     final _username = _usernameController.text;
     final _password = _passwordController.text;
-    if (_username == "akhsa" && _password == "123") {
+    if (_username ==_password) {
       print('Username pass match');
 
       Navigator.of(ctx).pushReplacement(

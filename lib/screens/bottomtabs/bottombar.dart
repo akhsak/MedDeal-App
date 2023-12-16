@@ -27,7 +27,7 @@ class _BottombarState extends State<Bottombar> {
   final List<Widget> pages = [
     Homepage(),
     Itemspage(),
-    profitpage(),
+    ProfitPage(),
     PieChart(),
   ];
 
