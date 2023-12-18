@@ -3,24 +3,31 @@ import 'package:hive/hive.dart';
 
 @HiveType(typeId: 3)
 class ItemsModel {
+
   @HiveField(0)
-  final String name;
+   int? id;
 
   @HiveField(1)
-  final String num;
+  final String name;
 
   @HiveField(2)
-  final String item;
+  final String num;
 
   @HiveField(3)
+  final String item;
+
+  @HiveField(4)
   final String price;
-  //final String? image;
+  
+   @HiveField(5)
+  final String? image;
 
   ItemsModel({
     required this.name,
     required this.num,
     required this.item,
     required this.price,
-    //required this.image
+     this.id,
+    required this.image
   });
 }

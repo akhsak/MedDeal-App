@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:stockapp/db/functions/db_function.dart';
@@ -40,6 +42,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    getAllitems();
     return Scaffold(
       appBar: AppBar(),
       endDrawer: Drawer(
@@ -215,14 +218,17 @@ class _HomepageState extends State<Homepage> {
                               color: Colors.black,
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                deleteitems(index);
+                              },
                               icon: Icon(Icons.delete),
                               color: Colors.black,
                             ),
                           ],
                         ),
                         leading: CircleAvatar(
-                          backgroundColor: Colors.black,
+                          
+                         backgroundImage: FileImage(File(data.image!)),
                         ),
                       ),
                     );
