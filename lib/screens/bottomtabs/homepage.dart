@@ -2,6 +2,8 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:stockapp/db/functions/db_function.dart';
+import 'package:stockapp/db/model/datamodel.dart';
 import 'package:stockapp/screens/Settings/Appinfo.dart';
 import 'package:stockapp/screens/Settings/Logout.dart';
 import 'package:stockapp/screens/Settings/ResetApp.dart';
@@ -44,7 +46,7 @@ class _HomepageState extends State<Homepage> {
         elevation: 100,
         shadowColor: Color.fromRGBO(245, 244, 246, 1),
         child: Container(
-          color:  Color.fromRGBO(12, 2, 85, 1),
+          color: Color.fromRGBO(247, 247, 248, 1),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,6 +57,7 @@ class _HomepageState extends State<Homepage> {
                   child: Text(
                     "Settings",
                     style: TextStyle(
+                      color: Color.fromRGBO(12, 2, 85, 1),
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
                     ),
@@ -175,35 +178,55 @@ class _HomepageState extends State<Homepage> {
           ),
           SizedBox(height: 25),
           Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Card(
-                  color: Color.fromARGB(255, 250, 251, 252),
-                  child: ListTile(
-                    title: Text('Item $index',
-                        style: TextStyle(color: Color.fromARGB(255, 3, 3, 3))),
-                    subtitle: Text('Description of Item $index',
-                        style: TextStyle(color: Color.fromARGB(255, 8, 8, 8))),
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.black,
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.edit),
-                          color: Colors.black,
+            child: ValueListenableBuilder(
+              valueListenable: itemlistnotifier,
+              builder:
+                  (BuildContext, List<ItemsModel> itemlist, Widget? child) {
+                return ListView.builder(
+                  itemCount: itemlist.length,
+                  itemBuilder: (context, index) {
+                    final data = itemlist[index];
+                    return Card(
+                      color: Color.fromARGB(255, 250, 251, 252),
+                      child: ListTile(
+                        title: Text(data.name,
+                            style:
+                                TextStyle(color: Color.fromARGB(255, 3, 3, 3))),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(data.num,
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 8, 8, 8))),
+                            Text(data.item,
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 8, 8, 8))),
+                            Text(data.price,
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 8, 8, 8))),
+                          ],
                         ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.delete),
-                          color: Colors.black,
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.edit),
+                              color: Colors.black,
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.delete),
+                              color: Colors.black,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.black,
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),

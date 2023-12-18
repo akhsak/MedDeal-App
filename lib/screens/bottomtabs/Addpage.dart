@@ -29,6 +29,9 @@ class _AddpageState extends State<Addpage> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, icon: Icon(Icons.arrow_back,color: Colors.white,)),
         title: Text('Add Items',
             style: TextStyle(
                 color: Color.fromRGBO(248, 248, 249, 1),
@@ -229,7 +232,7 @@ class _AddpageState extends State<Addpage> {
     if (_formKey.currentState?.validate() ?? false) {
       print('$_name $_num $_item $_price');
       final _addItem =
-          Items(name: _name, num: _num, item: _item, price: _price);
+          ItemsModel(name: _name, num: _num, item: _item, price: _price);
 
       additems(_addItem);
 
