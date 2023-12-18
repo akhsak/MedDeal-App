@@ -35,5 +35,4 @@ final List<_PieData> pieData = [
   _PieData('Category B', 20, '20%'),
   _PieData('Category C', 15, '15%'),
   _PieData('Category D', 10, '10%'),
-//  _PieData('Category E', 25, '25%'),
 ];

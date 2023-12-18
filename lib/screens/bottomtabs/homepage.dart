@@ -42,9 +42,9 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(),
       endDrawer: Drawer(
         elevation: 100,
-        shadowColor: const Color.fromARGB(255, 227, 227, 226),
+        shadowColor: Color.fromRGBO(245, 244, 246, 1),
         child: Container(
-          color: Color(0xFFFFFFFF),
+          color:  Color.fromRGBO(12, 2, 85, 1),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

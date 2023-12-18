@@ -16,7 +16,7 @@ class _ProfitPageState extends State<ProfitPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Color.fromRGBO(12, 2, 85, 1),
         title: const Center(
           child: Text(
             'Profit',
@@ -103,7 +103,7 @@ class _ProfitPageState extends State<ProfitPage> {
 
   Widget _buildTransactionCard(String date, String stall) {
     return Card(
-      color: Color.fromARGB(255, 251, 251, 252),
+      color: Color(0xFFF7F7F8),
       elevation: 2,
       margin: EdgeInsets.symmetric(vertical: 8),
       child: ListTile(

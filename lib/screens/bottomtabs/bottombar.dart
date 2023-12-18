@@ -37,7 +37,7 @@ class _BottombarState extends State<Bottombar> {
       
       body: pages[_myIndex],
       bottomNavigationBar: BottomAppBar(
-        color: Color(0xFFF7F7F8),
+        color: Color.fromRGBO(12, 2, 85, 1),
         shape: CircularNotchedRectangle(),
         notchMargin: 8.0,
         child: Container(
@@ -47,24 +47,24 @@ class _BottombarState extends State<Bottombar> {
             children: [
               IconButton(
                 icon: Icon(Icons.home),
-                color: Colors.black,
+                color: Color.fromRGBO(241, 240, 243, 1),
 
                 onPressed: () => navigateBottomBar(0),
               ),
               IconButton(
                 icon: Icon(Icons.category),
-               color: Colors.black,
+               color: Color.fromARGB(255, 253, 252, 252),
                 onPressed: () => navigateBottomBar(1),
               ),
               SizedBox(), 
               IconButton(
                 icon: Icon(Icons.history),
-                color: Colors.black,
+                color: Colors.white,
                 onPressed: () => navigateBottomBar(2),
               ),
               IconButton(
                 icon: Icon(Icons.equalizer_rounded),
-                color: Colors.black,
+                color: Colors.white,
                 onPressed: () => navigateBottomBar(3),
               ),
             ],

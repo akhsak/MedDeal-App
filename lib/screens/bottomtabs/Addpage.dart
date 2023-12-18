@@ -29,7 +29,11 @@ class _AddpageState extends State<Addpage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Items', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('Add Items',
+            style: TextStyle(
+                color: Color.fromRGBO(248, 248, 249, 1),
+                fontWeight: FontWeight.bold)),
+                backgroundColor:  Color.fromRGBO(12, 2, 85, 1),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -117,7 +121,8 @@ class _AddpageState extends State<Addpage> {
                       value: "Medicines",
                       child: Text(
                         "Medicines",
-                        style: TextStyle(color: Color.fromARGB(255, 19, 19, 19)),
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 19, 19, 19)),
                       ),
                     ),
                     DropdownMenuItem(
@@ -138,7 +143,8 @@ class _AddpageState extends State<Addpage> {
                       value: "Others",
                       child: Text(
                         "Others",
-                        style: TextStyle(color: Color.fromARGB(255, 12, 12, 12)),
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 12, 12, 12)),
                       ),
                     ),
                   ],
@@ -225,7 +231,7 @@ class _AddpageState extends State<Addpage> {
       final _addItem =
           Items(name: _name, num: _num, item: _item, price: _price);
 
-       additems(_addItem);
+      additems(_addItem);
 
       Navigator.pop(context);
     } else {

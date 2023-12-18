@@ -1,7 +1,9 @@
 
+// ignore_for_file: prefer_final_fields, prefer_const_constructors, prefer_const_declarations, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart'; 
 import 'package:stockapp/screens/bottomtabs/bottombar.dart';
-//import 'package:stockapp/screens/bottomtabs/homepage.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({Key? key}) : super(key: key);
@@ -17,6 +19,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
   bool _isDataMatched = true;
 
   final _formKey = GlobalKey<FormState>();
+
+  final String savekeyname = 'some_key';
 
   @override
   Widget build(BuildContext context) {
@@ -100,10 +104,13 @@ class _ScreenLoginState extends State<ScreenLogin> {
     );
   }
 
-  void checkLogin(BuildContext ctx) {
+  Future checkLogin(BuildContext ctx) async {
     final _username = _usernameController.text;
     final _password = _passwordController.text;
-    if (_username ==_password) {
+    if (_username == _password) {
+      final _srdprf = await SharedPreferences.getInstance();
+      await _srdprf.setBool(savekeyname, true);
+
       print('Username pass match');
 
       Navigator.of(ctx).pushReplacement(
@@ -126,4 +133,5 @@ class _ScreenLoginState extends State<ScreenLogin> {
     }
   }
 }
+
 
