@@ -3,6 +3,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stockapp/db/functions/db_function.dart';
 import 'package:stockapp/db/model/datamodel.dart';
@@ -20,7 +21,9 @@ class _AddpageState extends State<Addpage> {
   final _namecontroller = TextEditingController();
   final _numcontroller = TextEditingController();
   final _itemcontroller = TextEditingController();
-  final _pricecontroller = TextEditingController();
+  final _sellingpricecontroller = TextEditingController();
+  final _costpricecontroller = TextEditingController();
+
 
   bool _isDataMatched = true;
  // XFile? picked;
@@ -30,18 +33,6 @@ class _AddpageState extends State<Addpage> {
    final ImagePicker imagePicker=ImagePicker();
   File? picked;
 
-  
-
-  // Future<void> _pickImage() async {
-  //   final picker = ImagePicker();
-  //   final XFile? pickedImage = await picker.pickImage(source: ImageSource.gallery);
-
-  //   if (pickedImage != null) {
-  //     setState(() {
-  //       picked = pickedImage;
-  //     });
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -84,29 +75,7 @@ class _AddpageState extends State<Addpage> {
                       ),
                     ),
                   ),
-                // GestureDetector(
-                //   onTap: _pickImage,
-                //   child: Center(
-                //     child: Container(
-                //       margin: EdgeInsets.only(bottom: 20),
-                //       height: 150,
-                //       width: screenWidth,
-                //       decoration: BoxDecoration(
-                //         color: Colors.white,
-                //         borderRadius: BorderRadius.circular(10),
-                //         border: Border.all(color: Colors.grey),
-                //       ),
-                //       child: image != null
-                //           ? Image.file(File(image!.path), height: 150, width: screenWidth, fit: BoxFit.cover)
-                //           : IconButton(
-                //               onPressed: () {
-                //                 _pickImage();
-                //               },
-                //               icon: Icon(Icons.add_a_photo, size: 50),
-                //             ),
-                //     ),
-                //   ),
-                // ),
+    
                 SizedBox(height: 20),
                 Container(
                   child: TextFormField(
@@ -127,6 +96,8 @@ class _AddpageState extends State<Addpage> {
                     SizedBox(height: 20),
                 Container(
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     controller: _numcontroller,
                     decoration: InputDecoration(
                       labelText: 'Stall Number',
@@ -201,6 +172,7 @@ class _AddpageState extends State<Addpage> {
                     Expanded(
                       child: Container(
                         child: TextFormField(
+                          controller: _sellingpricecontroller,
                           decoration: InputDecoration(
                             labelText: 'Selling Price',
                             border: OutlineInputBorder(),
@@ -219,6 +191,7 @@ class _AddpageState extends State<Addpage> {
                     Expanded(
                       child: Container(
                         child: TextFormField(
+                          controller: _costpricecontroller,
                           decoration: InputDecoration(
                             labelText: 'Cost Price',
                             border: OutlineInputBorder(),
@@ -268,11 +241,13 @@ class _AddpageState extends State<Addpage> {
     final _name = _namecontroller.text.trim();
     final _num = _numcontroller.text.trim();
     final _item = _itemcontroller.text.trim();
-    final _price = _pricecontroller.text.trim();
+    final _sellprice = _sellingpricecontroller.text.trim();
+    final _costprice = _costpricecontroller.text.trim();
+
 
     if (_formKey.currentState?.validate() ?? false) {
-      print('$_name $_num $_item $_price');
-      final _addItem = ItemsModel(name: _name, num: _num, item: _item, price: _price, image: picked?.path ?? '');
+      print('$_name $_num $_item $_sellprice $_costprice');
+      final _addItem = ItemsModel(name: _name, num: _num, item: _item, sellprice: _sellprice,costprice: _costprice, image: picked?.path ?? '');
       additems(_addItem);
 
       Navigator.pop(context);

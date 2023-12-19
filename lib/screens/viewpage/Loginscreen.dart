@@ -2,7 +2,8 @@
 // ignore_for_file: prefer_final_fields, prefer_const_constructors, prefer_const_declarations, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart'; 
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stockapp/main.dart'; 
 import 'package:stockapp/screens/bottomtabs/bottombar.dart';
 
 class ScreenLogin extends StatefulWidget {
@@ -20,7 +21,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final String savekeyname = 'some_key';
+
 
   @override
   Widget build(BuildContext context) {

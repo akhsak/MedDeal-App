@@ -17,16 +17,21 @@ class ItemsModel {
   final String item;
 
   @HiveField(4)
-  final String price;
+  final String sellprice;
+
+  @HiveField(5)
+  final String costprice;
   
-   @HiveField(5)
+  
+   @HiveField(6)
   final String? image;
 
   ItemsModel({
     required this.name,
     required this.num,
     required this.item,
-    required this.price,
+    required this.sellprice,
+    required this.costprice,
      this.id,
     required this.image
   });

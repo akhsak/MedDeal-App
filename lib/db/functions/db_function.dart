@@ -21,6 +21,17 @@ Future<void> getAllitems() async {
   itemlistnotifier.value.addAll(itemsDB.values);
   itemlistnotifier.notifyListeners();
 }
+
+Future<void>edit(int index,ItemsModel value)async{
+ final itemsDB= await Hive.openBox<ItemsModel>('items_db');
+ itemlistnotifier.value.clear();
+ itemlistnotifier.value.addAll(itemsDB.values);
+  itemlistnotifier.notifyListeners();
+  itemsDB.putAt(index, value);
+  getAllitems();
+
+
+}
 Future<void> deleteitems(int id) async{
   final itemsDB = await Hive.openBox<ItemsModel>('items_db');
   itemsDB.deleteAt(id);

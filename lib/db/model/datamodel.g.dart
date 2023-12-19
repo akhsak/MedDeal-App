@@ -20,16 +20,17 @@ class ItemsModelAdapter extends TypeAdapter<ItemsModel> {
       name: fields[1] as String,
       num: fields[2] as String,
       item: fields[3] as String,
-      price: fields[4] as String,
+      sellprice: fields[4] as String,
+      costprice: fields[5] as String,
       id: fields[0] as int?,
-      image: fields[5] as String?,
+      image: fields[6] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ItemsModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -39,8 +40,10 @@ class ItemsModelAdapter extends TypeAdapter<ItemsModel> {
       ..writeByte(3)
       ..write(obj.item)
       ..writeByte(4)
-      ..write(obj.price)
+      ..write(obj.sellprice)
       ..writeByte(5)
+      ..write(obj.costprice)
+      ..writeByte(6)
       ..write(obj.image);
   }
 

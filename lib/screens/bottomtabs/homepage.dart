@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/db/functions/db_function.dart';
 import 'package:stockapp/db/model/datamodel.dart';
 import 'package:stockapp/screens/Settings/Appinfo.dart';
@@ -11,21 +12,29 @@ import 'package:stockapp/screens/Settings/Logout.dart';
 import 'package:stockapp/screens/Settings/ResetApp.dart';
 import 'package:stockapp/screens/Settings/Terms.dart';
 import 'package:stockapp/screens/viewpage/Details.dart';
+import 'package:stockapp/screens/viewpage/Editpage.dart';
+import 'package:stockapp/screens/viewpage/loginscreen.dart';
 
-class DrawerItem extends StatelessWidget {
+class DrawerItem extends StatefulWidget {
   final String text;
   final IconData icon;
 
   const DrawerItem({required this.text, required this.icon});
 
   @override
+  State<DrawerItem> createState() => _DrawerItemState();
+}
+
+class _DrawerItemState extends State<DrawerItem> {
+  @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(text),
-      leading: Icon(icon),
+      title: Text(widget.text),
+      leading: Icon(widget.icon),
     );
   }
 }
+
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -106,6 +115,7 @@ class _HomepageState extends State<Homepage> {
               Divider(),
               GestureDetector(
                 onTap: () {
+                  signout(context);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Logoutpage()),
@@ -198,7 +208,9 @@ class _HomepageState extends State<Homepage> {
                             name: data.name,
                             num: data.num,
                             item: data.item,
-                            price: data.price,
+                           sellprice: data.sellprice,
+                            costprice:data.costprice,
+
                             image: data.image!,
                           )));
                         },
@@ -208,14 +220,29 @@ class _HomepageState extends State<Homepage> {
                           children: [
                             Text(data.num),
                             Text(data.item),          
-                            Text(data.price),               
+                            Text(data.sellprice), 
+                            Text(data.costprice)              
                           ],
                         ),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                               Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                                Editpage(
+
+                                  costprice: data.costprice,
+                                  index: index,
+                                  items:data.item ,
+                                  name: data.name,
+                                  num:data.num ,
+                                  sellprice:data.sellprice ,
+                                  imagePath:data.image! ,
+                                )
+                               ));
+                             //   edit();
+                              },
                               icon: Icon(Icons.edit),
                               color: Colors.black,
                             ),
@@ -230,7 +257,8 @@ class _HomepageState extends State<Homepage> {
                         ),
                         leading: CircleAvatar(
                           
-                         backgroundImage: FileImage(File(data.image!)),
+                         backgroundImage: 
+                         FileImage(File(data.image!)),
                         ),
                       ),
                     );
@@ -243,4 +271,28 @@ class _HomepageState extends State<Homepage> {
       ),
     );
   }
+
+    signout(BuildContext ctx)async{
+    final sharedperfer = await SharedPreferences.getInstance();
+    await sharedperfer.clear();
+    Navigator.of(ctx).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx1)=>const ScreenLogin()), (route) => false);
+  }
+
+  // edit(){
+  // return showDialog(context: context, 
+  // builder: (context){
+  //   return AlertDialog(
+  //     title: Column(
+  //       children: [
+  //         TextFormField(
+  //           ),
+  //         TextFormField(
+  //           ),
+  //         TextFormField(
+  //           ),
+  //       ],
+  //     ),
+  //   );
+  // });
+//}
 }
