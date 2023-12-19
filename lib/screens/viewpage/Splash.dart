@@ -2,7 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:stockapp/screens/loginscreen.dart';
+import 'package:stockapp/screens/viewpage/loginscreen.dart';
 
 class StockApp extends StatefulWidget {
   const StockApp({Key? key});

@@ -10,6 +10,7 @@ import 'package:stockapp/screens/Settings/Appinfo.dart';
 import 'package:stockapp/screens/Settings/Logout.dart';
 import 'package:stockapp/screens/Settings/ResetApp.dart';
 import 'package:stockapp/screens/Settings/Terms.dart';
+import 'package:stockapp/screens/viewpage/Details.dart';
 
 class DrawerItem extends StatelessWidget {
   final String text;
@@ -192,21 +193,22 @@ class _HomepageState extends State<Homepage> {
                     return Card(
                       color: Color.fromARGB(255, 250, 251, 252),
                       child: ListTile(
-                        title: Text(data.name,
-                            style:
-                                TextStyle(color: Color.fromARGB(255, 3, 3, 3))),
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Detailspage(
+                            name: data.name,
+                            num: data.num,
+                            item: data.item,
+                            price: data.price,
+                            image: data.image!,
+                          )));
+                        },
+                        title: Text(data.name),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(data.num,
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 8, 8, 8))),
-                            Text(data.item,
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 8, 8, 8))),
-                            Text(data.price,
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 8, 8, 8))),
+                            Text(data.num),
+                            Text(data.item),          
+                            Text(data.price),               
                           ],
                         ),
                         trailing: Row(

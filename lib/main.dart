@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:stockapp/db/model/datamodel.dart';
-import 'package:stockapp/screens/splash.dart';
+import 'package:stockapp/screens/viewpage/Splash.dart';
 
 
 Future<void> main() async{
