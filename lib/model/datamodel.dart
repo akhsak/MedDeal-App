@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
   part 'datamodel.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId:3)
 class ItemsModel {
 
   @HiveField(0)
@@ -35,4 +35,5 @@ class ItemsModel {
      this.id,
     required this.image
   });
+  //
 }

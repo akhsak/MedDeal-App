@@ -5,8 +5,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
-import 'package:stockapp/screens/bottomtabs/homepage.dart';
-import 'package:stockapp/screens/viewpage/loginscreen.dart';
+import 'package:stockapp/homepage.dart';
+import 'package:stockapp/loginscreen.dart';
 
 class StockApp extends StatefulWidget {
   const StockApp({Key? key});

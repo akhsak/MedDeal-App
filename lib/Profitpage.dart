@@ -12,7 +12,6 @@ class ProfitPage extends StatefulWidget {
 class _ProfitPageState extends State<ProfitPage> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -23,6 +22,10 @@ class _ProfitPageState extends State<ProfitPage> {
             style: TextStyle(color: Colors.white),
           ),
         ),
+        leading: IconButton(onPressed: (){
+       //   Navigator.pop(context);
+        },icon: Icon(Icons.arrow_back, color: Colors.white),
+ ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

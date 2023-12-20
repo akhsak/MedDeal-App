@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers
 
 import 'dart:io';
@@ -7,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stockapp/db/functions/db_function.dart';
-import 'package:stockapp/db/model/datamodel.dart';
-import 'package:stockapp/screens/bottomtabs/homepage.dart';
+import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/screens/bottomtabs/bottombar.dart';
 
 class Editpage extends StatefulWidget {
   var name;
@@ -37,10 +36,9 @@ class Editpage extends StatefulWidget {
 class _EditpageState extends State<Editpage> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _numController = TextEditingController();
-  TextEditingController _itemsController = TextEditingController();
   TextEditingController _sellpriceController = TextEditingController();
   TextEditingController _costpriceController = TextEditingController();
-
+  List dropdownItems = [];
   File? _selectedImage;
 
   @override
@@ -48,21 +46,34 @@ class _EditpageState extends State<Editpage> {
     super.initState();
     _nameController = TextEditingController(text: widget.name);
     _numController = TextEditingController(text: widget.num);
-    _itemsController = TextEditingController(text: widget.items);
     _sellpriceController = TextEditingController(text: widget.sellprice);
     _costpriceController = TextEditingController(text: widget.costprice);
 
     _selectedImage = widget.imagePath != '' ? File(widget.imagePath) : null;
+    selectedValue = widget.items;
   }
+
+  String selectedValue = '';
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-        
+      appBar: AppBar(
+         leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white),
         ),
+         title: Text('update',
+            style: TextStyle(
+                color: Color.fromRGBO(248, 248, 249, 1),
+                fontWeight: FontWeight.bold)),
+        backgroundColor: Color.fromRGBO(12, 2, 85, 1),
+      ),
+      body: Container(
+        decoration: BoxDecoration(),
         child: ListView(
           children: [
             Column(
@@ -100,10 +111,11 @@ class _EditpageState extends State<Editpage> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
                     controller: _nameController,
-                    style: TextStyle(color:Color.fromARGB(255, 30, 3, 56)),
+                    style: TextStyle(color: Color.fromARGB(255, 93, 92, 94)),
                     decoration: InputDecoration(
                       labelText: 'Item Name',
-                      labelStyle: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 134, 132, 136)),
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -113,10 +125,11 @@ class _EditpageState extends State<Editpage> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
                     controller: _numController,
-                    style: TextStyle(color:Color.fromARGB(255, 30, 3, 56)),
+                    style: TextStyle(color: Color.fromARGB(255, 125, 125, 125)),
                     decoration: InputDecoration(
                       labelText: 'Stall Number',
-                      labelStyle: TextStyle(color:Color.fromARGB(255, 30, 3, 56)),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -127,21 +140,24 @@ class _EditpageState extends State<Editpage> {
                   child: DropdownButtonFormField<String>(
                     decoration: InputDecoration(
                       hintText: "Select Item",
-                      hintStyle: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                      hintStyle:
+                          TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                      border: OutlineInputBorder(),
                     ),
-                    dropdownColor: const Color.fromARGB(255, 30, 3, 56),
-                    borderRadius: BorderRadius.circular(30),
+                    dropdownColor: Color.fromARGB(255, 111, 110, 112),
                     isExpanded: true,
-                    onChanged: (String? newvalue) {},
+                    onChanged: (String? newvalue) {
+                      setState(() {
+                        selectedValue = newvalue!.toString();
+                      });
+                    },
                     items: const [
                       DropdownMenuItem(
                         value: "Medicines",
                         child: Text(
                           "Medicines",
-                          style: TextStyle(color: Color.fromARGB(255, 19, 19, 19)),
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 19, 19, 19)),
                         ),
                       ),
                       DropdownMenuItem(
@@ -162,7 +178,8 @@ class _EditpageState extends State<Editpage> {
                         value: "Others",
                         child: Text(
                           "Others",
-                          style: TextStyle(color: Color.fromARGB(255, 12, 12, 12)),
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 12, 12, 12)),
                         ),
                       ),
                     ],
@@ -176,12 +193,17 @@ class _EditpageState extends State<Editpage> {
                       Expanded(
                         child: TextField(
                           keyboardType: TextInputType.number,
-                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
                           controller: _sellpriceController,
-                          style: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
                           decoration: InputDecoration(
                             labelText: 'Selling Price',
-                            labelStyle: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                            prefixText: '₹',
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 30, 3, 56)),
                             border: OutlineInputBorder(),
                           ),
                         ),
@@ -190,12 +212,17 @@ class _EditpageState extends State<Editpage> {
                       Expanded(
                         child: TextField(
                           keyboardType: TextInputType.number,
-                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
                           controller: _costpriceController,
-                          style: TextStyle(color:Color.fromARGB(255, 30, 3, 56)),
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
                           decoration: InputDecoration(
                             labelText: 'Cost Price',
-                            labelStyle: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                            prefixText: '₹',
+                            labelStyle: TextStyle(
+                                color: Color.fromARGB(255, 30, 3, 56)),
                             border: OutlineInputBorder(),
                           ),
                         ),
@@ -207,10 +234,10 @@ class _EditpageState extends State<Editpage> {
                 ElevatedButton(
                   onPressed: () {
                     updateall();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Homepage()),
-                    );
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => Bottombar()),
+                        (route) => false);
                   },
                   child: Text('Save'),
                 ),
@@ -225,7 +252,7 @@ class _EditpageState extends State<Editpage> {
   Future<void> updateall() async {
     final name = _nameController.text.trim();
     final num = _numController.text.trim();
-    final items = _itemsController.text.trim();
+    final items = selectedValue;
     final sellprice = _sellpriceController.text.trim();
     final costprice = _costpriceController.text.trim();
     final image = _selectedImage?.path ?? '';
@@ -265,4 +292,3 @@ class _EditpageState extends State<Editpage> {
     });
   }
 }
-

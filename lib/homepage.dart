@@ -6,34 +6,15 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/db/functions/db_function.dart';
-import 'package:stockapp/db/model/datamodel.dart';
-import 'package:stockapp/screens/Settings/Appinfo.dart';
-import 'package:stockapp/screens/Settings/Logout.dart';
-import 'package:stockapp/screens/Settings/ResetApp.dart';
-import 'package:stockapp/screens/Settings/Terms.dart';
-import 'package:stockapp/screens/viewpage/Details.dart';
-import 'package:stockapp/screens/viewpage/Editpage.dart';
-import 'package:stockapp/screens/viewpage/loginscreen.dart';
+import 'package:stockapp/model/datamodel.dart';
+// import 'package:stockapp/screens/settings/Appinfo.dart';
+// import 'package:stockapp/screens/settings/Logout.dart';
+// import 'package:stockapp/screens/settings/ResetApp.dart';
+// import 'package:stockapp/screens/settings/Terms.dart';
+import 'package:stockapp/screens/viewpage/details.dart';
+import 'package:stockapp/screens/viewpage/editpage.dart';
+import 'package:stockapp/loginscreen.dart';
 
-class DrawerItem extends StatefulWidget {
-  final String text;
-  final IconData icon;
-
-  const DrawerItem({required this.text, required this.icon});
-
-  @override
-  State<DrawerItem> createState() => _DrawerItemState();
-}
-
-class _DrawerItemState extends State<DrawerItem> {
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(widget.text),
-      leading: Icon(widget.icon),
-    );
-  }
-}
 
 
 class Homepage extends StatefulWidget {
@@ -55,87 +36,7 @@ class _HomepageState extends State<Homepage> {
     getAllitems();
     return Scaffold(
       appBar: AppBar(),
-      endDrawer: Drawer(
-        elevation: 100,
-        shadowColor: Color.fromRGBO(245, 244, 246, 1),
-        child: Container(
-          color: Color.fromRGBO(247, 247, 248, 1),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(50),
-                  child: Text(
-                    "Settings",
-                    style: TextStyle(
-                      color: Color.fromRGBO(12, 2, 85, 1),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 25),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Appinfopage(),
-                  ));
-                },
-                child: DrawerItem(text: "App info", icon: Icons.info),
-              ),
-              Divider(),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Termsprivacy()),
-                  );
-                },
-                child: DrawerItem(
-                  text: "Terms and Conditions",
-                  icon: Icons.document_scanner_rounded,
-                ),
-              ),
-              Divider(),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ResetApp()),
-                  );
-                },
-                child: DrawerItem(
-                  text: "ResetApp",
-                  icon: Icons.restore_from_trash_outlined,
-                ),
-              ),
-              Divider(),
-              GestureDetector(
-                onTap: () {
-                  signout(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Logoutpage()),
-                  );
-                },
-                child: DrawerItem(text: "Logout", icon: Icons.exit_to_app),
-              ),
-              Divider(),
-              SizedBox(height: 30),
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  "version: 1.0.1",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      
       body: Column(
         children: [
           Padding(
@@ -199,7 +100,8 @@ class _HomepageState extends State<Homepage> {
                 return ListView.builder(
                   itemCount: itemlist.length,
                   itemBuilder: (context, index) {
-                    final data = itemlist[index];
+                    final reverseindex=itemlist.length-1-index;
+                    final data = itemlist[reverseindex];
                     return Card(
                       color: Color.fromARGB(255, 250, 251, 252),
                       child: ListTile(
@@ -241,7 +143,6 @@ class _HomepageState extends State<Homepage> {
                                   imagePath:data.image! ,
                                 )
                                ));
-                             //   edit();
                               },
                               icon: Icon(Icons.edit),
                               color: Colors.black,
@@ -278,21 +179,5 @@ class _HomepageState extends State<Homepage> {
     Navigator.of(ctx).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx1)=>const ScreenLogin()), (route) => false);
   }
 
-  // edit(){
-  // return showDialog(context: context, 
-  // builder: (context){
-  //   return AlertDialog(
-  //     title: Column(
-  //       children: [
-  //         TextFormField(
-  //           ),
-  //         TextFormField(
-  //           ),
-  //         TextFormField(
-  //           ),
-  //       ],
-  //     ),
-  //   );
-  // });
-//}
+  
 }

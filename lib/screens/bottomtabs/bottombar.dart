@@ -2,11 +2,11 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:stockapp/screens/bottomtabs/Addpage.dart';
-import 'package:stockapp/screens/bottomtabs/Profitpage.dart';
-import 'package:stockapp/screens/bottomtabs/homepage.dart';
-import 'package:stockapp/screens/bottomtabs/itemspage.dart';
-import 'package:stockapp/screens/bottomtabs/Chartpage.dart';
+import 'package:stockapp/addpage.dart';
+import 'package:stockapp/Profitpage.dart';
+import 'package:stockapp/homepage.dart';
+import 'package:stockapp/itemspage.dart';
+import 'package:stockapp/chartpage.dart';
 
 class Bottombar extends StatefulWidget {
   const Bottombar({Key? key}) : super(key: key);

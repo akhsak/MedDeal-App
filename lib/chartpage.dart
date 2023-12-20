@@ -8,6 +8,7 @@ class PieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SfCircularChart(
+      
         title: ChartTitle(text: 'Stock items'),
         legend: const Legend(isVisible: true),
         series: <PieSeries<_PieData, String>>[

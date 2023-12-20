@@ -2,10 +2,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:stockapp/screens/Cateqory/Equipments.dart';
-import 'package:stockapp/screens/Cateqory/Medicine.dart';
-import 'package:stockapp/screens/Cateqory/Saniters.dart';
-import 'package:stockapp/screens/Cateqory/others.dart';
+import 'package:stockapp/screens/cateqory/Equipments.dart';
+import 'package:stockapp/screens/cateqory/Medicine.dart';
+import 'package:stockapp/screens/cateqory/Saniters.dart';
+import 'package:stockapp/screens/cateqory/others.dart';
 
 class Itemspage extends StatelessWidget {
   const Itemspage({Key? key});
@@ -20,11 +20,6 @@ class Itemspage extends StatelessWidget {
           style: TextStyle(color: Color.fromRGBO(243, 243, 245, 1), fontWeight: FontWeight.bold),
         ),
         actions: [
-          // IconButton(
-          //   onPressed: () {},
-          //   icon: Icon(Icons.favorite_border_rounded),
-          //   color: Colors.white,
-          // ),
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.search),
@@ -52,16 +47,17 @@ class Itemspage extends StatelessWidget {
             icon: Icon(Icons.electrical_services),
             color: Colors.orange,
           )),
-          _buildCategoryCard('Saniters', IconButton(
+          _buildCategoryCard(
+            'Saniters', IconButton(
             onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context)=>saniterspage()));
+              Navigator.push(context,MaterialPageRoute(builder: (context)=>Saniterspage()));
 },
             icon: Icon(Icons.equalizer_sharp),
             color: Colors.green,
           )),
           _buildCategoryCard('others', IconButton(
             onPressed: () {
-            Navigator.push(context,MaterialPageRoute(builder: (context)=>Othrespage()));
+            Navigator.push(context,MaterialPageRoute(builder: (context)=>Otherspage()));
             },
             icon: Icon(Icons.abc),
             color: Colors.blue,

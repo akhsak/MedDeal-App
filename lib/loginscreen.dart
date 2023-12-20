@@ -106,9 +106,9 @@ class _ScreenLoginState extends State<ScreenLogin> {
   }
 
   Future checkLogin(BuildContext ctx) async {
-    final _username = _usernameController.text;
-    final _password = _passwordController.text;
-    if (_username == _password) {
+    final username = _usernameController.text;
+    final password = _passwordController.text;
+    if (username == password) {
       final _srdprf = await SharedPreferences.getInstance();
       await _srdprf.setBool(savekeyname, true);
 

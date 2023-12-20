@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:stockapp/db/model/datamodel.dart';
+import 'package:stockapp/model/datamodel.dart';
 
 ValueNotifier<List<ItemsModel>> itemlistnotifier = ValueNotifier([]);
 
 void additems(ItemsModel value) async {
   final itemsDB = await Hive.openBox<ItemsModel>('items_db');
-  final _id=await itemsDB.add(value);
-  value.id=_id;
+  await itemsDB.add(value);
   itemlistnotifier.value.add(value);
   itemlistnotifier.notifyListeners();
 
-  //print(value.toString());
 }
 
 Future<void> getAllitems() async {

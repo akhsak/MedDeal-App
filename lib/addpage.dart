@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
 import 'dart:io';
@@ -6,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stockapp/db/functions/db_function.dart';
-import 'package:stockapp/db/model/datamodel.dart';
-import 'package:stockapp/screens/bottomtabs/homepage.dart';
+import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/screens/bottomtabs/bottombar.dart';
 
 class Addpage extends StatefulWidget {
   const Addpage({Key? key});
@@ -18,21 +17,18 @@ class Addpage extends StatefulWidget {
 
 class _AddpageState extends State<Addpage> {
   String selectedValue = 'Meaddeal';
+
   final _namecontroller = TextEditingController();
   final _numcontroller = TextEditingController();
-  final _itemcontroller = TextEditingController();
   final _sellingpricecontroller = TextEditingController();
   final _costpricecontroller = TextEditingController();
 
-
   bool _isDataMatched = true;
- // XFile? picked;
 
   final _formKey = GlobalKey<FormState>();
 
-   final ImagePicker imagePicker=ImagePicker();
+  final ImagePicker imagePicker = ImagePicker();
   File? picked;
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +42,10 @@ class _AddpageState extends State<Addpage> {
           },
           icon: Icon(Icons.arrow_back, color: Colors.white),
         ),
-        title: Text('Add Items', style: TextStyle(color: Color.fromRGBO(248, 248, 249, 1), fontWeight: FontWeight.bold)),
+        title: Text('Add Items',
+            style: TextStyle(
+                color: Color.fromRGBO(248, 248, 249, 1),
+                fontWeight: FontWeight.bold)),
         backgroundColor: Color.fromRGBO(12, 2, 85, 1),
       ),
       body: Padding(
@@ -58,10 +57,10 @@ class _AddpageState extends State<Addpage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                    onTap: () => getimage(ImageSource.gallery),
-                    child: Center(
-                      child: Container(
-                        margin: EdgeInsets.only(bottom: 20),
+                  onTap: () => getimage(ImageSource.gallery),
+                  child: Center(
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 20),
                       height: 150,
                       width: screenWidth,
                       decoration: BoxDecoration(
@@ -69,13 +68,19 @@ class _AddpageState extends State<Addpage> {
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(color: Colors.grey),
                       ),
-                        child:
-                        picked== null?Icon(Icons.add_a_photo):ClipOval(child: Image.file(picked!,fit: BoxFit.cover,   height: 150,
-                                  width: 100,),),
-                      ),
+                      child: picked == null
+                          ? Icon(Icons.add_a_photo)
+                          : ClipOval(
+                              child: Image.file(
+                                picked!,
+                                fit: BoxFit.cover,
+                                height: 150,
+                                width: 100,
+                              ),
+                            ),
                     ),
                   ),
-    
+                ),
                 SizedBox(height: 20),
                 Container(
                   child: TextFormField(
@@ -93,7 +98,7 @@ class _AddpageState extends State<Addpage> {
                     },
                   ),
                 ),
-                    SizedBox(height: 20),
+                SizedBox(height: 20),
                 Container(
                   child: TextFormField(
                     controller: _numcontroller,
@@ -113,9 +118,7 @@ class _AddpageState extends State<Addpage> {
                 SizedBox(height: 20),
                 DropdownButtonFormField<String>(
                   decoration: InputDecoration(
-                      hintText: "Select Item",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20))),
+                      hintText: "Select Item", border: OutlineInputBorder()),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'value is Empty';
@@ -124,11 +127,10 @@ class _AddpageState extends State<Addpage> {
                     }
                   },
                   dropdownColor: const Color.fromARGB(255, 208, 203, 203),
-                  borderRadius: BorderRadius.circular(30),
                   isExpanded: true,
                   onChanged: (String? newvalue) {
                     setState(() {
-                      selectedValue = newvalue.toString();
+                      selectedValue = newvalue!.toString();
                     });
                   },
                   items: const [
@@ -171,10 +173,13 @@ class _AddpageState extends State<Addpage> {
                       child: Container(
                         child: TextFormField(
                           keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
                           controller: _sellingpricecontroller,
                           decoration: InputDecoration(
                             labelText: 'Selling Price',
+                            prefixText: '₹',
                             border: OutlineInputBorder(),
                           ),
                           validator: (value) {
@@ -192,10 +197,13 @@ class _AddpageState extends State<Addpage> {
                       child: Container(
                         child: TextFormField(
                           keyboardType: TextInputType.number,
-                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
                           controller: _costpricecontroller,
                           decoration: InputDecoration(
                             labelText: 'Cost Price',
+                            prefixText: '₹',
                             border: OutlineInputBorder(),
                           ),
                           validator: (value) {
@@ -225,7 +233,11 @@ class _AddpageState extends State<Addpage> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         onAddItemButtonClicked();
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage()));
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Bottombar()),
+                            (route) => false);
                       }
                     },
                     child: Text('Save'),
@@ -242,14 +254,19 @@ class _AddpageState extends State<Addpage> {
   Future<void> onAddItemButtonClicked() async {
     final _name = _namecontroller.text.trim();
     final _num = _numcontroller.text.trim();
-    final _item = _itemcontroller.text.trim();
+    final _item = selectedValue;
     final _sellprice = _sellingpricecontroller.text.trim();
     final _costprice = _costpricecontroller.text.trim();
 
-
     if (_formKey.currentState?.validate() ?? false) {
       print('$_name $_num $_item $_sellprice $_costprice');
-      final _addItem = ItemsModel(name: _name, num: _num, item: _item, sellprice: _sellprice,costprice: _costprice, image: picked?.path ?? '');
+      final _addItem = ItemsModel(
+          name: _name,
+          num: _num,
+          item: _item,
+          sellprice: _sellprice,
+          costprice: _costprice,
+          image: picked?.path ?? '');
       additems(_addItem);
 
       Navigator.pop(context);
@@ -259,13 +276,11 @@ class _AddpageState extends State<Addpage> {
       });
     }
   }
+
   getimage(ImageSource source) async {
     var img = await imagePicker.pickImage(source: source);
     setState(() {
       picked = File(img!.path);
-      
     });
-  
+  }
 }
-}
-
