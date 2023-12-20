@@ -17,10 +17,8 @@ class Detailspage extends StatelessWidget {
     required this.item,
     required this.sellprice,
     required this.image,
-     required this.costprice,
+    required this.costprice,
   });
-
-//ignore_for_file: prefer_const_constructors
 
   @override
   Widget build(BuildContext context) {
@@ -30,39 +28,47 @@ class Detailspage extends StatelessWidget {
         title: Text('Details', style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
-       body:SingleChildScrollView (
-        child: Container(
-          margin: EdgeInsets.all(20),
-          child: Column(
-            children: [
-              CircleAvatar(
-                backgroundImage: FileImage(File(image)),
-                radius: 80,
-              ),
-              SizedBox(height: 20),
-              ProfileCard(
-                title: 'itemName',
-                content: name,
-              ),          
-              ProfileCard(
-                title: 'stall number',
-                content:num,
-              ),
-              ProfileCard(
-                title: 'select item',
-                content: item,
-              ),
-              ProfileCard(
-                title: 'selling price',
-                content: sellprice,
-              ),
-               ProfileCard(
-                title: 'cost price',
-                content: costprice,
-              ),
-            ],
-          ),
-        ),
+      body: ListView.builder(
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  backgroundImage: FileImage(File(image)),
+                  radius: 80,
+                ),
+                SizedBox(height: 20),
+                ProfileCard(
+                  title: 'Item Name',
+                  content: name,
+                  
+                ),
+                ProfileCard(
+                  title: 'Stall Number',
+                  content: num,
+                 
+                ),
+                ProfileCard(
+                  title: 'Select Item',
+                  content: item,
+                  
+                ),
+                ProfileCard(
+                  title: 'Selling Price',
+                  content: sellprice,
+                 
+                ),
+                ProfileCard(
+                  title: 'Cost Price',
+                  content: costprice,
+                 
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -82,31 +88,35 @@ class ProfileCard extends StatelessWidget {
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(16),
       ),
-      color: Colors.white,
-      child: Container(
-        padding: EdgeInsets.all(20),
-        width: double.infinity,
-        height: 100,
+      margin: EdgeInsets.only(bottom: 16),
+      child: Padding(
+        padding: EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 19, 155, 165),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+          
+              ],
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 12),
             Text(
               content,
               style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 19, 155, 165)),
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
           ],
         ),

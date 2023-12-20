@@ -1,6 +1,10 @@
+
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stockapp/db/functions/db_function.dart';
 import 'package:stockapp/db/model/datamodel.dart';
@@ -53,129 +57,165 @@ class _EditpageState extends State<Editpage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/download.png'), fit: BoxFit.cover)),
+        decoration: BoxDecoration(
+        
+        ),
         child: ListView(
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const SizedBox(
+                SizedBox(
                   height: 50,
                 ),
-                CircleAvatar(
-                  radius: 80,
-                  backgroundColor: Colors.blueGrey,
-                  backgroundImage: _selectedImage != null
-                      ? FileImage(_selectedImage!)
-                      : const AssetImage("assets/download.png")
-                          as ImageProvider,
+                GestureDetector(
+                  onTap: () => _pickImage(ImageSource.gallery),
+                  child: Center(
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      height: 150,
+                      width: screenWidth,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: _selectedImage == null
+                          ? Icon(Icons.add_a_photo, color: Colors.grey)
+                          : ClipOval(
+                              child: Image.file(
+                                _selectedImage!,
+                                fit: BoxFit.cover,
+                                height: 150,
+                                width: 100,
+                              ),
+                            ),
+                    ),
+                  ),
                 ),
-                ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent),
-                    onPressed: () {
-                      _pickImage(ImageSource.gallery);
-                    },
-                    icon: const Icon(Icons.image),
-                    label: const Text("GALLERY")),
-                ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent),
-                    onPressed: () {
-                      _pickImage(ImageSource.camera);
-                    },
-                    icon: const Icon(Icons.camera_alt),
-                    label: const Text("CAMERA")),
-                const SizedBox(
-                  height: 20,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: TextField(
+                    controller: _nameController,
+                    style: TextStyle(color:Color.fromARGB(255, 30, 3, 56)),
+                    decoration: InputDecoration(
+                      labelText: 'Item Name',
+                      labelStyle: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(left: 30, right: 30),
-                  child: Column(
-                    children: [
-                      TextField(
-                        controller: _nameController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: "itemName",
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: TextField(
+                    controller: _numController,
+                    style: TextStyle(color:Color.fromARGB(255, 30, 3, 56)),
+                    decoration: InputDecoration(
+                      labelText: 'Stall Number',
+                      labelStyle: TextStyle(color:Color.fromARGB(255, 30, 3, 56)),
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: DropdownButtonFormField<String>(
+                    decoration: InputDecoration(
+                      hintText: "Select Item",
+                      hintStyle: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    dropdownColor: const Color.fromARGB(255, 30, 3, 56),
+                    borderRadius: BorderRadius.circular(30),
+                    isExpanded: true,
+                    onChanged: (String? newvalue) {},
+                    items: const [
+                      DropdownMenuItem(
+                        value: "Medicines",
+                        child: Text(
+                          "Medicines",
+                          style: TextStyle(color: Color.fromARGB(255, 19, 19, 19)),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextField(
-                        controller: _numController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: '',
+                      DropdownMenuItem(
+                        value: "Equipments",
+                        child: Text(
+                          "Equipments",
+                          style: TextStyle(color: Color.fromARGB(255, 7, 6, 6)),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextField(
-                        controller: _itemsController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: 'Medicine',
+                      DropdownMenuItem(
+                        value: "Sanitizers",
+                        child: Text(
+                          "Sanitizers",
+                          style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextField(
-                        maxLength: 10,
-                        controller: _sellpriceController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: 'Age',
+                      DropdownMenuItem(
+                        value: "Others",
+                        child: Text(
+                          "Others",
+                          style: TextStyle(color: Color.fromARGB(255, 12, 12, 12)),
                         ),
                       ),
-                      TextField(
-                        maxLength: 10,
-                        controller: _costpriceController,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.all(10),
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(),
-                          hintText: 'Age',
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.lightBlue),
-                          onPressed: () {
-                            setState(() {
-                              updateall();
-                            });
-                          },
-                          icon: const Icon(Icons.done),
-                          label: const Text("Update")),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          controller: _sellpriceController,
+                          style: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                          decoration: InputDecoration(
+                            labelText: 'Selling Price',
+                            labelStyle: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      Expanded(
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          controller: _costpriceController,
+                          style: TextStyle(color:Color.fromARGB(255, 30, 3, 56)),
+                          decoration: InputDecoration(
+                            labelText: 'Cost Price',
+                            labelStyle: TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    updateall();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Homepage()),
+                    );
+                  },
+                  child: Text('Save'),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -188,7 +228,7 @@ class _EditpageState extends State<Editpage> {
     final items = _itemsController.text.trim();
     final sellprice = _sellpriceController.text.trim();
     final costprice = _costpriceController.text.trim();
-    final image = _selectedImage!.path;
+    final image = _selectedImage?.path ?? '';
 
     if (name.isEmpty ||
         num.isEmpty ||
@@ -196,16 +236,16 @@ class _EditpageState extends State<Editpage> {
         sellprice.isEmpty ||
         costprice.isEmpty ||
         image.isEmpty) {
-          
       return;
     } else {
       final update = ItemsModel(
-          name: name,
-          num: num,
-          item: items,
-          sellprice: sellprice,
-          costprice: costprice,
-          image: image);
+        name: name,
+        num: num,
+        item: items,
+        sellprice: sellprice,
+        costprice: costprice,
+        image: image,
+      );
       print(update);
 
       edit(widget.index, update);
@@ -213,7 +253,7 @@ class _EditpageState extends State<Editpage> {
     }
   }
 
-  Future _pickImage(ImageSource source) async {
+  Future<void> _pickImage(ImageSource source) async {
     final returnImage = await ImagePicker().pickImage(source: source);
 
     if (returnImage == null) {
@@ -225,3 +265,4 @@ class _EditpageState extends State<Editpage> {
     });
   }
 }
+

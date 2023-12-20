@@ -96,8 +96,6 @@ class _AddpageState extends State<Addpage> {
                     SizedBox(height: 20),
                 Container(
                   child: TextFormField(
-                    keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     controller: _numcontroller,
                     decoration: InputDecoration(
                       labelText: 'Stall Number',
@@ -172,6 +170,8 @@ class _AddpageState extends State<Addpage> {
                     Expanded(
                       child: Container(
                         child: TextFormField(
+                          keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           controller: _sellingpricecontroller,
                           decoration: InputDecoration(
                             labelText: 'Selling Price',
@@ -191,6 +191,8 @@ class _AddpageState extends State<Addpage> {
                     Expanded(
                       child: Container(
                         child: TextFormField(
+                          keyboardType: TextInputType.number,
+                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           controller: _costpricecontroller,
                           decoration: InputDecoration(
                             labelText: 'Cost Price',
