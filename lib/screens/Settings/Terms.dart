@@ -50,7 +50,7 @@ class Termsprivacy extends StatelessWidget {
                   """,
                 ),
                 Text(
-                  'adilrusfeed@gmail.com',
+                  'akhsakbl30@gmail.com',
                   style: TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue,
@@ -64,23 +64,7 @@ class Termsprivacy extends StatelessWidget {
           ),
         ),
       ),
-      // appBar: AppBar(
-      //  title:  Text('Terms&Privacy'),
-      //  centerTitle: true,
-      //  backgroundColor: Colors.green,
-      //   ),
-      //   body: Column(
-      //     children: [
-      //       Padding(
-      //         padding: const EdgeInsets.all(80),
-      //         child: Center(
-      //           child: Text(
-      //             'helloo',style: TextStyle(fontWeight: FontWeight.bold),
-      //           ),
-      //         ),
-      //       )
-      //     ],
-      //    ),
+      
     );
   }
 }

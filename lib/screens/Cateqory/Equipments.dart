@@ -49,7 +49,12 @@ class Equipmentspage extends StatefulWidget {
 }
 
 class _EquipmentspageState extends State<Equipmentspage> {
-  
+  List categories = [
+    'Medicine',
+    'Equipments',
+    'Saniters', 
+     'others', 
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +65,8 @@ class _EquipmentspageState extends State<Equipmentspage> {
       body:  ValueListenableBuilder(
               valueListenable: itemlistnotifier,
               builder:
-                  (BuildContext, List<ItemsModel> itemlist, Widget? child) {
-                     final filteredBreakfastList = itemlist
+                  (BuildContext, List<ItemsModel> Itemlist, Widget? child) {
+                     final itemlist = Itemlist
             .where((food) =>
                 food.item.contains('Equipments') == true)
             .toList();

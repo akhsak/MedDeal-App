@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/screens/bottomtabs/bottombar.dart';
+import 'package:stockapp/splash1.dart';
 
 
 const savekeyname = 'UserLogin';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Bottombar(),
+      home:Bottombar(),
     );
   }
 }

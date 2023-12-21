@@ -1,19 +1,15 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
 import 'dart:io';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/db/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-// import 'package:stockapp/screens/settings/Appinfo.dart';
-// import 'package:stockapp/screens/settings/Logout.dart';
-// import 'package:stockapp/screens/settings/ResetApp.dart';
-// import 'package:stockapp/screens/settings/Terms.dart';
 import 'package:stockapp/screens/viewpage/details.dart';
 import 'package:stockapp/screens/viewpage/editpage.dart';
 import 'package:stockapp/loginscreen.dart';
+import 'package:stockapp/widget/drawer_page.dart';
 
 
 
@@ -36,7 +32,32 @@ class _HomepageState extends State<Homepage> {
     getAllitems();
     return Scaffold(
       appBar: AppBar(),
-      
+      endDrawer: Drawer(
+        elevation: 100,
+        shadowColor: const Color.fromARGB(255, 227, 227, 226),
+        child: Container(
+          color: Color(0xFFFFFFFF),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    "settings",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(child: DrawerHeaderWidget()),
+            ],
+          ),
+        ),
+      ),
       body: Column(
         children: [
           Padding(
@@ -149,7 +170,7 @@ class _HomepageState extends State<Homepage> {
                             ),
                             IconButton(
                               onPressed: () {
-                                deleteitems(index);
+                                deleteitems(reverseindex);
                               },
                               icon: Icon(Icons.delete),
                               color: Colors.black,
