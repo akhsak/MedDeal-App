@@ -97,9 +97,9 @@
 
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:js';
-
+// import 'dart:js';
 import 'package:flutter/material.dart';
+import 'package:stockapp/screens/Cateqory/others.dart';
 import 'package:stockapp/screens/cateqory/Equipments.dart';
 import 'package:stockapp/screens/cateqory/Medicine.dart';
 import 'package:stockapp/screens/cateqory/Saniters.dart';
@@ -108,11 +108,11 @@ import 'package:stockapp/screens/cateqory/others.dart';
 class Itemspage extends StatelessWidget {
   Itemspage({Key? key});
 
-  List categories = [
-    'Medicine', Icons.medical_services_outlined, Colors.red, Medicinepage(),
-    'Equipments', Icons.electrical_services, Colors.orange, Equipmentspage(),
-    'Saniters', Icons.equalizer_sharp, Colors.green, Saniterspage(),
-     'others', Icons.abc, Colors.blue, Otherspage()
+  List<CategoryData> categories = [
+    CategoryData('Medicine', Icons.medical_services_outlined, Colors.red,Medicinepage ()),
+    CategoryData('Equipments', Icons.electrical_services, Colors.orange, Equipmentspage()),
+    CategoryData('Saniters', Icons.equalizer_sharp, Colors.green, Saniterspage()),
+    CategoryData('others', Icons.abc, Colors.blue,  Otherspage())
   ];
 
   @override
@@ -158,7 +158,7 @@ class Itemspage extends StatelessWidget {
       ),
       child: GestureDetector(
         onTap: () {
-         Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => category.route));
+         // Navigator.push(context, MaterialPageRoute(builder: (context) => category.route));
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -190,4 +190,3 @@ class CategoryData {
 
   CategoryData(this.title, this.icon, this.color, this.route);
 }
-
