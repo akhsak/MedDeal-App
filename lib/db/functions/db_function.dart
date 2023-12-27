@@ -35,3 +35,13 @@ Future<void> deleteitems(int id) async{
   itemsDB.deleteAt(id);
   getAllitems();
 }
+//chart
+
+
+double calculateTotalCost(List<ItemsModel> foods) {
+  double totalCost = 0;
+  for (var food in foods) {
+    totalCost += double.parse(food.costprice);
+  }
+  return totalCost;
+}
