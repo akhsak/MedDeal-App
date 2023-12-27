@@ -32,8 +32,8 @@ class _PieData {
 }
 
 final List<_PieData> pieData = [
-  _PieData('Category A', 30, '30%'),
-  _PieData('Category B', 20, '20%'),
-  _PieData('Category C', 15, '15%'),
-  _PieData('Category D', 10, '10%'),
+  _PieData('Medicine A', 30, '30%'),
+  _PieData('Equipments B', 20, '20%'),
+  _PieData('Saniters C', 15, '15%'),
+  _PieData('Others D', 10, '10%'),
 ];

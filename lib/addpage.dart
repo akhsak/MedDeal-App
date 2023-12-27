@@ -150,9 +150,9 @@ class _AddpageState extends State<Addpage> {
                       ),
                     ),
                     DropdownMenuItem(
-                      value: "Sanitizers",
+                      value: "Saniters",
                       child: Text(
-                        "Sanitizers",
+                        "Saniters",
                         style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
                       ),
                     ),
