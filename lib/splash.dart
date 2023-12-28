@@ -5,7 +5,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
-import 'package:stockapp/homepage.dart';
 import 'package:stockapp/loginscreen.dart';
 import 'package:stockapp/screens/bottomtabs/bottombar.dart';
 
@@ -38,7 +37,7 @@ class _SplashpageState extends State<Splashpage> {
   Future<void> login() async {
     await Future.delayed(const Duration(seconds: 3));
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-      return const ScreenLogin();
+      return ScreenLogin();
     }));
   }
 

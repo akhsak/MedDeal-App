@@ -170,7 +170,22 @@ class _HomepageState extends State<Homepage> {
                             ),
                             IconButton(
                               onPressed: () {
+                               showDialog(context: context, builder: (context){
+                               return AlertDialog(
+                                title: Text('Are you sure want to delete'),
+                                actions: [
+                                  TextButton(onPressed: (){
+                                    Navigator.pop(context);
+                                  }, child: Text('close')),
+                                  TextButton(onPressed: (){
+                                   
                                 deleteitems(reverseindex);
+                                Navigator.pop(context);      
+                                  }, child: Text('delete'))
+                                ],
+                               );
+                               });
+
                               },
                               icon: Icon(Icons.delete),
                               color: Colors.black,
@@ -197,7 +212,7 @@ class _HomepageState extends State<Homepage> {
     signout(BuildContext ctx)async{
     final sharedperfer = await SharedPreferences.getInstance();
     await sharedperfer.clear();
-    Navigator.of(ctx).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx1)=>const ScreenLogin()), (route) => false);
+    Navigator.of(ctx).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx1)=> ScreenLogin()), (route) => false);
   }
 
   

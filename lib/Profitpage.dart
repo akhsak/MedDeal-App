@@ -2,17 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-class ProfitPage extends StatefulWidget {
+class ProfitPage extends StatelessWidget {
   const ProfitPage({Key? key}) : super(key: key);
 
   @override
-  State<ProfitPage> createState() => _ProfitPageState();
-}
-
-class _ProfitPageState extends State<ProfitPage> {
-  @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(12, 2, 85, 1),
@@ -22,10 +16,6 @@ class _ProfitPageState extends State<ProfitPage> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        leading: IconButton(onPressed: (){
-       //   Navigator.pop(context);
-        },icon: Icon(Icons.arrow_back, color: Colors.white),
- ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -119,6 +109,3 @@ class _ProfitPageState extends State<ProfitPage> {
     );
   }
 }
-
-
-

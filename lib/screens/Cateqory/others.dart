@@ -1,4 +1,3 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:stockapp/db/functions/db_function.dart';
@@ -14,6 +13,7 @@ class Otherspag extends StatefulWidget {
 }
 
 class _OtherspageState extends State<Otherspag> {
+  TextEditingController searchController = TextEditingController();
   List<ItemsModel> itemList = [];
 
   @override
@@ -21,95 +21,133 @@ class _OtherspageState extends State<Otherspag> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Others List'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: OthersSearchDelegate(itemList),
-              );
-            },
-            icon: Icon(Icons.search),
-          ),
-        ],
       ),
       body: ValueListenableBuilder(
         valueListenable: itemlistnotifier,
-        builder: (BuildContext, List<ItemsModel> Itemlist, Widget? child) {
-          itemList =
-              Itemlist.where((food) => food.item.split(',').map((category) => category.trim().toLowerCase()).contains('others')).toList();
+        builder:
+            (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
+          itemList = Itemlist.where((food) => food.item
+              .split(',')
+              .map((category) => category.trim().toLowerCase())
+              .contains('others')).toList();
 
-          return ListView.builder(
-            itemCount: itemList.length,
-            itemBuilder: (context, index) {
-              final reverseindex = itemList.length - 1 - index;
-              final data = itemList[reverseindex];
-              return Card(
-                color: const Color.fromARGB(255, 250, 251, 252),
-                child: ListTile(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Detailspage(
-                          name: data.name,
-                          num: data.num,
-                          item: data.item,
-                          sellprice: data.sellprice,
-                          costprice: data.costprice,
-                          image: data.image!,
-                        ),
-                      ),
-                    );
-                  },
-                  title: Text(data.name),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(data.num),
-                      Text(data.item),
-                      Text(data.sellprice),
-                      Text(data.costprice),
-                    ],
+          String searchQuery = searchController.text.toLowerCase();
+          List<ItemsModel> filteredItemList = itemList;
+          if (searchQuery.isNotEmpty) {
+            filteredItemList = itemList.where((item) {
+              return item.name.toLowerCase().contains(searchQuery) ||
+                  item.num.toLowerCase().contains(searchQuery) ||
+                  item.item.toLowerCase().contains(searchQuery) ||
+                  item.sellprice.toLowerCase().contains(searchQuery) ||
+                  item.costprice.toLowerCase().contains(searchQuery);
+            }).toList();
+          }
+
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: searchController,
+                  decoration: InputDecoration(
+                    hintText: 'Search...',
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        searchController.clear();
+                      },
+                      icon: Icon(Icons.clear),
+                    ),
                   ),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        onPressed: () {
+                  onChanged: (value) {
+                    setState(() {});
+                  },
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: filteredItemList.length,
+                  itemBuilder: (context, index) {
+                    final data = filteredItemList[index];
+                    return Card(
+                      color: Color.fromARGB(255, 241, 242, 243),
+                      child: ListTile(
+                        onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Editpage(
-                                costprice: data.costprice,
-                                index: index,
-                                items: data.item,
+                              builder: (context) => Detailspage(
                                 name: data.name,
                                 num: data.num,
+                                item: data.item,
                                 sellprice: data.sellprice,
-                                imagePath: data.image!,
+                                costprice: data.costprice,
+                                image: data.image!,
                               ),
                             ),
                           );
                         },
-                        icon: const Icon(Icons.edit),
-                        color: Colors.black,
+                        title: Text(data.name),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(data.num),
+                            Text(data.item),
+                            Text(data.sellprice),
+                            Text(data.costprice),
+                          ],
+                        ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Editpage(
+                                      costprice: data.costprice,
+                                      index: index,
+                                      items: data.item,
+                                      name: data.name,
+                                      num: data.num,
+                                      sellprice: data.sellprice,
+                                      imagePath: data.image!,
+                                    ),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(Icons.edit),
+                              color: Colors.black,
+                            ),
+                                         IconButton(onPressed: (){
+                              showDialog(context: context, builder: (context){
+                                 return AlertDialog(
+                                  title: Text('Are you sure want to delete'),
+                                  actions: [TextButton(onPressed: (){
+                                    Navigator.pop(context);
+                                  }, child: Text('close')),
+                                  TextButton(onPressed: (){
+                                    deleteitems(index);
+                                  Navigator.pop(context);
+
+                                  }, child: Text('delete'))],
+                                 );
+                              });
+                            },
+                             icon: const Icon(Icons.delete),
+                             color: Colors.black),
+                         
+                          ],
+                        ),
+                        leading: CircleAvatar(
+                          backgroundImage: FileImage(File(data.image!)),
+                        ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          deleteitems(index);
-                        },
-                        icon: const Icon(Icons.delete),
-                        color: Colors.black,
-                      ),
-                    ],
-                  ),
-                  leading: CircleAvatar(
-                    backgroundImage: FileImage(File(data.image!)),
-                  ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+            ],
           );
         },
       ),
@@ -126,10 +164,10 @@ class OthersSearchDelegate extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
+        icon: Icon(Icons.clear),
         onPressed: () {
           query = '';
         },
-        icon: Icon(Icons.clear),
       ),
     ];
   }
@@ -146,105 +184,39 @@ class OthersSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    final searchResults = itemList
-        .where((item) => item.name.toLowerCase().contains(query.toLowerCase()))
-        .toList();
-
-    return ListView.builder(
-      itemCount: searchResults.length,
-      itemBuilder: (context, index) {
-        final data = searchResults[index];
-        return Card(
-          color: Color.fromARGB(255, 250, 251, 252),
-          child: ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Detailspage(
-                    name: data.name,
-                    num: data.num,
-                    item: data.item,
-                    sellprice: data.sellprice,
-                    costprice: data.costprice,
-                    image: data.image!,
-                  ),
-                ),
-              );
-            },
-            title: Text(data.name),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(data.num),
-                Text(data.item),
-                Text(data.sellprice),
-                Text(data.costprice),
-              ],
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Editpage(
-                          costprice: data.costprice,
-                          index: index,
-                          items: data.item,
-                          name: data.name,
-                          num: data.num,
-                          sellprice: data.sellprice,
-                          imagePath: data.image!,
-                        ),
-                      ),
-                    );
-                  },
-                  icon: Icon(Icons.edit),
-                  color: Colors.black,
-                ),
-                IconButton(
-                  onPressed: () {
-                    deleteitems(index);
-                  },
-                  icon: Icon(Icons.delete),
-                  color: Colors.black,
-                ),
-              ],
-            ),
-            leading: CircleAvatar(
-              backgroundImage: FileImage(File(data.image!)),
-            ),
-          ),
-        );
-      },
-    );
+    return buildSearchResults();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList = itemList
-        .where((item) => item.name.toLowerCase().contains(query.toLowerCase()))
-        .toList();
+    return buildSearchResults();
+  }
 
+  Widget buildSearchResults() {
     return ListView.builder(
-      itemCount: suggestionList.length,
+      itemCount: itemList.length,
       itemBuilder: (context, index) {
-        final data = suggestionList[index];
+        final data = itemList[index];
         return ListTile(
           title: Text(data.name),
+          subtitle: Text(data.item),
           onTap: () {
-            query = data.name;
-            showResults(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Detailspage(
+                  name: data.name,
+                  num: data.num,
+                  item: data.item,
+                  sellprice: data.sellprice,
+                  costprice: data.costprice,
+                  image: data.image!,
+                ),
+              ),
+            );
           },
         );
       },
     );
   }
 }
-
-
-
-

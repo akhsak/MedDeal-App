@@ -96,8 +96,8 @@ class _EditpageState extends State<Editpage> {
                       ),
                       child: _selectedImage == null
                           ? Icon(Icons.add_a_photo, color: Colors.grey)
-                          : ClipOval(
-                              child: Image.file(
+                          : 
+                           Image.file(
                                 _selectedImage!,
                                 fit: BoxFit.cover,
                                 height: 150,
@@ -106,7 +106,7 @@ class _EditpageState extends State<Editpage> {
                             ),
                     ),
                   ),
-                ),
+                
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(

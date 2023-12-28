@@ -6,22 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart'; 
 import 'package:stockapp/screens/bottomtabs/bottombar.dart';
 
-class ScreenLogin extends StatefulWidget {
-  const ScreenLogin({Key? key}) : super(key: key);
+class ScreenLogin extends StatelessWidget {
+   ScreenLogin({Key? key}) : super(key: key);
 
-  @override
-  State<ScreenLogin> createState() => _ScreenLoginState();
-}
-
-class _ScreenLoginState extends State<ScreenLogin> {
   final _usernameController = TextEditingController();
+
   final _passwordController = TextEditingController();
 
   bool _isDataMatched = true;
 
   final _formKey = GlobalKey<FormState>();
-
-
 
   @override
   Widget build(BuildContext context) {

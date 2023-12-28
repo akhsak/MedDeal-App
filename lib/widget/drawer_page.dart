@@ -71,7 +71,7 @@ class DrawerHeaderWidget extends StatelessWidget {
     final sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.clear();
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context1) => const ScreenLogin()),
+      MaterialPageRoute(builder: (context1) => ScreenLogin()),
       (route) => false,
     );
   }

@@ -27,6 +27,12 @@ class Detailspage extends StatelessWidget {
         backgroundColor: Color.fromRGBO(12, 2, 85, 1),
         title: Text('Details', style: TextStyle(color: Colors.white)),
         centerTitle: true,
+         leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+        ),
       ),
       body: ListView.builder(
         itemCount: 1,

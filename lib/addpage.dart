@@ -70,8 +70,8 @@ class _AddpageState extends State<Addpage> {
                       ),
                       child: picked == null
                           ? Icon(Icons.add_a_photo)
-                          : ClipOval(
-                              child: Image.file(
+                          : 
+                               Image.file(
                                 picked!,
                                 fit: BoxFit.cover,
                                 height: 150,
@@ -80,7 +80,7 @@ class _AddpageState extends State<Addpage> {
                             ),
                     ),
                   ),
-                ),
+              
                 SizedBox(height: 20),
                 Container(
                   child: TextFormField(

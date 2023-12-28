@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -25,12 +24,12 @@ class _SaniterspageState extends State<Saniterspage> {
       ),
       body: ValueListenableBuilder(
         valueListenable: itemlistnotifier,
-        builder: (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
-          List<ItemsModel> filteredItemList = Itemlist
-              .where((item) => item.item.toLowerCase() == 'saniters')
-              .toList();
+        builder:
+            (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
+          List<ItemsModel> filteredItemList =
+              Itemlist.where((item) => item.item.toLowerCase() == 'saniters')
+                  .toList();
 
-          // Apply search filter
           String searchQuery = searchController.text.toLowerCase();
           if (searchQuery.isNotEmpty) {
             filteredItemList = filteredItemList.where((item) {
@@ -58,7 +57,7 @@ class _SaniterspageState extends State<Saniterspage> {
                     ),
                   ),
                   onChanged: (value) {
-                    setState(() {}); // Trigger a rebuild when the user types
+                    setState(() {});
                   },
                 ),
               ),
@@ -118,13 +117,24 @@ class _SaniterspageState extends State<Saniterspage> {
                               icon: const Icon(Icons.edit),
                               color: Colors.black,
                             ),
-                            IconButton(
-                              onPressed: () {
-                                deleteitems(index);
-                              },
-                              icon: const Icon(Icons.delete),
-                              color: Colors.black,
-                            ),
+                            IconButton(onPressed: (){
+                              showDialog(context: context, builder: (context){
+                                 return AlertDialog(
+                                  title: Text('Are you sure want to delete'),
+                                  actions: [TextButton(onPressed: (){
+                                    Navigator.pop(context);
+                                  }, child: Text('close')),
+                                  TextButton(onPressed: (){
+                                    deleteitems(index);
+                                  Navigator.pop(context);
+
+                                  }, child: Text('delete'))],
+                                 );
+                              });
+                            },
+                             icon: const Icon(Icons.delete),
+                             color: Colors.black),
+                            
                           ],
                         ),
                         leading: CircleAvatar(
