@@ -1,27 +1,23 @@
-
-// ignore_for_file: prefer_final_fields, prefer_const_constructors, prefer_const_declarations, no_leading_underscores_for_local_identifiers
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stockapp/main.dart'; 
-import 'package:stockapp/screens/bottomtabs/bottombar.dart';
+import 'package:stockapp/main.dart';
+import 'package:stockapp/widget/bottomtabs/bottombar.dart';
 
 class ScreenLogin extends StatelessWidget {
-   ScreenLogin({Key? key}) : super(key: key);
+  ScreenLogin({Key? key}) : super(key: key);
 
   final _usernameController = TextEditingController();
-
   final _passwordController = TextEditingController();
-
   bool _isDataMatched = true;
-
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text('Login'),
+        ),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
@@ -30,9 +26,16 @@ class ScreenLogin extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Icon(
+                    Icons.account_circle,
+                    size: 100,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _usernameController,
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.person),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -51,6 +54,7 @@ class ScreenLogin extends StatelessWidget {
                     controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.lock),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -65,30 +69,26 @@ class ScreenLogin extends StatelessWidget {
                     },
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Visibility(
-                        visible: !_isDataMatched,
-                        child: Text(
-                          'Username password does not match',
-                          style: TextStyle(
-                            color: Colors.red,
-                          ),
-                        ),
+                  Visibility(
+                    visible: !_isDataMatched,
+                    child: Text(
+                      'Username password does not match',
+                      style: TextStyle(
+                        color: Colors.red,
                       ),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            checkLogin(context);
-                          } else {
-                            print('Data empty');
-                          }
-                        },
-                        icon: Icon(Icons.check),
-                        label: Text('Login'),
-                      ),
-                    ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        checkLogin(context);
+                      } else {
+                        print('Data empty');
+                      }
+                    },
+                    icon: Icon(Icons.login),
+                    label: Text('Login'),
                   ),
                 ],
               ),
@@ -128,5 +128,4 @@ class ScreenLogin extends StatelessWidget {
     }
   }
 }
-
 

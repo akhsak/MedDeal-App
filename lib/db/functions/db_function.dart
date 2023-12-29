@@ -35,7 +35,6 @@ Future<void> deleteitems(int id) async{
   itemsDB.deleteAt(id);
   getAllitems();
 }
-//chart
 
 
 double calculateTotalCost(List<ItemsModel> foods) {
@@ -44,4 +43,9 @@ double calculateTotalCost(List<ItemsModel> foods) {
     totalCost += double.parse(food.costprice);
   }
   return totalCost;
+}
+Future<void> deleteAllitems() async{
+  final itemsDB = await Hive.openBox<ItemsModel>('items_db');
+   await itemsDB.clear();
+  getAllitems();
 }

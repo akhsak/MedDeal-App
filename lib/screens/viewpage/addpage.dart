@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stockapp/db/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/screens/bottomtabs/bottombar.dart';
+import 'package:stockapp/widget/bottomtabs/bottombar.dart';
 
 class Addpage extends StatefulWidget {
   const Addpage({Key? key});

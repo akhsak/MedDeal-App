@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stockapp/db/functions/db_function.dart';
 import 'package:stockapp/loginscreen.dart';
 import 'package:stockapp/screens/settings/Appinfo.dart';
 import 'package:stockapp/screens/settings/Terms.dart';
@@ -39,7 +40,7 @@ class DrawerHeaderWidget extends StatelessWidget {
           Divider(),
           GestureDetector(
             onTap: () {
-              // resetApp(context);
+              deleteAllitems();
             },
             child: DrawerItem(
               text: "Reset App",

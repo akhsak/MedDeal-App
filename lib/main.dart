@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/screens/bottomtabs/bottombar.dart';
 import 'package:stockapp/splash1.dart';
+import 'package:stockapp/widget/bottomtabs/bottombar.dart';
 
 
 const savekeyname = 'UserLogin';

@@ -29,7 +29,6 @@ class _MedicinepageState extends State<Medicinepage> {
           itemList = Itemlist.where(
               (food) => food.item.toLowerCase().contains('medicine')).toList();
 
-          // Apply search filter
           String searchQuery = searchController.text.toLowerCase();
           List<ItemsModel> filteredItemList = itemList;
           if (searchQuery.isNotEmpty) {
