@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:stockapp/db/functions/db_function.dart';
+import 'package:stockapp/function/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

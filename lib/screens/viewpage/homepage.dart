@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stockapp/db/functions/db_function.dart';
+import 'package:stockapp/function/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/screens/viewpage/details.dart';
 import 'package:stockapp/screens/viewpage/editpage.dart';

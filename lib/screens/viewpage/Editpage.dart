@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:stockapp/db/functions/db_function.dart';
+import 'package:stockapp/function/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/widget/bottomtabs/bottombar.dart';
 
