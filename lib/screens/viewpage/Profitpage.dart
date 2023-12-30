@@ -1,9 +1,28 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:stockapp/function/functions/db_function.dart';
 
-class ProfitPage extends StatelessWidget {
+class ProfitPage extends StatefulWidget {
   const ProfitPage({Key? key}) : super(key: key);
+
+  @override
+  State<ProfitPage> createState() => _ProfitPageState();
+}
+
+class _ProfitPageState extends State<ProfitPage> {
+  late String profit;
+  late String cost;
+
+  @override
+  void initState() {
+    super.initState();
+    if (itemlistnotifier.value.isNotEmpty) {
+      profit = '₹ ${itemlistnotifier.value.first.sellprice}';
+      cost = '₹ ${itemlistnotifier.value.first.costprice}';
+    } else {
+      profit = '₹ 0';
+      cost = '₹ 0';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,46 +37,31 @@ class ProfitPage extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(50),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _buildStatRow('Sold Quantity', '5', 'Purchase Quantity', '10'),
-            SizedBox(height: 10),
-            _buildStatRow('Spending(₹)', '50', 'Earning(₹)', '100'),
+            _buildStatRow('Spending', cost),
+            SizedBox(height: 30,),
+            _buildStatRow('Earning', profit),
             SizedBox(height: 20),
-            _buildSectionHeader('Transaction History'),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return _buildTransactionCard('Dateee', 'Stall: no A2');
-                },
-              ),
-            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildStatRow(
-    String label1,
-    String value1,
-    String label2,
-    String value2,
-  ) {
+  Widget _buildStatRow(String label, String value) {
     return Container(
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 159, 156, 156),
+        color: Colors.blueAccent, 
         borderRadius: BorderRadius.circular(10),
       ),
       padding: const EdgeInsets.all(16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildStatItem(label1, value1),
-          _buildStatItem(label2, value2),
+          _buildStatItem(label, value),
         ],
       ),
     );
@@ -70,42 +74,18 @@ class ProfitPage extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white, 
             fontWeight: FontWeight.bold,
           ),
         ),
         SizedBox(height: 5),
         Text(
           value,
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white), 
         ),
       ],
     );
   }
-
-  Widget _buildSectionHeader(String title) {
-    return Text(
-      title,
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        color: Colors.black,
-      ),
-    );
-  }
-
-  Widget _buildTransactionCard(String date, String stall) {
-    return Card(
-      color: Color(0xFFF7F7F8),
-      elevation: 2,
-      margin: EdgeInsets.symmetric(vertical: 8),
-      child: ListTile(
-        subtitle: Text(
-          date,
-          style: TextStyle(color: Color.fromARGB(255, 13, 13, 13)),
-        ),
-        trailing: Text(stall),
-      ),
-    );
-  }
 }
+
+
