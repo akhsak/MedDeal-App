@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously
 
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -9,11 +9,17 @@ import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/screens/viewpage/details.dart';
 import 'package:stockapp/screens/viewpage/editpage.dart';
 import 'package:stockapp/loginscreen.dart';
+import 'package:stockapp/screens/viewpage/search.dart';
 import 'package:stockapp/widget/drawer_page.dart';
 
-class Homepage extends StatelessWidget {
-  Homepage({Key? key}) : super(key: key);
+class Homepage extends StatefulWidget {
+   Homepage({Key? key}) : super(key: key);
 
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
   List<String> imageList = [
     'assets/download.png',
     'assets/download.png',
@@ -21,6 +27,7 @@ class Homepage extends StatelessWidget {
   ];
 
   final TextEditingController _searchController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,14 +86,14 @@ class Homepage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 25),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width,
               height: 250,
               child: CarouselSlider(
                 items: imageList.map((item) {
                   return Builder(
                     builder: (BuildContext context) {
-                      return Container(
+                      return SizedBox(
                         width: MediaQuery.of(context).size.width,
                         height: 500,
                         child: Image.asset(
@@ -116,7 +123,15 @@ class Homepage extends StatelessWidget {
                 child: TextField(
                   controller: _searchController,
                   onChanged: (value) {
-                 //   filterItems(value);
+                  //  GestureDetector(
+                  //  onDoubleTap: Navigator.push(context, MaterialPageRoute(builder: (context)=>)
+                 // ));
+                    
+                  //   setState(() {
+                      
+                  //     //searchResult(context);
+                  //   });us
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPatient()));
                   },
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
@@ -129,11 +144,12 @@ class Homepage extends StatelessWidget {
             SizedBox(height: 10),
             ValueListenableBuilder(
               valueListenable: itemlistnotifier,
-              builder: (BuildContext, List<ItemsModel> itemlist, Widget? child) {
+              builder: (BuildContext ctx, List<ItemsModel> itemlist, Widget? child) {
+                        final display = search.isNotEmpty ? searchList : itemlist;
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: itemlist.length,
+                  itemCount: display.length,
                   itemBuilder: (context, index) {
                     final reverseindex = itemlist.length - 1 - index;
                     final data = itemlist[reverseindex];
@@ -159,10 +175,7 @@ class Homepage extends StatelessWidget {
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(data.num),
-                            Text(data.item),
-                            Text(data.sellprice),
-                            Text(data.costprice),
+                            Text(data.item),                          
                           ],
                         ),
                         trailing: Row(
@@ -242,26 +255,16 @@ class Homepage extends StatelessWidget {
       (route) => false,
     );
   }
-
-  // void filterItems(String query) {
-  //   query = query.toLowerCase(); // Convert the query to lowercase for case-insensitive comparison
-
-  //   List<ItemsModel> filteredItems = [];
-
-  //   // Iterate through all items and add those that match the query to the filtered list
-  //   for (var item in itemlistnotifier.value) {
-  //     if (item.name.toLowerCase().contains(query) ||
-  //         item.num.toLowerCase().contains(query) ||
-  //         item.item.toLowerCase().contains(query) ||
-  //         item.sellprice.toLowerCase().contains(query) ||
-  //         item.costprice.toLowerCase().contains(query)) {
-  //       filteredItems.add(item);
-  //     }
-  //   }
-
-   
-  //   var filteredItemList = filteredItems;
-  // }
+  String search = "";
+  List<ItemsModel> searchList = [];
+  void searchResult(BuildContext context){
+    setState(() {
+      searchList = itemlistnotifier.value
+          .where((itemmodel) =>
+              itemmodel.name.toLowerCase().contains(search.toLowerCase()))
+          .toList();
+    });
+          
+  }
+  
 }
-
-
