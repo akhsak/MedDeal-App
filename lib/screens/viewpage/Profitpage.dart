@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:stockapp/function/functions/db_function.dart';
 
@@ -28,14 +26,14 @@ class _ProfitPageState extends State<ProfitPage> {
 
     for (var item in itemlistnotifier.value) {
       totalCost += double.parse(item.costprice);
-      totalSelling += double.parse(item.sellprice);                    
+      totalSelling += double.parse(item.sellprice);
     }
 
     setState(() {
       totalEarning = totalSelling;
       totalSpending = totalCost;
       profit = totalCost - totalSpending;
-      cost = totalSelling-totalSpending;
+      cost = totalSelling - totalSpending;
     });
   }
 
@@ -57,30 +55,32 @@ class _ProfitPageState extends State<ProfitPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildStatRow('Spending', '$totalSpending'),
-            SizedBox(height: 30,),
-            _buildStatRow('Earning', '$cost' ),
+            SizedBox(
+              height: 30,
+            ),
+            _buildStatRow('Earning', '$cost'),
             SizedBox(height: 20),
           ],
         ),
       ),
     );
   }
+
   Widget _buildStatRow(String label, String value) {
-  return Container(
-    decoration: BoxDecoration(
-      color: Colors.blueAccent, 
-      borderRadius: BorderRadius.circular(10),
-    ),
-    padding: const EdgeInsets.all(16.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        _buildStatItem(label, value),
-      ],
-    ),
-  );
-}
- 
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.blueAccent,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _buildStatItem(label, value),
+        ],
+      ),
+    );
+  }
 
   Widget _buildStatItem(String label, String value) {
     return Column(
@@ -89,17 +89,16 @@ class _ProfitPageState extends State<ProfitPage> {
         Text(
           label,
           style: TextStyle(
-            color: Colors.white, 
+            color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
         SizedBox(height: 5),
         Text(
           value,
-          style: TextStyle(color: Colors.white), 
+          style: TextStyle(color: Colors.white),
         ),
       ],
     );
   }
 }
-

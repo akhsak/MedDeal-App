@@ -13,7 +13,7 @@ import 'package:stockapp/screens/viewpage/search.dart';
 import 'package:stockapp/widget/drawer_page.dart';
 
 class Homepage extends StatefulWidget {
-   Homepage({Key? key}) : super(key: key);
+  Homepage({Key? key}) : super(key: key);
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -21,19 +21,19 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   List<String> imageList = [
-    'assets/download.png',
-    'assets/download.png',
-    'assets/download.png',
+    'assets/hand-cupping-stethoscope-health-concept.jpg',
+    'assets/medical-technology-icon-set-health-wellness.jpg',
+    'assets/young-handsome-physician-medical-robe-with-stethoscope.jpg',
   ];
 
   final TextEditingController _searchController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
     getAllitems();
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      appBar: AppBar(backgroundColor: Colors.black,),
       endDrawer: Drawer(
         elevation: 100,
         shadowColor: const Color.fromARGB(255, 227, 227, 226),
@@ -71,14 +71,17 @@ class _HomepageState extends State<Homepage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      
                       Text(
                         'Hello!',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                        style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       SizedBox(height: 3),
                       Text(
                         'MedDeaL',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                        style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.bold, fontSize: 24),
                       )
                     ],
                   ),
@@ -86,30 +89,33 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             SizedBox(height: 25),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 250,
-              child: CarouselSlider(
-                items: imageList.map((item) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: 500,
-                        child: Image.asset(
-                          item,
-                          fit: BoxFit.cover,
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
-                options: CarouselOptions(
-                  autoPlay: true,
-                  enlargeCenterPage: true,
-                  aspectRatio: 2.0,
-                  viewportFraction: 1.0,
-                  initialPage: 0,
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 250,
+                child: CarouselSlider(
+                  items: imageList.map((item) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: 500,
+                          child: Image.asset(
+                            item,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    aspectRatio: 2.0,
+                    viewportFraction: 1.0,
+                    initialPage: 0,
+                  ),
                 ),
               ),
             ),
@@ -120,23 +126,22 @@ class _HomepageState extends State<Homepage> {
                   color: Color.fromARGB(255, 207, 220, 251),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: TextField(
-                  controller: _searchController,
-                  onChanged: (value) {
-                  //  GestureDetector(
-                  //  onDoubleTap: Navigator.push(context, MaterialPageRoute(builder: (context)=>)
-                 // ));
-                    
-                  //   setState(() {
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (value) {
                       
-                  //     //searchResult(context);
-                  //   });us
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPatient()));
-                  },
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    hintText: 'search...',
-                    border: InputBorder.none,
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SearchPatient()));
+                    },
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      hintText: 'search...',
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
               ),
@@ -144,8 +149,9 @@ class _HomepageState extends State<Homepage> {
             SizedBox(height: 10),
             ValueListenableBuilder(
               valueListenable: itemlistnotifier,
-              builder: (BuildContext ctx, List<ItemsModel> itemlist, Widget? child) {
-                        final display = search.isNotEmpty ? searchList : itemlist;
+              builder:
+                  (BuildContext ctx, List<ItemsModel> itemlist, Widget? child) {
+                final display = search.isNotEmpty ? searchList : itemlist;
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
@@ -155,7 +161,10 @@ class _HomepageState extends State<Homepage> {
                     final data = itemlist[reverseindex];
                     return Card(
                       color: Color.fromARGB(255, 246, 246, 246),
+                      elevation: 2, // Add elevation for a subtle shadow
+                      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                       child: ListTile(
+                        contentPadding: EdgeInsets.all(16), // Add padding for better spacing
                         onTap: () {
                           Navigator.push(
                             context,
@@ -171,11 +180,24 @@ class _HomepageState extends State<Homepage> {
                             ),
                           );
                         },
-                        title: Text(data.name),
+                        title: Text(
+                          data.name,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(data.item),                          
+                            SizedBox(height: 8), // Add some spacing between title and subtitle
+                            Text(
+                              data.item,
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
                           ],
                         ),
                         trailing: Row(
@@ -207,20 +229,21 @@ class _HomepageState extends State<Homepage> {
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
-                                      title: Text('Are you sure want to delete'),
+                                      title: Text('Are you sure you want to delete?'),
+                                      content: Text('This action cannot be undone.'),
                                       actions: [
                                         TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text('close'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('Cancel'),
                                         ),
                                         TextButton(
-                                          onPressed: () {
-                                            deleteitems(reverseindex);
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text('delete'),
+                    onPressed: () {
+                      deleteitems(reverseindex);
+                      Navigator.pop(context);
+                    },
+                    child: Text('Delete'),
                                         ),
                                       ],
                                     );
@@ -228,11 +251,12 @@ class _HomepageState extends State<Homepage> {
                                 );
                               },
                               icon: Icon(Icons.delete),
-                              color: Colors.black,
+                              color: const Color.fromARGB(255, 255, 0, 0),
                             ),
                           ],
                         ),
                         leading: CircleAvatar(
+                          radius: 30,
                           backgroundImage: FileImage(File(data.image!)),
                         ),
                       ),
@@ -255,16 +279,15 @@ class _HomepageState extends State<Homepage> {
       (route) => false,
     );
   }
+
   String search = "";
   List<ItemsModel> searchList = [];
-  void searchResult(BuildContext context){
+  void searchResult(BuildContext context) {
     setState(() {
       searchList = itemlistnotifier.value
           .where((itemmodel) =>
               itemmodel.name.toLowerCase().contains(search.toLowerCase()))
           .toList();
     });
-          
   }
-  
 }

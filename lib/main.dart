@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/splash.dart';
 import 'package:stockapp/splash1.dart';
 import 'package:stockapp/widget/bottomtabs/bottombar.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:Bottombar(),
+      home:Splashpage(),
     );
   }
 }

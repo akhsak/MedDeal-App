@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
 import 'package:stockapp/loginscreen.dart';
@@ -26,8 +27,8 @@ class _SplashpageState extends State<Splashpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset(
-          'assets/download.png',
+        child: Lottie.asset(
+          'assets/doctr.json',
           height: 300,
         ),
       ),

@@ -117,24 +117,32 @@ class _SaniterspageState extends State<Saniterspage> {
                               icon: const Icon(Icons.edit),
                               color: Colors.black,
                             ),
-                            IconButton(onPressed: (){
-                              showDialog(context: context, builder: (context){
-                                 return AlertDialog(
-                                  title: Text('Are you sure want to delete'),
-                                  actions: [TextButton(onPressed: (){
-                                    Navigator.pop(context);
-                                  }, child: Text('close')),
-                                  TextButton(onPressed: (){
-                                    deleteitems(index);
-                                  Navigator.pop(context);
-
-                                  }, child: Text('delete'))],
-                                 );
-                              });
-                            },
-                             icon: const Icon(Icons.delete),
-                             color: Colors.black),
-                            
+                            IconButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              'Are you sure want to delete'),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('close')),
+                                            TextButton(
+                                                onPressed: () {
+                                                  deleteitems(index);
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('delete'))
+                                          ],
+                                        );
+                                      });
+                                },
+                                icon: const Icon(Icons.delete),
+                                color: Colors.black),
                           ],
                         ),
                         leading: CircleAvatar(

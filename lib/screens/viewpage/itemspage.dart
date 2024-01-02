@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
@@ -11,9 +10,12 @@ class Itemspage extends StatelessWidget {
   Itemspage({Key? key});
 
   List<CategoryData> categories = [
-    CategoryData('Medicine', Icons.medical_services_outlined, Colors.red, Medicinepage()),
-    CategoryData('Equipments', Icons.electrical_services, Colors.orange, Equipmentspage()),
-    CategoryData('Saniters', Icons.equalizer_sharp, Colors.green, Saniterspage()),
+    CategoryData('Medicine', Icons.medical_services_outlined, Colors.red,
+        Medicinepage()),
+    CategoryData('Equipments', Icons.electrical_services, Colors.orange,
+        Equipmentspage()),
+    CategoryData(
+        'Saniters', Icons.equalizer_sharp, Colors.green, Saniterspage()),
     CategoryData('others', Icons.abc, Colors.blue, Otherspag())
   ];
 
@@ -24,9 +26,10 @@ class Itemspage extends StatelessWidget {
         backgroundColor: Color.fromRGBO(12, 2, 85, 1),
         title: Text(
           'Items',
-          style: TextStyle(color: Color.fromRGBO(243, 243, 245, 1), fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Color.fromRGBO(243, 243, 245, 1),
+              fontWeight: FontWeight.bold),
         ),
-         
       ),
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -60,8 +63,7 @@ class Itemspage extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: GestureDetector(
-        onTap: () {
-        },
+        onTap: () {},
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -94,4 +96,3 @@ class CategoryData {
 
   get items => null;
 }
-

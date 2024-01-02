@@ -37,7 +37,7 @@ class _BottombarState extends State<Bottombar> {
       
       body: pages[_myIndex],
       bottomNavigationBar: BottomAppBar(
-        color: Color.fromRGBO(12, 2, 85, 1),
+        color: Color.fromRGBO(0, 0, 0, 1),
         shape: CircularNotchedRectangle(),
         notchMargin: 8.0,
         child: Container(

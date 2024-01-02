@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
+import 'package:stockapp/splash.dart';
 import 'package:stockapp/widget/bottomtabs/bottombar.dart';
+import 'package:stockapp/widget/text.dart';
 
 class ScreenLogin extends StatelessWidget {
   ScreenLogin({Key? key}) : super(key: key);
@@ -15,80 +17,98 @@ class ScreenLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Login'),
-        ),
+        // appBar: AppBar(
+        //   title: AnimatedText(),
+          
+        // ),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Form(
-              key: _formKey,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.account_circle,
-                    size: 100,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    controller: _usernameController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.person),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      hintText: 'Username',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter username';
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      hintText: 'Password',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter password';
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  Visibility(
-                    visible: !_isDataMatched,
-                    child: Text(
-                      'Username password does not match',
-                      style: TextStyle(
-                        color: Colors.red,
-                      ),
+                  Expanded(
+                    child: Image.asset(
+                      'assets/Investment data-rafiki.png', // replace with your image path
+                      fit: BoxFit.cover,
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        checkLogin(context);
-                      } else {
-                        print('Data empty');
-                      }
-                    },
-                    icon: Icon(Icons.login),
-                    label: Text('Login'),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                       
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _usernameController,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.person),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              hintText: 'Username',
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter username';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.lock),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              hintText: 'Password',
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter password';
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Visibility(
+                          visible: !_isDataMatched,
+                          child: Text(
+                            'Username password does not match',
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              checkLogin(context);
+                            } else {
+                              print('Data empty');
+                            }
+                          },
+                          icon: Icon(Icons.login),
+                          label: Text('Login'),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -109,7 +129,7 @@ class ScreenLogin extends StatelessWidget {
       print('Username pass match');
 
       Navigator.of(ctx).pushReplacement(
-        MaterialPageRoute(builder: (ctx) => Bottombar()),
+        MaterialPageRoute(builder: (ctx) => Splashpage()),
       );
     } else {
       print('Username pass does not match');
@@ -128,4 +148,3 @@ class ScreenLogin extends StatelessWidget {
     }
   }
 }
-
