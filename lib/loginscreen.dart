@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields, prefer_const_constructors, no_leading_underscores_for_local_identifiers, must_be_immutable, use_build_context_synchronously, prefer_const_declarations
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
@@ -99,7 +101,7 @@ class ScreenLogin extends StatelessWidget {
                             if (_formKey.currentState!.validate()) {
                               checkLogin(context);
                             } else {
-                              print('Data empty');
+                            //  print('Data empty');
                             }
                           },
                           icon: Icon(Icons.login),
@@ -124,13 +126,13 @@ class ScreenLogin extends StatelessWidget {
       final _srdprf = await SharedPreferences.getInstance();
       await _srdprf.setBool(savekeyname, true);
 
-      print('Username pass match');
+     // print('Username pass match');
 
       Navigator.of(ctx).pushReplacement(
         MaterialPageRoute(builder: (ctx) => Splashpage()),
       );
     } else {
-      print('Username pass does not match');
+    //  print('Username pass does not match');
 
       final _errorMessage = 'Username password does not match';
 

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:stockapp/function/functions/db_function.dart';
@@ -26,7 +28,7 @@ class _OtherspageState extends State<Otherspag> {
         valueListenable: itemlistnotifier,
         builder:
             (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
-          itemList = Itemlist.where((food) => food.item
+          itemList = Itemlist.where((items) => items.item
               .split(',')
               .map((category) => category.trim().toLowerCase())
               .contains('others')).toList();
@@ -35,11 +37,8 @@ class _OtherspageState extends State<Otherspag> {
           List<ItemsModel> filteredItemList = itemList;
           if (searchQuery.isNotEmpty) {
             filteredItemList = itemList.where((item) {
-              return item.name.toLowerCase().contains(searchQuery) ||
-                  item.num.toLowerCase().contains(searchQuery) ||
-                  item.item.toLowerCase().contains(searchQuery) ||
-                  item.sellprice.toLowerCase().contains(searchQuery) ||
-                  item.costprice.toLowerCase().contains(searchQuery);
+              return item.name.toLowerCase().contains(searchQuery) ||                
+                  item.costprice.toUpperCase().contains(searchQuery);
             }).toList();
           }
 

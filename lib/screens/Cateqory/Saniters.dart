@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -27,17 +29,14 @@ class _SaniterspageState extends State<Saniterspage> {
         builder:
             (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
           List<ItemsModel> filteredItemList =
-              Itemlist.where((item) => item.item.toLowerCase() == 'saniters')
+              Itemlist.where((items) => items.item.toLowerCase() == 'saniters')
                   .toList();
 
           String searchQuery = searchController.text.toLowerCase();
           if (searchQuery.isNotEmpty) {
             filteredItemList = filteredItemList.where((item) {
               return item.name.toLowerCase().contains(searchQuery) ||
-                  item.num.toLowerCase().contains(searchQuery) ||
-                  item.item.toLowerCase().contains(searchQuery) ||
-                  item.sellprice.toLowerCase().contains(searchQuery) ||
-                  item.costprice.toLowerCase().contains(searchQuery);
+               item.costprice.toUpperCase().contains(searchQuery);
             }).toList();
           }
 

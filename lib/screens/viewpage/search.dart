@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_constructors_in_immutables
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:stockapp/function/functions/db_function.dart';
@@ -48,11 +50,7 @@ class _SearchPatientState extends State<SearchPatient> {
         title: Text('search'),
       ),
       body: Container(
-        // decoration: BoxDecoration(
-        //     // image: DecorationImage(
-        //     //     image: AssetImage('assets/download.png'), fit: BoxFit.cover)
-        //     ),
-        child: Column(
+       child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),

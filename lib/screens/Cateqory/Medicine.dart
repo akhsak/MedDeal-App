@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:stockapp/function/functions/db_function.dart';
@@ -27,17 +29,15 @@ class _MedicinepageState extends State<Medicinepage> {
         builder:
             (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
           itemList = Itemlist.where(
-              (food) => food.item.toLowerCase().contains('medicine')).toList();
+                  (items) => items.item.toLowerCase().contains('medicine'))
+              .toList();
 
           String searchQuery = searchController.text.toLowerCase();
           List<ItemsModel> filteredItemList = itemList;
           if (searchQuery.isNotEmpty) {
             filteredItemList = itemList.where((item) {
               return item.name.toLowerCase().contains(searchQuery) ||
-                  item.num.toLowerCase().contains(searchQuery) ||
-                  item.item.toLowerCase().contains(searchQuery) ||
-                  item.sellprice.toLowerCase().contains(searchQuery) ||
-                  item.costprice.toLowerCase().contains(searchQuery);
+                  item.costprice.toUpperCase().contains(searchQuery);
             }).toList();
           }
 
@@ -117,24 +117,32 @@ class _MedicinepageState extends State<Medicinepage> {
                               icon: const Icon(Icons.edit),
                               color: Colors.black,
                             ),
-                                         IconButton(onPressed: (){
-                              showDialog(context: context, builder: (context){
-                                 return AlertDialog(
-                                  title: Text('Are you sure want to delete'),
-                                  actions: [TextButton(onPressed: (){
-                                    Navigator.pop(context);
-                                  }, child: Text('close')),
-                                  TextButton(onPressed: (){
-                                    deleteitems(index);
-                                  Navigator.pop(context);
-
-                                  }, child: Text('delete'))],
-                                 );
-                              });
-                            },
-                             icon: const Icon(Icons.delete),
-                             color: Colors.black),
-                           
+                            IconButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              'Are you sure want to delete'),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('close')),
+                                            TextButton(
+                                                onPressed: () {
+                                                  deleteitems(index);
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('delete'))
+                                          ],
+                                        );
+                                      });
+                                },
+                                icon: const Icon(Icons.delete),
+                                color: Colors.black),
                           ],
                         ),
                         leading: CircleAvatar(

@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, use_key_in_widget_constructors
 
 import 'dart:async';
 
@@ -28,7 +28,7 @@ class _SplashpageState extends State<Splashpage> {
     return Scaffold(
       body: Center(
         child: Lottie.asset(
-          'assets/doctr.json',
+          'assets/dctrrrr.json',
           height: 300,
         ),
       ),

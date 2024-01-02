@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, no_leading_underscores_for_local_identifiers, use_key_in_widget_constructors
 
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -259,7 +259,7 @@ class _AddpageState extends State<Addpage> {
     final _costprice = _costpricecontroller.text.trim();
 
     if (_formKey.currentState?.validate() ?? false) {
-      print('$_name $_num $_item $_sellprice $_costprice');
+    //  print('$_name $_num $_item $_sellprice $_costprice');
       final _addItem = ItemsModel(
           name: _name,
           num: _num,

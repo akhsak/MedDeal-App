@@ -1,5 +1,4 @@
-// // ignore_for_file: prefer_const_constructors
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -28,15 +27,12 @@ class _EquipmentspageState extends State<Equipmentspage> {
       body: ValueListenableBuilder(
         valueListenable: itemlistnotifier,
         builder: (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
-          itemList = Itemlist.where((food) => food.item.toLowerCase().contains('equipments')).toList();
+          itemList = Itemlist.where((items) => items.item.toLowerCase().contains('equipments')).toList();
           String searchQuery = searchController.text.toLowerCase();
           List<ItemsModel> filteredItemList = itemList
               .where((item) =>
                   item.name.toLowerCase().contains(searchQuery) ||
-                  item.num.toLowerCase().contains(searchQuery) ||
-                  item.item.toLowerCase().contains(searchQuery) ||
-                  item.sellprice.toLowerCase().contains(searchQuery) ||
-                  item.costprice.toLowerCase().contains(searchQuery))
+                  item.name.toUpperCase().contains(searchQuery))
               .toList();
 
           return Column(

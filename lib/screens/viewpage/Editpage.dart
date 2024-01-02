@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers, must_be_immutable, use_key_in_widget_constructors
 
 import 'dart:io';
 
@@ -273,7 +273,7 @@ class _EditpageState extends State<Editpage> {
         costprice: costprice,
         image: image,
       );
-      print(update);
+      //print(update);
 
       edit(widget.index, update);
       Navigator.of(context).pop();
