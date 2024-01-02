@@ -35,5 +35,5 @@ class ItemsModel {
      this.id,
     required this.image
   });
-  //
+  
 }

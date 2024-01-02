@@ -33,25 +33,22 @@ class _HomepageState extends State<Homepage> {
     getAllitems();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      appBar: AppBar(backgroundColor: Colors.black,),
+      appBar: AppBar(backgroundColor: Colors.white,),
       endDrawer: Drawer(
         elevation: 100,
         shadowColor: const Color.fromARGB(255, 227, 227, 226),
         child: Container(
           color: Color(0xFFFFFFFF),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Text(
-                    "settings",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                    ),
+              Padding(
+                padding: const EdgeInsets.all(50),
+                child: Text(
+                  "settings",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
                   ),
                 ),
               ),

@@ -3,8 +3,6 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/splash.dart';
-import 'package:stockapp/splash1.dart';
-import 'package:stockapp/widget/bottomtabs/bottombar.dart';
 
 
 const savekeyname = 'UserLogin';

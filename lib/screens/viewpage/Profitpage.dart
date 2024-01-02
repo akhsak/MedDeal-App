@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stockapp/function/functions/db_function.dart';
+import 'package:lottie/lottie.dart'; // Import the lottie package
 
 class ProfitPage extends StatefulWidget {
   const ProfitPage({Key? key}) : super(key: key);
@@ -54,14 +55,26 @@ class _ProfitPageState extends State<ProfitPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            _buildLottieAnimation(), // Add Lottie Animation here
+            SizedBox(height: 20),
             _buildStatRow('Spending', '$totalSpending'),
-            SizedBox(
-              height: 30,
-            ),
+            SizedBox(height: 30),
             _buildStatRow('Earning', '$cost'),
             SizedBox(height: 20),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildLottieAnimation() {
+    return Container(
+      height: 200,
+      width: 200,
+      child: Lottie.asset(
+        'assets/doctr.json',
+         // Replace with your Lottie animation file
+        fit: BoxFit.cover,
       ),
     );
   }

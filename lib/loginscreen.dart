@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
 import 'package:stockapp/splash.dart';
-import 'package:stockapp/widget/bottomtabs/bottombar.dart';
-import 'package:stockapp/widget/text.dart';
 
 class ScreenLogin extends StatelessWidget {
   ScreenLogin({Key? key}) : super(key: key);
