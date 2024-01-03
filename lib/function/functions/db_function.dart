@@ -22,12 +22,12 @@ Future<void> getAllitems() async {
   itemlistnotifier.notifyListeners();
 }
 
-Future<void>edit(int index,ItemsModel value)async{
+Future<void>edit(int id,ItemsModel value)async{
  final itemsDB= await Hive.openBox<ItemsModel>('items_db');
  itemlistnotifier.value.clear();
  itemlistnotifier.value.addAll(itemsDB.values);
   itemlistnotifier.notifyListeners();
-  itemsDB.putAt(index, value);
+  itemsDB.putAt(id, value);
   getAllitems();
 
 
@@ -39,7 +39,7 @@ Future<void> deleteitems(int id) async{
 }
 
 
-double calculateTotalCost(List<ItemsModel> items) {
+ calculateTotalCost(List<ItemsModel> items) {
   double totalCost = 0;
   for (var itemm in items) {
     totalCost += double.parse(itemm.costprice);

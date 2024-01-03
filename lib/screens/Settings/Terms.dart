@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,7 @@ class Termsprivacy extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                 ),
                 const SizedBox(
                   height: 15,
@@ -28,11 +28,11 @@ class Termsprivacy extends StatelessWidget {
                   'Terms and conditions',
                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 ),
-                Divider(),
+                const Divider(),
                 const SizedBox(
                   height: 30,
                 ),
-                Text(
+                const Text(
                   """
          Welcome to  MedDeaL stock management, your comprehensive solution for efficient medical equipment stock management. Our app is designed to streamline the inventory processes in healthcare facilities, ensuring the availability of essential equipment, reducing wastage, and enhancing overall operational efficiency.
 
@@ -49,7 +49,7 @@ class Termsprivacy extends StatelessWidget {
           6. Get in Touch: If you have questions, reach out to us at
                   """,
                 ),
-                Text(
+                const Text(
                   'akhsakbl30@gmail.com',
                   style: TextStyle(
                     decoration: TextDecoration.underline,

@@ -41,15 +41,6 @@ class _ItemspageState extends State<Itemspage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      // appBar: AppBar(
-      //   backgroundColor: Color.fromRGBO(247, 247, 249, 1),
-      //   title: const Center(
-      //     child: Text(
-      //       'items',
-      //       style: TextStyle(color: Color.fromARGB(255, 11, 4, 45)),
-      //     ),
-      //   ),
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -118,12 +109,12 @@ class _ItemspageState extends State<Itemspage> {
       onPressed: () {
         _showBottomSheet(context);
       },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 87, 42, 236),
+      ),
       child: Text(
         "Categories",
         style: TextStyle(color: Color.fromARGB(255, 236, 236, 236)),
-      ),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 87, 42, 236),
       ),
     ),
   ),

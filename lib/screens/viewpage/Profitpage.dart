@@ -1,5 +1,3 @@
-
-
 // ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
@@ -45,7 +43,7 @@ class _ProfitPageState extends State<ProfitPage> {
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(12, 2, 85, 1),
@@ -63,11 +61,11 @@ class _ProfitPageState extends State<ProfitPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _buildLottieAnimation(screenWidth),
+              buildLottieAnimation(screenWidth),
               const SizedBox(height: 20),
-              _buildStatRow('Spending', '$totalSpending'),
+              buildStatRow('Spending', '$cost'),
               const SizedBox(height: 30),
-              _buildStatRow('Earning', '$cost'),
+              buildStatRow('Earning', '$profit'),
               const SizedBox(height: 20),
             ],
           ),
@@ -76,10 +74,10 @@ class _ProfitPageState extends State<ProfitPage> {
     );
   }
 
-  Widget _buildLottieAnimation(double screenWidth) {
+  Widget buildLottieAnimation(double screenWidth) {
     return SizedBox(
       height: 270,
-      width: screenWidth * 0.6, 
+      width: screenWidth * 0.6,
       child: Lottie.asset(
         'assets/doctr.json',
         fit: BoxFit.cover,
@@ -87,7 +85,7 @@ class _ProfitPageState extends State<ProfitPage> {
     );
   }
 
-  Widget _buildStatRow(String label, String value) {
+  Widget buildStatRow(String label, String value) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.blueAccent,
@@ -97,13 +95,13 @@ class _ProfitPageState extends State<ProfitPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildStatItem(label, value),
+          buildStatItem(label, value),
         ],
       ),
     );
   }
 
-  Widget _buildStatItem(String label, String value) {
+  Widget buildStatItem(String label, String value) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

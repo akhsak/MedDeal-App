@@ -1,5 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
-
+// ignore_for_file: file_names
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:stockapp/function/functions/db_function.dart';
@@ -22,12 +21,12 @@ class _EquipmentspageState extends State<Equipmentspage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Equipment List'),
+        title: const Text('Equipment List'),
       ),
       body: ValueListenableBuilder(
         valueListenable: itemlistnotifier,
-        builder: (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
-          itemList = Itemlist.where((items) => items.item.toLowerCase().contains('equipments')).toList();
+        builder: (BuildContext context, List<ItemsModel> itemlist, Widget? child) {
+          itemList = itemlist.where((items) => items.item.toLowerCase().contains('equipments')).toList();
           String searchQuery = searchController.text.toLowerCase();
           List<ItemsModel> filteredItemList = itemList
               .where((item) =>
@@ -45,7 +44,7 @@ class _EquipmentspageState extends State<Equipmentspage> {
                     hintText: 'Search...',
                     suffixIcon: IconButton(
                       onPressed: searchController.clear,
-                      icon: Icon(Icons.clear),
+                      icon: const Icon(Icons.clear),
                     ),
                   ),
                   onChanged: (value) => setState(() {}),
@@ -57,7 +56,7 @@ class _EquipmentspageState extends State<Equipmentspage> {
                   itemBuilder: (context, index) {
                     final data = filteredItemList[index];
                     return Card(
-                      color: Color.fromARGB(255, 241, 242, 243),
+                      color: const Color.fromARGB(255, 241, 242, 243),
                       child: ListTile(
                         onTap: () => Navigator.push(
                           context,
@@ -107,23 +106,23 @@ class _EquipmentspageState extends State<Equipmentspage> {
                               onPressed: () => showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
-                                  title: Text('Are you sure want to delete'),
+                                  title: const Text('Are you sure want to delete'),
                                   actions: [
                                     TextButton(
                                       onPressed: () => Navigator.pop(context),
-                                      child: Text('close'),
+                                      child: const Text('close'),
                                     ),
                                     TextButton(
                                       onPressed: () {
                                         deleteitems(index);
                                         Navigator.pop(context);
                                       },
-                                      child: Text('delete'),
+                                      child: const Text('delete'),
                                     ),
                                   ],
                                 ),
                               ),
-                              icon: Icon(Icons.delete),
+                              icon: const Icon(Icons.delete),
                               color: Colors.black,
                             ),
                           ],

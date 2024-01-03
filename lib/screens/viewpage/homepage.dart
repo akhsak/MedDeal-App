@@ -7,7 +7,7 @@ import 'package:stockapp/function/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/screens/viewpage/details.dart';
 import 'package:stockapp/screens/viewpage/editpage.dart';
-import 'package:stockapp/loginscreen.dart';
+import 'package:stockapp/screens/viewpage/loginscreen.dart';
 import 'package:stockapp/screens/viewpage/search.dart';
 import 'package:stockapp/widget/drawer_page.dart';
 

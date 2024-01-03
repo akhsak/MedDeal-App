@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/function/functions/db_function.dart';
-import 'package:stockapp/loginscreen.dart';
+import 'package:stockapp/screens/viewpage/loginscreen.dart';
 import 'package:stockapp/screens/settings/Appinfo.dart';
 import 'package:stockapp/screens/settings/Terms.dart';
 import 'package:stockapp/widget/drawer.dart';

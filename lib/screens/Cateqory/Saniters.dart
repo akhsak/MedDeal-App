@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'dart:io';
 
@@ -52,7 +52,7 @@ class _SaniterspageState extends State<Saniterspage> {
                       onPressed: () {
                         searchController.clear();
                       },
-                      icon: Icon(Icons.clear),
+                      icon: const Icon(Icons.clear),
                     ),
                   ),
                   onChanged: (value) {
@@ -66,7 +66,7 @@ class _SaniterspageState extends State<Saniterspage> {
                   itemBuilder: (context, index) {
                     final data = filteredItemList[index];
                     return Card(
-                      color: Color.fromARGB(255, 241, 242, 243),
+                      color: const Color.fromARGB(255, 241, 242, 243),
                       child: ListTile(
                         onTap: () {
                           Navigator.push(
@@ -122,20 +122,20 @@ class _SaniterspageState extends State<Saniterspage> {
                                       context: context,
                                       builder: (context) {
                                         return AlertDialog(
-                                          title: Text(
+                                          title: const Text(
                                               'Are you sure want to delete'),
                                           actions: [
                                             TextButton(
                                                 onPressed: () {
                                                   Navigator.pop(context);
                                                 },
-                                                child: Text('close')),
+                                                child: const Text('close')),
                                             TextButton(
                                                 onPressed: () {
                                                   deleteitems(index);
                                                   Navigator.pop(context);
                                                 },
-                                                child: Text('delete'))
+                                                child: const Text('delete'))
                                           ],
                                         );
                                       });

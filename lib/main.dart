@@ -6,10 +6,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/splash.dart';
 
-
 const savekeyname = 'UserLogin';
-
-
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();

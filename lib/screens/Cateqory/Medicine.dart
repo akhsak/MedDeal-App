@@ -1,5 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
-
+// ignore_for_file: file_names
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:stockapp/function/functions/db_function.dart';
@@ -22,13 +21,13 @@ class _MedicinepageState extends State<Medicinepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Medicine List'),
+        title: const Text('Medicine List'),
       ),
       body: ValueListenableBuilder(
         valueListenable: itemlistnotifier,
         builder:
-            (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
-          itemList = Itemlist.where(
+            (BuildContext context, List<ItemsModel> itemlist, Widget? child) {
+          itemList = itemlist.where(
                   (items) => items.item.toLowerCase().contains('medicine'))
               .toList();
 
@@ -53,7 +52,7 @@ class _MedicinepageState extends State<Medicinepage> {
                       onPressed: () {
                         searchController.clear();
                       },
-                      icon: Icon(Icons.clear),
+                      icon: const Icon(Icons.clear),
                     ),
                   ),
                   onChanged: (value) {
@@ -67,7 +66,7 @@ class _MedicinepageState extends State<Medicinepage> {
                   itemBuilder: (context, index) {
                     final data = filteredItemList[index];
                     return Card(
-                      color: Color.fromARGB(255, 241, 242, 243),
+                      color: const Color.fromARGB(255, 241, 242, 243),
                       child: ListTile(
                         onTap: () {
                           Navigator.push(
@@ -123,20 +122,20 @@ class _MedicinepageState extends State<Medicinepage> {
                                       context: context,
                                       builder: (context) {
                                         return AlertDialog(
-                                          title: Text(
+                                          title: const Text(
                                               'Are you sure want to delete'),
                                           actions: [
                                             TextButton(
                                                 onPressed: () {
                                                   Navigator.pop(context);
                                                 },
-                                                child: Text('close')),
+                                                child: const Text('close')),
                                             TextButton(
                                                 onPressed: () {
                                                   deleteitems(index);
                                                   Navigator.pop(context);
                                                 },
-                                                child: Text('delete'))
+                                                child: const Text('delete'))
                                           ],
                                         );
                                       });
