@@ -45,6 +45,7 @@ class DrawerHeaderWidget extends StatelessWidget {
             child: DrawerItem(
               text: "Reset App",
               icon: Icons.restore_from_trash_outlined,
+            
             ),
           ),
           Divider(),

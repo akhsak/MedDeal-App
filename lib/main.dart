@@ -9,6 +9,7 @@ import 'package:stockapp/splash.dart';
 
 const savekeyname = 'UserLogin';
 
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();

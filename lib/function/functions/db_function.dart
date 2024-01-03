@@ -39,10 +39,10 @@ Future<void> deleteitems(int id) async{
 }
 
 
-double calculateTotalCost(List<ItemsModel> foods) {
+double calculateTotalCost(List<ItemsModel> items) {
   double totalCost = 0;
-  for (var food in foods) {
-    totalCost += double.parse(food.costprice);
+  for (var itemm in items) {
+    totalCost += double.parse(itemm.costprice);
   }
   return totalCost;
 }

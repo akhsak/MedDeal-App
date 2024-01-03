@@ -7,22 +7,22 @@ import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/screens/viewpage/details.dart';
 import 'package:stockapp/screens/viewpage/editpage.dart';
 
-class SearchPatient extends StatefulWidget {
-  SearchPatient({Key? key}) : super(key: key);
+class Searchitemss extends StatefulWidget {
+  Searchitemss({Key? key}) : super(key: key);
 
   @override
-  State<SearchPatient> createState() => _SearchPatientState();
+  State<Searchitemss> createState() => _SearchitemssState();
 }
 
-class _SearchPatientState extends State<SearchPatient> {
+class _SearchitemssState extends State<Searchitemss> {
   final String defaultImage = 'assets/download.png';
 
-  List<ItemsModel> _searchedPatient = [];
+  List<ItemsModel> _searcheditem = [];
 
   loadFood() async {
     final item = itemlistnotifier.value;
     setState(() {
-      _searchedPatient = item;
+      _searcheditem = item;
     });
   }
 
@@ -33,13 +33,13 @@ class _SearchPatientState extends State<SearchPatient> {
       result = itemlistnotifier.value;
     } else {
       result = itemlistnotifier.value
-          .where((ItemsModel patient) =>
-              patient.name.toLowerCase().contains(enteredName.toLowerCase()))
+          .where((ItemsModel items) =>
+              items.name.toLowerCase().contains(enteredName.toLowerCase()))
           .toList();
     }
 
     setState(() {
-      _searchedPatient = result;
+      _searcheditem = result;
     });
   }
 
@@ -80,14 +80,14 @@ class _SearchPatientState extends State<SearchPatient> {
               height: 50,
             ),
             Expanded(
-              child: _searchedPatient.isEmpty
+              child: _searcheditem.isEmpty
                   ? Center(
                       child: Image(image: AssetImage('assets/download.png')),
                     )
                   : ListView.builder(
-                      itemCount: _searchedPatient.length,
+                      itemCount: _searcheditem.length,
                       itemBuilder: (context, index) {
-                        final data = _searchedPatient[index];
+                        final data = _searcheditem[index];
                         return Card(
                           color: Color.fromARGB(255, 246, 246, 246),
                           child: ListTile(

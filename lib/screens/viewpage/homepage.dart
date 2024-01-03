@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, prefer_const_constructors_in_immutables
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -21,9 +20,9 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   List<String> imageList = [
-    'assets/hand-cupping-stethoscope-health-concept.jpg',
-    'assets/medical-technology-icon-set-health-wellness.jpg',
-    'assets/young-handsome-physician-medical-robe-with-stethoscope.jpg',
+    'assets/medical-banner-with-doctor-wearing-coat.jpg',
+    'assets/medical-banner-with-doctor-wearing-coat.jpg',
+    'assets/medical-banner-with-doctor-wearing-coat.jpg',  
   ];
 
   final TextEditingController _searchController = TextEditingController();
@@ -132,7 +131,7 @@ class _HomepageState extends State<Homepage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SearchPatient()));
+                              builder: (context) => Searchitemss()));
                     },
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
@@ -158,10 +157,10 @@ class _HomepageState extends State<Homepage> {
                     final data = itemlist[reverseindex];
                     return Card(
                       color: Color.fromARGB(255, 246, 246, 246),
-                      elevation: 2, // Add elevation for a subtle shadow
+                      elevation: 2, 
                       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                       child: ListTile(
-                        contentPadding: EdgeInsets.all(16), // Add padding for better spacing
+                        contentPadding: EdgeInsets.all(16), 
                         onTap: () {
                           Navigator.push(
                             context,
@@ -187,7 +186,7 @@ class _HomepageState extends State<Homepage> {
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 8), // Add some spacing between title and subtitle
+                            SizedBox(height: 8), 
                             Text(
                               data.item,
                               style: TextStyle(

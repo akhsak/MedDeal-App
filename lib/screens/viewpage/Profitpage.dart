@@ -59,7 +59,7 @@ class _ProfitPageState extends State<ProfitPage> {
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(50),
+          padding: const EdgeInsets.all(60),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -78,8 +78,8 @@ class _ProfitPageState extends State<ProfitPage> {
 
   Widget _buildLottieAnimation(double screenWidth) {
     return SizedBox(
-      //height: 200,
-      width: screenWidth * 0.5, 
+      height: 270,
+      width: screenWidth * 0.6, 
       child: Lottie.asset(
         'assets/doctr.json',
         fit: BoxFit.cover,
