@@ -5,6 +5,7 @@ import 'package:stockapp/function/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/screens/viewpage/Editpage.dart';
 import 'package:stockapp/screens/viewpage/details.dart';
+import 'package:lottie/lottie.dart';
 
 class Equipmentspage extends StatefulWidget {
   const Equipmentspage({Key? key}) : super(key: key);
@@ -25,8 +26,11 @@ class _EquipmentspageState extends State<Equipmentspage> {
       ),
       body: ValueListenableBuilder(
         valueListenable: itemlistnotifier,
-        builder: (BuildContext context, List<ItemsModel> itemlist, Widget? child) {
-          itemList = itemlist.where((items) => items.item.toLowerCase().contains('equipments')).toList();
+        builder:
+            (BuildContext context, List<ItemsModel> itemlist, Widget? child) {
+          itemList = itemlist
+              .where((items) => items.item.toLowerCase().contains('equipments'))
+              .toList();
           String searchQuery = searchController.text.toLowerCase();
           List<ItemsModel> filteredItemList = itemList
               .where((item) =>
@@ -51,89 +55,97 @@ class _EquipmentspageState extends State<Equipmentspage> {
                 ),
               ),
               Expanded(
-                child: ListView.builder(
-                  itemCount: filteredItemList.length,
-                  itemBuilder: (context, index) {
-                    final data = filteredItemList[index];
-                    return Card(
-                      color: const Color.fromARGB(255, 241, 242, 243),
-                      child: ListTile(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Detailspage(
-                              name: data.name,
-                              num: data.num,
-                              item: data.item,
-                              sellprice: data.sellprice,
-                              costprice: data.costprice,
-                              image: data.image!,
-                            ),
-                          ),
+                child: filteredItemList.isEmpty
+                    ? Center(
+                        child: Lottie.asset(
+                          "assets/dctrrrr.json",
                         ),
-                        title: Text(data.name),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(data.num),
-                            Text(data.item),
-                            Text(data.sellprice),
-                            Text(data.costprice),
-                          ],
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              onPressed: () => Navigator.push(
+                      )
+                    : ListView.builder(
+                        itemCount: filteredItemList.length,
+                        itemBuilder: (context, index) {
+                          final data = filteredItemList[index];
+                          return Card(
+                            color: const Color.fromARGB(255, 241, 242, 243),
+                            child: ListTile(
+                              onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Editpage(
-                                    costprice: data.costprice,
-                                    index: index,
-                                    items: data.item,
+                                  builder: (context) => Detailspage(
                                     name: data.name,
                                     num: data.num,
+                                    item: data.item,
                                     sellprice: data.sellprice,
-                                    imagePath: data.image!,
+                                    costprice: data.costprice,
+                                    image: data.image!,
                                   ),
                                 ),
                               ),
-                              icon: const Icon(Icons.edit),
-                              color: Colors.black,
-                            ),
-                            IconButton(
-                              onPressed: () => showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: const Text('Are you sure want to delete'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: const Text('close'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        deleteitems(index);
-                                        Navigator.pop(context);
-                                      },
-                                      child: const Text('delete'),
-                                    ),
-                                  ],
-                                ),
+                              title: Text(data.name),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(data.num),
+                                  Text(data.item),
+                                  Text(data.sellprice),
+                                  Text(data.costprice),
+                                ],
                               ),
-                              icon: const Icon(Icons.delete),
-                              color: Colors.black,
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Editpage(
+                                          costprice: data.costprice,
+                                          index: index,
+                                          items: data.item,
+                                          name: data.name,
+                                          num: data.num,
+                                          sellprice: data.sellprice,
+                                          imagePath: data.image!,
+                                        ),
+                                      ),
+                                    ),
+                                    icon: const Icon(Icons.edit),
+                                    color: Colors.black,
+                                  ),
+                                  IconButton(
+                                    onPressed: () => showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: const Text(
+                                            'Are you sure want to delete'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            child: const Text('close'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              deleteitems(index);
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('delete'),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    icon: const Icon(Icons.delete),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                              ),
+                              leading: CircleAvatar(
+                                backgroundImage: FileImage(File(data.image!)),
+                              ),
                             ),
-                          ],
-                        ),
-                        leading: CircleAvatar(
-                          backgroundImage: FileImage(File(data.image!)),
-                        ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
               ),
             ],
           );
@@ -142,5 +154,3 @@ class _EquipmentspageState extends State<Equipmentspage> {
     );
   }
 }
-
-

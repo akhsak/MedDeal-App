@@ -2,6 +2,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:stockapp/function/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/screens/viewpage/details.dart';
@@ -82,7 +83,7 @@ class _SearchitemssState extends State<Searchitemss> {
             Expanded(
               child: _searcheditem.isEmpty
                   ? Center(
-                      child: Image(image: AssetImage('assets/download.png')),
+                      child: Lottie.asset("assets/dctrrrr.json"),
                     )
                   : ListView.builder(
                       itemCount: _searcheditem.length,
