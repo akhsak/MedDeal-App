@@ -5,11 +5,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/function/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/screens/loginscreen.dart';
 import 'package:stockapp/screens/viewpage/details.dart';
 import 'package:stockapp/screens/viewpage/editpage.dart';
-import 'package:stockapp/screens/viewpage/loginscreen.dart';
+//import 'package:stockapp/screens/viewpage/loginscreen.dart';
 import 'package:stockapp/screens/viewpage/search.dart';
 import 'package:stockapp/widget/drawer_page.dart';
+//import 'package:stockapp/widget/drawer_page.dart';
 
 class Homepage extends StatefulWidget {
   Homepage({Key? key}) : super(key: key);

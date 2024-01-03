@@ -19,7 +19,7 @@ class _SearchitemssState extends State<Searchitemss> {
 
   List<ItemsModel> _searcheditem = [];
 
-  loadFood() async {
+  loaditem() async {
     final item = itemlistnotifier.value;
     setState(() {
       _searcheditem = item;
@@ -50,7 +50,7 @@ class _SearchitemssState extends State<Searchitemss> {
         title: Text('search'),
       ),
       body: Container(
-       child: Column(
+        child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),

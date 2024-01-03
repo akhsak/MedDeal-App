@@ -1,9 +1,10 @@
+
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/function/functions/db_function.dart';
-import 'package:stockapp/screens/viewpage/loginscreen.dart';
+import 'package:stockapp/screens/loginscreen.dart';
 import 'package:stockapp/screens/settings/Appinfo.dart';
 import 'package:stockapp/screens/settings/Terms.dart';
 import 'package:stockapp/widget/drawer.dart';
@@ -40,12 +41,11 @@ class DrawerHeaderWidget extends StatelessWidget {
           Divider(),
           GestureDetector(
             onTap: () {
-              deleteAllitems();
+              showResetAppAlertDialog(context);
             },
             child: DrawerItem(
               text: "Reset App",
               icon: Icons.restore_from_trash_outlined,
-            
             ),
           ),
           Divider(),
@@ -75,6 +75,33 @@ class DrawerHeaderWidget extends StatelessWidget {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context1) => ScreenLogin()),
       (route) => false,
+    );
+  }
+
+  void showResetAppAlertDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Are you sure you want to reset the app?'),
+          content: Text('This action cannot be undone.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                deleteAllitems();
+                Navigator.pop(context);
+              },
+              child: Text('Reset'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
