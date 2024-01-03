@@ -16,8 +16,6 @@ class Searchitemss extends StatefulWidget {
 }
 
 class _SearchitemssState extends State<Searchitemss> {
-  final String defaultImage = 'assets/download.png';
-
   List<ItemsModel> _searcheditem = [];
 
   loaditem() async {
