@@ -83,7 +83,6 @@ class DrawerHeaderWidget extends StatelessWidget {
       builder: (context) {
         return AlertDialog(
           title: Text('Are you sure you want to reset the app?'),
-          content: Text('This action cannot be undone.'),
           actions: [
             TextButton(
               onPressed: () {
