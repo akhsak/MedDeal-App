@@ -4,10 +4,10 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:stockapp/model/itemsmodel.dart';
-import 'package:stockapp/screens/Cateqory/others.dart';
-import 'package:stockapp/screens/Cateqory/Equipments.dart';
-import 'package:stockapp/screens/Cateqory/Medicine.dart';
-import 'package:stockapp/screens/Cateqory/Saniters.dart';
+import 'package:stockapp/view/cateqory/equipments.dart';
+import 'package:stockapp/view/cateqory/medicine.dart';
+import 'package:stockapp/view/cateqory/others.dart';
+import 'package:stockapp/view/cateqory/saniters.dart';
 
 class Itemspage extends StatefulWidget {
   const Itemspage({Key? key}) : super(key: key);

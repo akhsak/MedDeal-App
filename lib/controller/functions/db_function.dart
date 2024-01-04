@@ -45,6 +45,7 @@ Future<void> deleteitems(int id) async{
     totalCost += double.parse(itemm.costprice);
   }
   return totalCost;
+  
 }
 Future<void> deleteAllitems() async{
   final itemsDB = await Hive.openBox<ItemsModel>('items_db');

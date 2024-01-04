@@ -1,20 +1,21 @@
-// ignore_for_file: file_names
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/function/functions/db_function.dart';
+import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/screens/viewpage/Editpage.dart';
-import 'package:stockapp/screens/viewpage/details.dart';
+import 'package:stockapp/view/viewpage/details.dart';
+import 'package:stockapp/view/viewpage/editpage.dart';
 
-class Medicinepage extends StatefulWidget {
-  const Medicinepage({Key? key}) : super(key: key);
+class Otherspag extends StatefulWidget {
+  const Otherspag({Key? key}) : super(key: key);
 
   @override
-  State<Medicinepage> createState() => _MedicinepageState();
+  State<Otherspag> createState() => _OtherspageState();
 }
 
-class _MedicinepageState extends State<Medicinepage> {
+class _OtherspageState extends State<Otherspag> {
   TextEditingController searchController = TextEditingController();
   List<ItemsModel> itemList = [];
 
@@ -22,15 +23,16 @@ class _MedicinepageState extends State<Medicinepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Medicine List'),
+        title: const Text('Others List'),
       ),
       body: ValueListenableBuilder(
         valueListenable: itemlistnotifier,
         builder:
-            (BuildContext context, List<ItemsModel> itemlist, Widget? child) {
-          itemList = itemlist
-              .where((items) => items.item.toLowerCase().contains('medicine'))
-              .toList();
+            (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
+          itemList = Itemlist.where((items) => items.item
+              .split(',')
+              .map((category) => category.trim().toLowerCase())
+              .contains('others')).toList();
 
           String searchQuery = searchController.text.toLowerCase();
           List<ItemsModel> filteredItemList = itemList;
@@ -53,7 +55,7 @@ class _MedicinepageState extends State<Medicinepage> {
                       onPressed: () {
                         searchController.clear();
                       },
-                      icon: const Icon(Icons.clear),
+                      icon: Icon(Icons.clear),
                     ),
                   ),
                   onChanged: (value) {
@@ -73,7 +75,7 @@ class _MedicinepageState extends State<Medicinepage> {
                         itemBuilder: (context, index) {
                           final data = filteredItemList[index];
                           return Card(
-                            color: const Color.fromARGB(255, 241, 242, 243),
+                            color: Color.fromARGB(255, 241, 242, 243),
                             child: ListTile(
                               onTap: () {
                                 Navigator.push(
@@ -110,7 +112,7 @@ class _MedicinepageState extends State<Medicinepage> {
                                         MaterialPageRoute(
                                           builder: (context) => Editpage(
                                             costprice: data.costprice,
-                                            index: index,
+                                            id: index,
                                             items: data.item,
                                             name: data.name,
                                             num: data.num,
@@ -129,22 +131,20 @@ class _MedicinepageState extends State<Medicinepage> {
                                             context: context,
                                             builder: (context) {
                                               return AlertDialog(
-                                                title: const Text(
+                                                title: Text(
                                                     'Are you sure want to delete'),
                                                 actions: [
                                                   TextButton(
                                                       onPressed: () {
                                                         Navigator.pop(context);
                                                       },
-                                                      child:
-                                                          const Text('close')),
+                                                      child: Text('close')),
                                                   TextButton(
                                                       onPressed: () {
                                                         deleteitems(index);
                                                         Navigator.pop(context);
                                                       },
-                                                      child:
-                                                          const Text('delete'))
+                                                      child: Text('delete'))
                                                 ],
                                               );
                                             });
@@ -165,6 +165,72 @@ class _MedicinepageState extends State<Medicinepage> {
           );
         },
       ),
+    );
+  }
+}
+
+class OthersSearchDelegate extends SearchDelegate {
+  final List<ItemsModel> itemList;
+
+  OthersSearchDelegate(this.itemList);
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return buildSearchResults();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return buildSearchResults();
+  }
+
+  Widget buildSearchResults() {
+    return ListView.builder(
+      itemCount: itemList.length,
+      itemBuilder: (context, index) {
+        final data = itemList[index];
+        return ListTile(
+          title: Text(data.name),
+          subtitle: Text(data.item),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Detailspage(
+                  name: data.name,
+                  num: data.num,
+                  item: data.item,
+                  sellprice: data.sellprice,
+                  costprice: data.costprice,
+                  image: data.image!,
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

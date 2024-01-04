@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:stockapp/function/functions/db_function.dart';
+import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/widget/bottomtabs/bottombar.dart';
 
@@ -16,11 +16,11 @@ class Editpage extends StatefulWidget {
   var sellprice;
   var costprice;
 
-  int index;
+  int id;
   dynamic imagePath;
 
   Editpage({
-    required this.index,
+    required this.id,
     required this.name,
     required this.num,
     required this.items,
@@ -273,9 +273,8 @@ class _EditpageState extends State<Editpage> {
         costprice: costprice,
         image: image,
       );
-      //print(update);
 
-      edit(widget.index, update);
+      edit(widget.id, update);
       Navigator.of(context).pop();
     }
   }

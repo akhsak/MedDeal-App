@@ -1,41 +1,41 @@
-// ignore_for_file: file_names, non_constant_identifier_names
-
+// ignore_for_file: file_names
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/function/functions/db_function.dart';
+import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/screens/viewpage/Editpage.dart';
-import 'package:stockapp/screens/viewpage/details.dart';
+import 'package:stockapp/view/viewpage/details.dart';
+import 'package:stockapp/view/viewpage/editpage.dart';
 
-class Saniterspage extends StatefulWidget {
-  const Saniterspage({Key? key}) : super(key: key);
+class Medicinepage extends StatefulWidget {
+  const Medicinepage({Key? key}) : super(key: key);
 
   @override
-  State<Saniterspage> createState() => _SaniterspageState();
+  State<Medicinepage> createState() => _MedicinepageState();
 }
 
-class _SaniterspageState extends State<Saniterspage> {
+class _MedicinepageState extends State<Medicinepage> {
   TextEditingController searchController = TextEditingController();
+  List<ItemsModel> itemList = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Saniters List'),
+        title: const Text('Medicine List'),
       ),
       body: ValueListenableBuilder(
         valueListenable: itemlistnotifier,
         builder:
-            (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
-          List<ItemsModel> filteredItemList =
-              Itemlist.where((items) => items.item.toLowerCase() == 'saniters')
-                  .toList();
+            (BuildContext context, List<ItemsModel> itemlist, Widget? child) {
+          itemList = itemlist
+              .where((items) => items.item.toLowerCase().contains('medicine'))
+              .toList();
 
           String searchQuery = searchController.text.toLowerCase();
+          List<ItemsModel> filteredItemList = itemList;
           if (searchQuery.isNotEmpty) {
-            filteredItemList = filteredItemList.where((item) {
+            filteredItemList = itemList.where((item) {
               return item.name.toLowerCase().contains(searchQuery) ||
                   item.costprice.toUpperCase().contains(searchQuery);
             }).toList();
@@ -110,7 +110,7 @@ class _SaniterspageState extends State<Saniterspage> {
                                         MaterialPageRoute(
                                           builder: (context) => Editpage(
                                             costprice: data.costprice,
-                                            index: index,
+                                            id: index,
                                             items: data.item,
                                             name: data.name,
                                             num: data.num,

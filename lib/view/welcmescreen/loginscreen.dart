@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
-import 'package:stockapp/screens/splash.dart';
+import 'package:stockapp/view/welcmescreen/splash.dart';
 
 class ScreenLogin extends StatelessWidget {
   ScreenLogin({Key? key}) : super(key: key);
@@ -97,7 +97,6 @@ class ScreenLogin extends StatelessWidget {
                             if (_formKey.currentState!.validate()) {
                               checkLogin(context);
                             } else {
-                            //  print('Data empty');
                             }
                           },
                           icon: Icon(Icons.login),
@@ -122,13 +121,11 @@ class ScreenLogin extends StatelessWidget {
       final _srdprf = await SharedPreferences.getInstance();
       await _srdprf.setBool(savekeyname, true);
 
-     // print('Username pass match');
 
       Navigator.of(ctx).pushReplacement(
         MaterialPageRoute(builder: (ctx) => Splashpage()),
       );
     } else {
-    //  print('Username pass does not match');
 
       final _errorMessage = 'Username password does not match';
 

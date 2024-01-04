@@ -3,10 +3,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/function/functions/db_function.dart';
+import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/screens/viewpage/details.dart';
-import 'package:stockapp/screens/viewpage/editpage.dart';
+import 'package:stockapp/view/viewpage/details.dart';
+import 'package:stockapp/view/viewpage/editpage.dart';
 
 class Searchitemss extends StatefulWidget {
   Searchitemss({Key? key}) : super(key: key);
@@ -122,7 +122,7 @@ class _SearchitemssState extends State<Searchitemss> {
                                       MaterialPageRoute(
                                         builder: (context) => Editpage(
                                           costprice: data.costprice,
-                                          index: index,
+                                          id: index,
                                           items: data.item,
                                           name: data.name,
                                           num: data.num,

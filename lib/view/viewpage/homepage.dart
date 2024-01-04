@@ -3,15 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stockapp/function/functions/db_function.dart';
+import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/screens/loginscreen.dart';
-import 'package:stockapp/screens/viewpage/details.dart';
-import 'package:stockapp/screens/viewpage/editpage.dart';
-//import 'package:stockapp/screens/viewpage/loginscreen.dart';
-import 'package:stockapp/screens/viewpage/search.dart';
+import 'package:stockapp/view/viewpage/details.dart';
+import 'package:stockapp/view/viewpage/editpage.dart';
+import 'package:stockapp/view/viewpage/search.dart';
+import 'package:stockapp/view/welcmescreen/loginscreen.dart';
 import 'package:stockapp/widget/drawer_page.dart';
-//import 'package:stockapp/widget/drawer_page.dart';
 
 class Homepage extends StatefulWidget {
   Homepage({Key? key}) : super(key: key);
@@ -157,7 +155,7 @@ class _HomepageState extends State<Homepage> {
                   itemBuilder: (context, index) {
                     final reverseindex = itemlist.length - 1 - index;
                     final data = itemlist[reverseindex];
-                    return Card(
+                    return Card( 
                       color: Color.fromARGB(255, 246, 246, 246),
                       elevation: 2, 
                       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -208,7 +206,7 @@ class _HomepageState extends State<Homepage> {
                                   MaterialPageRoute(
                                     builder: (context) => Editpage(
                                       costprice: data.costprice,
-                                      index: index,
+                                      id: index,
                                       items: data.item,
                                       name: data.name,
                                       num: data.num,

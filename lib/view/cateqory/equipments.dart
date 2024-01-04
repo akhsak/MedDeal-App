@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:stockapp/function/functions/db_function.dart';
+import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/screens/viewpage/Editpage.dart';
-import 'package:stockapp/screens/viewpage/details.dart';
 import 'package:lottie/lottie.dart';
+import 'package:stockapp/view/viewpage/details.dart';
+import 'package:stockapp/view/viewpage/editpage.dart';
 
 class Equipmentspage extends StatefulWidget {
   const Equipmentspage({Key? key}) : super(key: key);
@@ -100,7 +100,7 @@ class _EquipmentspageState extends State<Equipmentspage> {
                                       MaterialPageRoute(
                                         builder: (context) => Editpage(
                                           costprice: data.costprice,
-                                          index: index,
+                                          id: index,
                                           items: data.item,
                                           name: data.name,
                                           num: data.num,
