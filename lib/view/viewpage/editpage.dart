@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/widget/bottomtabs/bottombar.dart';
+import 'package:stockapp/widget/textformfield.dart';
 
 class Editpage extends StatefulWidget {
   var name;
@@ -15,7 +16,6 @@ class Editpage extends StatefulWidget {
   var items;
   var sellprice;
   var costprice;
-
   int id;
   dynamic imagePath;
 
@@ -54,19 +54,18 @@ class _EditpageState extends State<Editpage> {
   }
 
   String selectedValue = '';
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-         leading: IconButton(
+        leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back, color: Colors.white),
         ),
-         title: Text('update',
+        title: Text('update',
             style: TextStyle(
                 color: Color.fromRGBO(248, 248, 249, 1),
                 fontWeight: FontWeight.bold)),
@@ -96,43 +95,25 @@ class _EditpageState extends State<Editpage> {
                       ),
                       child: _selectedImage == null
                           ? Icon(Icons.add_a_photo, color: Colors.grey)
-                          : 
-                           Image.file(
-                                _selectedImage!,
-                                fit: BoxFit.cover,
-                                height: 150,
-                                width: 100,
-                              ),
+                          : Image.file(
+                              _selectedImage!,
+                              fit: BoxFit.cover,
+                              height: 150,
+                              width: 100,
                             ),
                     ),
                   ),
-                
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: TextField(
-                    controller: _nameController,
-                    style: TextStyle(color: Color.fromARGB(255, 93, 92, 94)),
-                    decoration: InputDecoration(
-                      labelText: 'Item Name',
-                      labelStyle:
-                          TextStyle(color: Color.fromARGB(255, 134, 132, 136)),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
+                  child: CustomTextForm(
+                      labelText: 'itemname', controller: _nameController),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: TextField(
-                    controller: _numController,
-                    style: TextStyle(color: Color.fromARGB(255, 125, 125, 125)),
-                    decoration: InputDecoration(
-                      labelText: 'Stall Number',
-                      labelStyle:
-                          TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
+                  child: CustomTextForm(
+                      labelText: 'stall number', controller: _numController),
                 ),
                 SizedBox(height: 20),
                 Padding(
@@ -191,40 +172,20 @@ class _EditpageState extends State<Editpage> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
+                        child: CustomTextForm(
+                          labelText: 'selling price',
                           controller: _sellpriceController,
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
-                          decoration: InputDecoration(
-                            labelText: 'Selling Price',
-                            prefixText: '₹',
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 30, 3, 56)),
-                            border: OutlineInputBorder(),
-                          ),
+                          prefixText: '₹',
+                          keyboard: TextInputType.number,
                         ),
                       ),
                       SizedBox(width: 20),
                       Expanded(
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
+                        child: CustomTextForm(
+                          labelText: 'cost price',
                           controller: _costpriceController,
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
-                          decoration: InputDecoration(
-                            labelText: 'Cost Price',
-                            prefixText: '₹',
-                            labelStyle: TextStyle(
-                                color: Color.fromARGB(255, 30, 3, 56)),
-                            border: OutlineInputBorder(),
-                          ),
+                          keyboard: TextInputType.number,
+                          prefixText: '₹',
                         ),
                       ),
                     ],

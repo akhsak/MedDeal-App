@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/widget/bottomtabs/bottombar.dart';
+import 'package:stockapp/widget/textformfield.dart';
 
 class Addpage extends StatefulWidget {
   const Addpage({Key? key});
@@ -70,50 +71,24 @@ class _AddpageState extends State<Addpage> {
                       ),
                       child: picked == null
                           ? Icon(Icons.add_a_photo)
-                          : 
-                               Image.file(
-                                picked!,
-                                fit: BoxFit.cover,
-                                height: 150,
-                                width: 100,
-                              ),
+                          : Image.file(
+                              picked!,
+                              fit: BoxFit.cover,
+                              height: 150,
+                              width: 100,
                             ),
                     ),
-                  ),
-              
-                SizedBox(height: 20),
-                Container(
-                  child: TextFormField(
-                    controller: _namecontroller,
-                    decoration: InputDecoration(
-                      labelText: 'Item Name',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'value is empty';
-                      } else {
-                        return null;
-                      }
-                    },
                   ),
                 ),
                 SizedBox(height: 20),
                 Container(
-                  child: TextFormField(
-                    controller: _numcontroller,
-                    decoration: InputDecoration(
-                      labelText: 'Stall Number',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'value is empty';
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
+                  child: CustomTextForm(
+                      labelText: 'Item name', controller: _namecontroller),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: CustomTextForm(
+                      labelText: 'stall number', controller: _numcontroller),
                 ),
                 SizedBox(height: 20),
                 DropdownButtonFormField<String>(
@@ -130,7 +105,7 @@ class _AddpageState extends State<Addpage> {
                   isExpanded: true,
                   onChanged: (String? newvalue) {
                     setState(() {
-                    selectedValue = newvalue!.toString();
+                      selectedValue = newvalue!.toString();
                     });
                   },
                   items: const [
@@ -171,48 +146,29 @@ class _AddpageState extends State<Addpage> {
                   children: [
                     Expanded(
                       child: Container(
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
+                        child: CustomTextForm(
+                          labelText: 'selling price',
+                          controller: _sellingpricecontroller,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          controller: _sellingpricecontroller,
-                          decoration: InputDecoration(
-                            labelText: 'Selling Price',
-                            prefixText: '₹',
-                            border: OutlineInputBorder(),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Value is empty';
-                            } else {
-                              return null;
-                            }
-                          },
+                          prefixText: '₹',
+                          keyboard: TextInputType.number,
                         ),
                       ),
                     ),
                     SizedBox(width: 10),
                     Expanded(
                       child: Container(
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
+                        child: CustomTextForm(
+                          labelText: 'Cost price',
+                          controller: _costpricecontroller,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          controller: _costpricecontroller,
-                          decoration: InputDecoration(
-                            labelText: 'Cost Price',
-                            prefixText: '₹',
-                            border: OutlineInputBorder(),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'value is Empty';
-                            } else {
-                              return null;
-                            }
-                          },
+                          prefixText: '₹',
+                           keyboard: TextInputType.number,
+
                         ),
                       ),
                     ),
@@ -259,7 +215,6 @@ class _AddpageState extends State<Addpage> {
     final _costprice = _costpricecontroller.text.trim();
 
     if (_formKey.currentState?.validate() ?? false) {
-    //  print('$_name $_num $_item $_sellprice $_costprice');
       final _addItem = ItemsModel(
           name: _name,
           num: _num,
