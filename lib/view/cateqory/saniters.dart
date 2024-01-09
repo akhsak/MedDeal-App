@@ -113,7 +113,7 @@ class _SaniterspageState extends State<Saniterspage> {
                                           id: index,
                                             items: data.item,
                                             name: data.name,
-                                            num: data.num,
+                                            numbr: data.num,
                                             sellprice: data.sellprice,
                                             imagePath: data.image!,
                                           ),

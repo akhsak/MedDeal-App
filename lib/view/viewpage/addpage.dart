@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/widget/bottomtabs/bottombar.dart';
@@ -28,7 +29,6 @@ class _AddpageState extends State<Addpage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final ImagePicker imagePicker = ImagePicker();
   File? picked;
 
   @override
@@ -57,27 +57,31 @@ class _AddpageState extends State<Addpage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () => getimage(ImageSource.gallery),
-                  child: Center(
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      fromgallery();
+                    },
                     child: Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      height: 150,
-                      width: screenWidth,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: Colors.grey),
-                      ),
-                      child: picked == null
-                          ? Icon(Icons.add_a_photo)
-                          : Image.file(
-                              picked!,
-                              fit: BoxFit.cover,
-                              height: 150,
-                              width: 100,
-                            ),
-                    ),
+                        margin: EdgeInsets.only(bottom: 20),
+                        height: 150,
+                        width: screenWidth,
+                        decoration: BoxDecoration(
+                          image: picked != null
+                              ? DecorationImage(
+                                  image: FileImage(picked!),
+                                  fit: BoxFit.fill,
+                                )
+                              : null,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                          border: Border.all(color: Colors.grey),
+                        ),
+                        child: picked == null
+                            ? Center(
+                                child: Lottie.asset(
+                                    'assets/Animation - addimage.json'))
+                            : null),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -167,8 +171,7 @@ class _AddpageState extends State<Addpage> {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           prefixText: '₹',
-                           keyboard: TextInputType.number,
-
+                          keyboard: TextInputType.number,
                         ),
                       ),
                     ),
@@ -232,10 +235,17 @@ class _AddpageState extends State<Addpage> {
     }
   }
 
-  getimage(ImageSource source) async {
-    var img = await imagePicker.pickImage(source: source);
+  // getimage(ImageSource source) async {
+  //   var img = await imagePicker.pickImage(source: source);
+  //   setState(() {
+  //     picked = File(img!.path);
+  //   });
+  // }
+  fromgallery() async {
+    final returnedimage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     setState(() {
-      picked = File(img!.path);
+      picked = File(returnedimage!.path);
     });
   }
 }

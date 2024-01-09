@@ -24,11 +24,11 @@ Future<void> getAllitems() async {
 
 Future<void>edit(int id,ItemsModel value)async{
  final itemsDB= await Hive.openBox<ItemsModel>('items_db');
- itemlistnotifier.value.clear();
- itemlistnotifier.value.addAll(itemsDB.values);
-  itemlistnotifier.notifyListeners();
+ //itemlistnotifier.value.clear();
+ //itemlistnotifier.value.addAll(itemsDB.values);
+ // itemlistnotifier.notifyListeners();
   itemsDB.putAt(id, value);
-  getAllitems();
+ /// getAllitems();
 
 
 }

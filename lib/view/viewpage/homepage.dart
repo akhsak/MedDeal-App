@@ -156,7 +156,7 @@ class _HomepageState extends State<Homepage> {
                     final reverseindex = itemlist.length - 1 - index;
                     final data = itemlist[reverseindex];
                     return Card( 
-                      color: Color.fromARGB(255, 246, 246, 246),
+                      color:  Color.fromARGB(255, 207, 220, 251),
                       elevation: 2, 
                       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                       child: ListTile(
@@ -206,10 +206,10 @@ class _HomepageState extends State<Homepage> {
                                   MaterialPageRoute(
                                     builder: (context) => Editpage(
                                       costprice: data.costprice,
-                                      id: index,
+                                      id: reverseindex,
                                       items: data.item,
                                       name: data.name,
-                                      num: data.num,
+                                      numbr: data.num,
                                       sellprice: data.sellprice,
                                       imagePath: data.image!,
                                     ),

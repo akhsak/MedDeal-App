@@ -125,7 +125,7 @@ class _SearchitemssState extends State<Searchitemss> {
                                           id: index,
                                           items: data.item,
                                           name: data.name,
-                                          num: data.num,
+                                          numbr: data.num,
                                           sellprice: data.sellprice,
                                           imagePath: data.image!,
                                         ),

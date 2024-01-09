@@ -115,7 +115,7 @@ class _OtherspageState extends State<Otherspag> {
                                             id: index,
                                             items: data.item,
                                             name: data.name,
-                                            num: data.num,
+                                            numbr: data.num,
                                             sellprice: data.sellprice,
                                             imagePath: data.image!,
                                           ),

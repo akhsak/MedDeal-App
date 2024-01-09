@@ -103,7 +103,7 @@ class _EquipmentspageState extends State<Equipmentspage> {
                                           id: index,
                                           items: data.item,
                                           name: data.name,
-                                          num: data.num,
+                                          numbr: data.num,
                                           sellprice: data.sellprice,
                                           imagePath: data.image!,
                                         ),

@@ -1,3 +1,4 @@
+
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers, must_be_immutable, use_key_in_widget_constructors
 
 import 'dart:io';
@@ -5,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/widget/bottomtabs/bottombar.dart';
@@ -12,7 +14,7 @@ import 'package:stockapp/widget/textformfield.dart';
 
 class Editpage extends StatefulWidget {
   var name;
-  var num;
+  var numbr;
   var items;
   var sellprice;
   var costprice;
@@ -22,7 +24,7 @@ class Editpage extends StatefulWidget {
   Editpage({
     required this.id,
     required this.name,
-    required this.num,
+    required this.numbr,
     required this.items,
     required this.sellprice,
     required this.costprice,
@@ -39,21 +41,22 @@ class _EditpageState extends State<Editpage> {
   TextEditingController _sellpriceController = TextEditingController();
   TextEditingController _costpriceController = TextEditingController();
   List dropdownItems = [];
-  File? _selectedImage;
+  File? picked;
 
   @override
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.name);
-    _numController = TextEditingController(text: widget.num);
+    _numController = TextEditingController(text: widget.numbr);
     _sellpriceController = TextEditingController(text: widget.sellprice);
     _costpriceController = TextEditingController(text: widget.costprice);
 
-    _selectedImage = widget.imagePath != '' ? File(widget.imagePath) : null;
+    picked = widget.imagePath != '' ? File(widget.imagePath) : null;
     selectedValue = widget.items;
   }
 
   String selectedValue = '';
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -65,14 +68,16 @@ class _EditpageState extends State<Editpage> {
           },
           icon: Icon(Icons.arrow_back, color: Colors.white),
         ),
-        title: Text('update',
-            style: TextStyle(
-                color: Color.fromRGBO(248, 248, 249, 1),
-                fontWeight: FontWeight.bold)),
+        title: Text(
+          'update',
+          style: TextStyle(
+            color: Color.fromRGBO(248, 248, 249, 1),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Color.fromRGBO(12, 2, 85, 1),
       ),
       body: Container(
-        decoration: BoxDecoration(),
         child: ListView(
           children: [
             Column(
@@ -81,39 +86,48 @@ class _EditpageState extends State<Editpage> {
                 SizedBox(
                   height: 50,
                 ),
-                GestureDetector(
-                  onTap: () => _pickImage(ImageSource.gallery),
-                  child: Center(
+                Center(
+                  child: InkWell(
+                    onTap: () {
+                      fromGallery();
+                    },
                     child: Container(
                       margin: EdgeInsets.only(bottom: 20),
                       height: 150,
                       width: screenWidth,
                       decoration: BoxDecoration(
+                           image: picked != null
+                              ? DecorationImage(
+                                  image: FileImage(picked!),
+                                  fit: BoxFit.fill,
+                                )
+                              : null,
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(color: Colors.grey),
                       ),
-                      child: _selectedImage == null
-                          ? Icon(Icons.add_a_photo, color: Colors.grey)
-                          : Image.file(
-                              _selectedImage!,
-                              fit: BoxFit.cover,
-                              height: 150,
-                              width: 100,
-                            ),
+                      child: picked == null
+                          ? Center(
+                              child: Lottie.asset(
+                                  'assets/Animation - addimage.json'))
+                          : null,
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: CustomTextForm(
-                      labelText: 'itemname', controller: _nameController),
+                    labelText: 'itemname',
+                    controller: _nameController,
+                  ),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: CustomTextForm(
-                      labelText: 'stall number', controller: _numController),
+                    labelText: 'stall number',
+                    controller: _numController,
+                  ),
                 ),
                 SizedBox(height: 20),
                 Padding(
@@ -194,11 +208,12 @@ class _EditpageState extends State<Editpage> {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    updateall();
+                    updateAll();
                     Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => Bottombar()),
-                        (route) => false);
+                      context,
+                      MaterialPageRoute(builder: (context) => Bottombar()),
+                      (route) => false,
+                    );
                   },
                   child: Text('Save'),
                 ),
@@ -210,13 +225,13 @@ class _EditpageState extends State<Editpage> {
     );
   }
 
-  Future<void> updateall() async {
+  Future<void> updateAll() async {
     final name = _nameController.text.trim();
     final num = _numController.text.trim();
     final items = selectedValue;
     final sellprice = _sellpriceController.text.trim();
     final costprice = _costpriceController.text.trim();
-    final image = _selectedImage?.path ?? '';
+    final image = picked?.path ?? '';
 
     if (name.isEmpty ||
         num.isEmpty ||
@@ -227,6 +242,7 @@ class _EditpageState extends State<Editpage> {
       return;
     } else {
       final update = ItemsModel(
+        id: widget.id,
         name: name,
         num: num,
         item: items,
@@ -240,15 +256,16 @@ class _EditpageState extends State<Editpage> {
     }
   }
 
-  Future<void> _pickImage(ImageSource source) async {
-    final returnImage = await ImagePicker().pickImage(source: source);
+  fromGallery() async {
+    final returnImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
     if (returnImage == null) {
       return;
     }
 
     setState(() {
-      _selectedImage = File(returnImage.path);
+      picked = File(returnImage.path);
     });
   }
 }
