@@ -65,10 +65,9 @@ class _OtherspageState extends State<Otherspag> {
               ),
               Expanded(
                 child: filteredItemList.isEmpty
-                    ? Center(
-                        child: Lottie.asset(
-                          "assets/dctrrrr.json",
-                        ),
+                    ? Lottie.asset(
+                        "assets/Animation - 1704946991285.json",
+                        width: 200,
                       )
                     : ListView.builder(
                         itemCount: filteredItemList.length,
@@ -83,7 +82,7 @@ class _OtherspageState extends State<Otherspag> {
                                   MaterialPageRoute(
                                     builder: (context) => Detailspage(
                                       name: data.name,
-                                      num: data.num,
+                                      num: data.numbr,
                                       item: data.item,
                                       sellprice: data.sellprice,
                                       costprice: data.costprice,
@@ -96,7 +95,7 @@ class _OtherspageState extends State<Otherspag> {
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(data.num),
+                                  Text(data.numbr),
                                   Text(data.item),
                                   Text(data.sellprice),
                                   Text(data.costprice),
@@ -115,7 +114,7 @@ class _OtherspageState extends State<Otherspag> {
                                             id: index,
                                             items: data.item,
                                             name: data.name,
-                                            numbr: data.num,
+                                            numbr: data.numbr,
                                             sellprice: data.sellprice,
                                             imagePath: data.image!,
                                           ),
@@ -220,7 +219,7 @@ class OthersSearchDelegate extends SearchDelegate {
               MaterialPageRoute(
                 builder: (context) => Detailspage(
                   name: data.name,
-                  num: data.num,
+                  num: data.numbr,
                   item: data.item,
                   sellprice: data.sellprice,
                   costprice: data.costprice,

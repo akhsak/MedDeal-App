@@ -160,14 +160,14 @@ class _HomepageState extends State<Homepage> {
                       elevation: 2, 
                       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                       child: ListTile(
-                        contentPadding: EdgeInsets.all(16), 
+                        contentPadding: EdgeInsets.all(5), 
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Detailspage(
                                 name: data.name,
-                                num: data.num,
+                                num: data.numbr,
                                 item: data.item,
                                 sellprice: data.sellprice,
                                 costprice: data.costprice,
@@ -179,18 +179,18 @@ class _HomepageState extends State<Homepage> {
                         title: Text(
                           data.name,
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 8), 
+                            SizedBox(height: 5), 
                             Text(
                               data.item,
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 11,
                                 color: Colors.grey,
                               ),
                             ),
@@ -209,7 +209,7 @@ class _HomepageState extends State<Homepage> {
                                       id: reverseindex,
                                       items: data.item,
                                       name: data.name,
-                                      numbr: data.num,
+                                      numbr: data.numbr,
                                       sellprice: data.sellprice,
                                       imagePath: data.image!,
                                     ),

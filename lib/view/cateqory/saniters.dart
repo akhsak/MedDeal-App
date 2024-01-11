@@ -65,7 +65,8 @@ class _SaniterspageState extends State<Saniterspage> {
                 child: filteredItemList.isEmpty
                     ? Center(
                         child: Lottie.asset(
-                          "assets/dctrrrr.json",
+                          "assets/Animation - 1704946991285.json",
+                          width: 200,
                         ),
                       )
                     : ListView.builder(
@@ -81,7 +82,7 @@ class _SaniterspageState extends State<Saniterspage> {
                                   MaterialPageRoute(
                                     builder: (context) => Detailspage(
                                       name: data.name,
-                                      num: data.num,
+                                      num: data.numbr,
                                       item: data.item,
                                       sellprice: data.sellprice,
                                       costprice: data.costprice,
@@ -94,7 +95,7 @@ class _SaniterspageState extends State<Saniterspage> {
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(data.num),
+                                  Text(data.numbr),
                                   Text(data.item),
                                   Text(data.sellprice),
                                   Text(data.costprice),
@@ -110,10 +111,10 @@ class _SaniterspageState extends State<Saniterspage> {
                                         MaterialPageRoute(
                                           builder: (context) => Editpage(
                                             costprice: data.costprice,
-                                          id: index,
+                                            id: index,
                                             items: data.item,
                                             name: data.name,
-                                            numbr: data.num,
+                                            numbr: data.numbr,
                                             sellprice: data.sellprice,
                                             imagePath: data.image!,
                                           ),

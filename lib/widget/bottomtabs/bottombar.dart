@@ -1,88 +1,112 @@
 
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
-
+ // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 import 'package:flutter/material.dart';
-import 'package:stockapp/view/viewpage/Profitpage.dart';
+
 import 'package:stockapp/view/viewpage/addpage.dart';
 import 'package:stockapp/view/viewpage/chartpage.dart';
 import 'package:stockapp/view/viewpage/homepage.dart';
 import 'package:stockapp/view/viewpage/itemspage.dart';
+import 'package:stockapp/view/viewpage/profitpage.dart';
 
 class Bottombar extends StatefulWidget {
-  const Bottombar({Key? key}) : super(key: key);
+  const Bottombar({
+    super.key,
+    
+  });
 
   @override
   State<Bottombar> createState() => _BottombarState();
 }
 
 class _BottombarState extends State<Bottombar> {
-  int _myIndex = 0;
-
-  void navigateBottomBar(int index) {
-    setState(() {
-      _myIndex = index;
-    });
-  }
-
-  final List<Widget> pages = [
+  List pages = [
     Homepage(),
     Itemspage(),
     ProfitPage(),
     PieChart(),
   ];
+  int myIndex = 0;
+
+  void onTap(int index) {
+    setState(() {
+      myIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      body: pages[_myIndex],
-      bottomNavigationBar: BottomAppBar(
-        color: Color.fromRGBO(12, 2, 85, 1),
-        shape: CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        child: Container(
-          height: 56.0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: Icon(Icons.home),
-                color: Color.fromRGBO(241, 240, 243, 1),
-
-                onPressed: () => navigateBottomBar(0),
-              ),
-              IconButton(
-                icon: Icon(Icons.category),
-               color: Color.fromARGB(255, 253, 252, 252),
-                onPressed: () => navigateBottomBar(1),
-              ),
-              SizedBox(), 
-              IconButton(
-                icon: Icon(Icons.history),
-                color: Colors.white,
-                onPressed: () => navigateBottomBar(2),
-              ),
-              IconButton(
-                icon: Icon(Icons.equalizer_rounded),
-                color: Colors.white,
-                onPressed: () => navigateBottomBar(3),
-              ),
-            ],
+    return SafeArea(
+      child: Scaffold(
+        body: pages[myIndex],
+        bottomNavigationBar: Padding(
+          
+          padding: const EdgeInsets.all(22.10),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: BottomNavigationBar(
+              unselectedFontSize: 0,
+              type: BottomNavigationBarType.fixed,
+              onTap: onTap,
+              backgroundColor: const Color.fromARGB(24, 7, 100, 95),
+              currentIndex: myIndex,
+              selectedItemColor: const Color.fromARGB(255, 9, 49, 83),
+              unselectedItemColor: const Color.fromARGB(255, 145, 176, 239),
+              showSelectedLabels: true,
+              showUnselectedLabels: true,
+              elevation: 0,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                    size: 25,
+                  ),
+                  label: 'ᴴᵒᵐᵉ',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.category,
+                    size: 25,
+                  ),
+                  label: 'ᶜᵃᵗᵉᵍᵒʳʸ',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.history,               
+                         size: 25,
+                  ),
+                  label: 'ᵖʳᵒᶠⁱᵗ',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.donut_large_rounded,
+                    size: 25,
+                  ),
+                  label: 'ᶜʰᵃʳᵗ',
+                ),
+              ],
+            ),
           ),
         ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(
+            bottom: 5,
+            top: 25,
+          ),
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const Addpage(),
+                ),
+              );
+            },
+            child: const Icon(Icons.add),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 219, 218, 215),
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => Addpage()));
-        },
-        child: const Icon(Icons.add, color: Colors.black),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
-
-
         
    

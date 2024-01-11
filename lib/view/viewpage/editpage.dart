@@ -1,5 +1,5 @@
 
-// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers, must_be_immutable, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers, must_be_immutable, use_key_in_widget_constructors, unnecessary_import
 
 import 'dart:io';
 
@@ -93,7 +93,7 @@ class _EditpageState extends State<Editpage> {
                     },
                     child: Container(
                       margin: EdgeInsets.only(bottom: 20),
-                      height: 150,
+                      height: 200,
                       width: screenWidth,
                       decoration: BoxDecoration(
                            image: picked != null
@@ -244,7 +244,7 @@ class _EditpageState extends State<Editpage> {
       final update = ItemsModel(
         id: widget.id,
         name: name,
-        num: num,
+        numbr: num,
         item: items,
         sellprice: sellprice,
         costprice: costprice,

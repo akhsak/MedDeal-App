@@ -44,11 +44,11 @@ class _PieData {
 List<_PieData> convertItemsToPieData(List<ItemsModel> itemlistnotifier) {
   Map<String, double> categoryCountMap = {};
 
-  for (var item in itemlistnotifier) {
-    if (categoryCountMap.containsKey(item.item)) {
-      categoryCountMap[item.item] = categoryCountMap[item.item]! + 1;
+  for (var itemm in itemlistnotifier) {
+    if (categoryCountMap.containsKey(itemm.item)) {
+      categoryCountMap[itemm.item] = categoryCountMap[itemm.item]! + 1;
     } else {
-      categoryCountMap[item.item] = 1;
+      categoryCountMap[itemm.item] = 1;
     }
   }
 

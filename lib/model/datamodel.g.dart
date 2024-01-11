@@ -18,7 +18,7 @@ class ItemsModelAdapter extends TypeAdapter<ItemsModel> {
     };
     return ItemsModel(
       name: fields[1] as String,
-      num: fields[2] as String,
+      numbr: fields[2] as String,
       item: fields[3] as String,
       sellprice: fields[4] as String,
       costprice: fields[5] as String,
@@ -36,7 +36,7 @@ class ItemsModelAdapter extends TypeAdapter<ItemsModel> {
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.num)
+      ..write(obj.numbr)
       ..writeByte(3)
       ..write(obj.item)
       ..writeByte(4)

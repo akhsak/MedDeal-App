@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 import 'dart:io';
@@ -26,10 +25,10 @@ class Detailspage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(12, 2, 85, 1),
+        backgroundColor:  Color.fromARGB(255, 50, 82, 137),
         title: Text('Details', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-         leading: IconButton(
+        leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
@@ -51,27 +50,22 @@ class Detailspage extends StatelessWidget {
                 ProfileCard(
                   title: 'Item Name',
                   content: name,
-                  
                 ),
                 ProfileCard(
                   title: 'Stall Number',
                   content: num,
-                 
                 ),
                 ProfileCard(
                   title: 'Select Item',
                   content: item,
-                  
                 ),
                 ProfileCard(
                   title: 'Selling Price',
                   content: sellprice,
-                 
                 ),
                 ProfileCard(
                   title: 'Cost Price',
                   content: costprice,
-                 
                 ),
               ],
             ),
@@ -109,19 +103,18 @@ class ProfileCard extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 10,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                    color: Colors.blueAccent,
                   ),
                 ),
-          
               ],
             ),
-            SizedBox(height: 12),
+            SizedBox(height: 10),
             Text(
               content,
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),

@@ -11,7 +11,7 @@ class ItemsModel {
   final String name;
 
   @HiveField(2)
-  final String num;
+  final String numbr;
 
   @HiveField(3)
   final String item;
@@ -28,7 +28,7 @@ class ItemsModel {
 
   ItemsModel({
     required this.name,
-    required this.num,
+    required this.numbr,
     required this.item,
     required this.sellprice,
     required this.costprice,

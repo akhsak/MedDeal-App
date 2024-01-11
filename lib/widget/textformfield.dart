@@ -66,7 +66,7 @@ class CustomTextForm extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         prefixText: prefixText,
-        border: OutlineInputBorder(),
+        border:const  OutlineInputBorder(),
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {

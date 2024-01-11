@@ -11,7 +11,6 @@ void additems(ItemsModel value) async {
   await itemsDB.add(value);
   itemlistnotifier.value.add(value);
   itemlistnotifier.notifyListeners();
-
 }
 
 Future<void> getAllitems() async {
@@ -22,35 +21,27 @@ Future<void> getAllitems() async {
   itemlistnotifier.notifyListeners();
 }
 
-Future<void>edit(int id,ItemsModel value)async{
- final itemsDB= await Hive.openBox<ItemsModel>('items_db');
- //itemlistnotifier.value.clear();
- //itemlistnotifier.value.addAll(itemsDB.values);
- // itemlistnotifier.notifyListeners();
+Future<void> edit(int id, ItemsModel value) async {
+  final itemsDB = await Hive.openBox<ItemsModel>('items_db');
   itemsDB.putAt(id, value);
- /// getAllitems();
-
-
 }
-Future<void> deleteitems(int id) async{
+
+Future<void> deleteitems(int id) async {
   final itemsDB = await Hive.openBox<ItemsModel>('items_db');
   itemsDB.deleteAt(id);
   getAllitems();
 }
 
+Future<void> deleteAllitems() async {
+  final itemsDB = await Hive.openBox<ItemsModel>('items_db');
+  await itemsDB.clear();
+  getAllitems();
+}
 
- calculateTotalCost(List<ItemsModel> items) {
+calculateTotalCost(List<ItemsModel> items) {
   double totalCost = 0;
   for (var itemm in items) {
     totalCost += double.parse(itemm.costprice);
   }
   return totalCost;
-  
 }
-Future<void> deleteAllitems() async{
-  final itemsDB = await Hive.openBox<ItemsModel>('items_db');
-   await itemsDB.clear();
-  getAllitems();
-}
-
-

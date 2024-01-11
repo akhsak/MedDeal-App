@@ -80,9 +80,8 @@ class _SearchitemssState extends State<Searchitemss> {
             ),
             Expanded(
               child: _searcheditem.isEmpty
-                  ? Center(
-                      child: Lottie.asset("assets/dctrrrr.json"),
-                    )
+                  ? Lottie.asset("assets/Animation - 1704946991285.json",
+                    width: 200,)
                   : ListView.builder(
                       itemCount: _searcheditem.length,
                       itemBuilder: (context, index) {
@@ -96,7 +95,7 @@ class _SearchitemssState extends State<Searchitemss> {
                                 MaterialPageRoute(
                                   builder: (context) => Detailspage(
                                     name: data.name,
-                                    num: data.num,
+                                    num: data.numbr,
                                     item: data.item,
                                     sellprice: data.sellprice,
                                     costprice: data.costprice,
@@ -125,7 +124,7 @@ class _SearchitemssState extends State<Searchitemss> {
                                           id: index,
                                           items: data.item,
                                           name: data.name,
-                                          numbr: data.num,
+                                          numbr: data.numbr,
                                           sellprice: data.sellprice,
                                           imagePath: data.image!,
                                         ),

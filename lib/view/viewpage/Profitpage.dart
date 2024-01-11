@@ -46,7 +46,7 @@ class _ProfitPageState extends State<ProfitPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(12, 2, 85, 1),
+        backgroundColor: Color.fromARGB(255, 50, 82, 137),
         title: const Center(
           child: Text(
             'Profit',

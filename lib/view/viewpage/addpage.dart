@@ -64,7 +64,7 @@ class _AddpageState extends State<Addpage> {
                     },
                     child: Container(
                         margin: EdgeInsets.only(bottom: 20),
-                        height: 150,
+                        height: 200,
                         width: screenWidth,
                         decoration: BoxDecoration(
                           image: picked != null
@@ -220,7 +220,7 @@ class _AddpageState extends State<Addpage> {
     if (_formKey.currentState?.validate() ?? false) {
       final _addItem = ItemsModel(
           name: _name,
-          num: _num,
+          numbr: _num,
           item: _item,
           sellprice: _sellprice,
           costprice: _costprice,
@@ -235,12 +235,6 @@ class _AddpageState extends State<Addpage> {
     }
   }
 
-  // getimage(ImageSource source) async {
-  //   var img = await imagePicker.pickImage(source: source);
-  //   setState(() {
-  //     picked = File(img!.path);
-  //   });
-  // }
   fromgallery() async {
     final returnedimage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
