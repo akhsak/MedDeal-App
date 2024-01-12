@@ -1,13 +1,15 @@
+
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, no_leading_underscores_for_local_identifiers, use_key_in_widget_constructors
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/controller/functions/db_function.dart';
+import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/widget/bottomtabs/bottombar.dart';
+import 'package:stockapp/widget/bottombar.dart';
 import 'package:stockapp/widget/textformfield.dart';
 
 class Addpage extends StatefulWidget {
@@ -25,10 +27,7 @@ class _AddpageState extends State<Addpage> {
   final _sellingpricecontroller = TextEditingController();
   final _costpricecontroller = TextEditingController();
 
-  bool _isDataMatched = true;
-
   final _formKey = GlobalKey<FormState>();
-
   File? picked;
 
   @override
@@ -63,41 +62,48 @@ class _AddpageState extends State<Addpage> {
                       fromgallery();
                     },
                     child: Container(
-                        margin: EdgeInsets.only(bottom: 20),
-                        height: 200,
-                        width: screenWidth,
-                        decoration: BoxDecoration(
-                          image: picked != null
-                              ? DecorationImage(
-                                  image: FileImage(picked!),
-                                  fit: BoxFit.fill,
-                                )
-                              : null,
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25),
-                          border: Border.all(color: Colors.grey),
-                        ),
-                        child: picked == null
-                            ? Center(
-                                child: Lottie.asset(
-                                    'assets/Animation - addimage.json'))
-                            : null),
+                      margin: EdgeInsets.only(bottom: 20),
+                      height: 200,
+                      width: screenWidth,
+                      decoration: BoxDecoration(
+                        image: picked != null
+                            ? DecorationImage(
+                                image: FileImage(picked!),
+                                fit: BoxFit.fill,
+                              )
+                            : null,
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: picked == null
+                          ? Center(
+                              child: Lottie.asset(
+                                  'assets/Animation - addimage.json'))
+                          : null,
+                    ),
                   ),
                 ),
                 SizedBox(height: 20),
                 Container(
                   child: CustomTextForm(
-                      labelText: 'Item name', controller: _namecontroller),
+                    labelText: 'Item name',
+                    controller: _namecontroller,
+                  ),
                 ),
                 SizedBox(height: 20),
                 Container(
                   child: CustomTextForm(
-                      labelText: 'stall number', controller: _numcontroller),
+                    labelText: 'stall number',
+                    controller: _numcontroller,
+                  ),
                 ),
                 SizedBox(height: 20),
                 DropdownButtonFormField<String>(
                   decoration: InputDecoration(
-                      hintText: "Select Item", border: OutlineInputBorder()),
+                    hintText: "Select Item",
+                    border: OutlineInputBorder(),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'value is Empty';
@@ -181,7 +187,7 @@ class _AddpageState extends State<Addpage> {
                 Row(
                   children: [
                     Visibility(
-                      visible: !_isDataMatched,
+                      visible: _formKey.currentState?.validate() ?? false,
                       child: Text('Please fill in all the fields'),
                     ),
                   ],
@@ -190,14 +196,7 @@ class _AddpageState extends State<Addpage> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        onAddItemButtonClicked();
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Bottombar()),
-                            (route) => false);
-                      }
+                      onAddItemButtonClicked();
                     },
                     child: Text('Save'),
                   ),
@@ -211,27 +210,26 @@ class _AddpageState extends State<Addpage> {
   }
 
   Future<void> onAddItemButtonClicked() async {
-    final _name = _namecontroller.text.trim();
-    final _num = _numcontroller.text.trim();
-    final _item = selectedValue;
-    final _sellprice = _sellingpricecontroller.text.trim();
-    final _costprice = _costpricecontroller.text.trim();
+    if (_formKey.currentState!.validate()) {
+      final _name = _namecontroller.text.trim();
+      final _num = _numcontroller.text.trim();
+      final _item = selectedValue;
+      final _sellprice = _sellingpricecontroller.text.trim();
+      final _costprice = _costpricecontroller.text.trim();
 
-    if (_formKey.currentState?.validate() ?? false) {
       final _addItem = ItemsModel(
-          name: _name,
-          numbr: _num,
-          item: _item,
-          sellprice: _sellprice,
-          costprice: _costprice,
-          image: picked?.path ?? '');
+        name: _name,
+        numbr: _num,
+        item: _item,
+        sellprice: _sellprice,
+        costprice: _costprice,
+        image: picked?.path ?? '',
+      );
       additems(_addItem);
-
-      Navigator.pop(context);
-    } else {
-      setState(() {
-        _isDataMatched = false;
-      });
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => Bottombar()),
+          (route) => false);
     }
   }
 
@@ -243,3 +241,4 @@ class _AddpageState extends State<Addpage> {
     });
   }
 }
+

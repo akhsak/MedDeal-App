@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/controller/functions/db_function.dart';
+import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/view/viewpage/details.dart';
 import 'package:stockapp/view/viewpage/editpage.dart';

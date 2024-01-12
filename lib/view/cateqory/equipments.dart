@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:stockapp/controller/functions/db_function.dart';
+import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stockapp/view/viewpage/details.dart';

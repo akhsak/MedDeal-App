@@ -1,8 +1,8 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:stockapp/controller/functions/db_function.dart';
 import 'package:lottie/lottie.dart';
+import 'package:stockapp/functions/db_function.dart';
 
 class ProfitPage extends StatefulWidget {
   const ProfitPage({Key? key}) : super(key: key);

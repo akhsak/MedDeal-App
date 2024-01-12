@@ -1,9 +1,10 @@
+
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, prefer_const_constructors_in_immutables
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stockapp/controller/functions/db_function.dart';
+import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/view/viewpage/details.dart';
 import 'package:stockapp/view/viewpage/editpage.dart';
@@ -22,7 +23,7 @@ class _HomepageState extends State<Homepage> {
   List<String> imageList = [
     'assets/medical-banner-with-doctor-wearing-coat.jpg',
     'assets/medical-banner-with-doctor-wearing-coat.jpg',
-    'assets/medical-banner-with-doctor-wearing-coat.jpg',  
+    'assets/medical-banner-with-doctor-wearing-coat.jpg',
   ];
 
   final TextEditingController _searchController = TextEditingController();
@@ -32,7 +33,9 @@ class _HomepageState extends State<Homepage> {
     getAllitems();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      appBar: AppBar(backgroundColor: Colors.white,),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       endDrawer: Drawer(
         elevation: 100,
         shadowColor: const Color.fromARGB(255, 227, 227, 226),
@@ -67,17 +70,20 @@ class _HomepageState extends State<Homepage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      
                       Text(
                         'Hello!',
-                        style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0),
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                        style: TextStyle(
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
                       ),
                       SizedBox(height: 3),
                       Text(
                         'MedDeaL',
-                        style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0),
-                            fontWeight: FontWeight.bold, fontSize: 24),
+                        style: TextStyle(
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24),
                       )
                     ],
                   ),
@@ -127,7 +133,6 @@ class _HomepageState extends State<Homepage> {
                   child: TextField(
                     controller: _searchController,
                     onChanged: (value) {
-                      
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -147,20 +152,22 @@ class _HomepageState extends State<Homepage> {
               valueListenable: itemlistnotifier,
               builder:
                   (BuildContext ctx, List<ItemsModel> itemlist, Widget? child) {
-                final display = search.isNotEmpty ? searchList : itemlist;
+                final display = _searchController.text.isNotEmpty
+                    ? _searchList(itemlist)
+                    : itemlist;
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: display.length,
                   itemBuilder: (context, index) {
                     final reverseindex = itemlist.length - 1 - index;
-                    final data = itemlist[reverseindex];
-                    return Card( 
-                      color:  Color.fromARGB(255, 207, 220, 251),
-                      elevation: 2, 
+                    final data = display[reverseindex];
+                    return Card(
+                      color: Color.fromARGB(255, 207, 220, 251),
+                      elevation: 2,
                       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                       child: ListTile(
-                        contentPadding: EdgeInsets.all(5), 
+                        contentPadding: EdgeInsets.all(5),
                         onTap: () {
                           Navigator.push(
                             context,
@@ -186,9 +193,16 @@ class _HomepageState extends State<Homepage> {
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 5), 
+                            SizedBox(height: 5),
                             Text(
                               data.item,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            Text(
+                              'sell price: ${data.sellprice}',
                               style: TextStyle(
                                 fontSize: 11,
                                 color: Colors.grey,
@@ -229,17 +243,17 @@ class _HomepageState extends State<Homepage> {
                                       content: Text('This action cannot be undone.'),
                                       actions: [
                                         TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Cancel'),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('Cancel'),
                                         ),
                                         TextButton(
-                    onPressed: () {
-                      deleteitems(reverseindex);
-                      Navigator.pop(context);
-                    },
-                    child: Text('Delete'),
+                                          onPressed: () {
+                                            deleteitems(reverseindex);
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('Delete'),
                                         ),
                                       ],
                                     );
@@ -267,6 +281,14 @@ class _HomepageState extends State<Homepage> {
     );
   }
 
+  List<ItemsModel> _searchList(List<ItemsModel> itemlist) {
+    final String search = _searchController.text.toLowerCase();
+    return itemlist.where((item) =>
+        item.name.toLowerCase().contains(search) 
+        ||    item.sellprice.toLowerCase().contains(search)
+        ).toList();
+  }
+
   signout(BuildContext ctx) async {
     final sharedperfer = await SharedPreferences.getInstance();
     await sharedperfer.clear();
@@ -275,15 +297,5 @@ class _HomepageState extends State<Homepage> {
       (route) => false,
     );
   }
-
-  String search = "";
-  List<ItemsModel> searchList = [];
-  void searchResult(BuildContext context) {
-    setState(() {
-      searchList = itemlistnotifier.value
-          .where((itemmodel) =>
-              itemmodel.name.toLowerCase().contains(search.toLowerCase()))
-          .toList();
-    });
-  }
 }
+

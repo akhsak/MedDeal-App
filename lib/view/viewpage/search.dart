@@ -3,7 +3,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/controller/functions/db_function.dart';
+import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/view/viewpage/details.dart';
 import 'package:stockapp/view/viewpage/editpage.dart';
@@ -32,9 +32,12 @@ class _SearchitemssState extends State<Searchitemss> {
       result = itemlistnotifier.value;
     } else {
       result = itemlistnotifier.value
-          .where((ItemsModel items) =>
-              items.name.toLowerCase().contains(enteredName.toLowerCase()))
+          .where(
+            (ItemsModel items) => 
+            items.item.toLowerCase().contains(enteredName.toLowerCase())||
+            items.sellprice.toLowerCase().contains(enteredName.toLowerCase()),  )
           .toList();
+          
     }
 
     setState(() {
@@ -80,8 +83,10 @@ class _SearchitemssState extends State<Searchitemss> {
             ),
             Expanded(
               child: _searcheditem.isEmpty
-                  ? Lottie.asset("assets/Animation - 1704946991285.json",
-                    width: 200,)
+                  ? Lottie.asset(
+                      "assets/Animation - 1704946991285.json",
+                      width: 200,
+                    )
                   : ListView.builder(
                       itemCount: _searcheditem.length,
                       itemBuilder: (context, index) {
@@ -109,6 +114,7 @@ class _SearchitemssState extends State<Searchitemss> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(data.item),
+                                
                               ],
                             ),
                             trailing: Row(
