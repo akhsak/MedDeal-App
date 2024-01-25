@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,14 +8,15 @@ class CustomTextForm extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final String? prefixText;
   final TextInputType? keyboard;
-  
 
   const CustomTextForm({
     Key? key,
     required this.labelText,
     required this.controller,
     this.maxLength,
-    this.inputFormatters, this.prefixText, this.keyboard,
+    this.inputFormatters,
+    this.prefixText,
+    this.keyboard,
   }) : super(key: key);
 
   @override
@@ -30,7 +28,7 @@ class CustomTextForm extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         prefixText: prefixText,
-        border:const  OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/view/viewpage/details.dart';
-import 'package:stockapp/view/viewpage/editpage.dart';
+import 'package:stockapp/view/screen/details.dart';
+import 'package:stockapp/view/screen/edit_page.dart';
 
 class Medicinepage extends StatefulWidget {
   const Medicinepage({Key? key}) : super(key: key);
@@ -35,10 +35,9 @@ class _MedicinepageState extends State<Medicinepage> {
           String searchQuery = searchController.text.toLowerCase();
           List<ItemsModel> filteredItemList = itemList;
           if (searchQuery.isNotEmpty) {
-            filteredItemList = itemList.where((item) {
-              return item.name.toLowerCase().contains(searchQuery) ||
-                  item.costprice.toUpperCase().contains(searchQuery);
-            }).toList();
+            filteredItemList = itemList
+                .where((item) => item.name.toLowerCase().contains(searchQuery))
+                .toList();
           }
 
           return Column(

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stockapp/functions/db_function.dart';
+import 'package:stockapp/model/datamodel.dart';
 
 class ProfitPage extends StatefulWidget {
   const ProfitPage({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _ProfitPageState extends State<ProfitPage> {
     double totalCost = 0;
     double totalSelling = 0;
 
-    for (var item in itemlistnotifier.value) {
+    for (ItemsModel item in itemlistnotifier.value) {
       totalCost += double.parse(item.costprice);
       totalSelling += double.parse(item.sellprice);
     }

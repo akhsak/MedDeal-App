@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/view/viewpage/details.dart';
-import 'package:stockapp/view/viewpage/editpage.dart';
+import 'package:stockapp/view/screen/details.dart';
+import 'package:stockapp/view/screen/edit_page.dart';
 
 class Otherspag extends StatefulWidget {
   const Otherspag({Key? key}) : super(key: key);
@@ -38,8 +38,9 @@ class _OtherspageState extends State<Otherspag> {
           List<ItemsModel> filteredItemList = itemList;
           if (searchQuery.isNotEmpty) {
             filteredItemList = itemList.where((item) {
-              return item.name.toLowerCase().contains(searchQuery) ||
-                  item.costprice.toUpperCase().contains(searchQuery);
+              return item.name.toLowerCase().contains(searchQuery);
+              //||
+                 // item.costprice.toUpperCase().contains(searchQuery);
             }).toList();
           }
 
@@ -168,68 +169,68 @@ class _OtherspageState extends State<Otherspag> {
   }
 }
 
-class OthersSearchDelegate extends SearchDelegate {
-  final List<ItemsModel> itemList;
+// class OthersSearchDelegate extends SearchDelegate {
+//   final List<ItemsModel> itemList;
 
-  OthersSearchDelegate(this.itemList);
+//   OthersSearchDelegate(this.itemList);
 
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: Icon(Icons.clear),
-        onPressed: () {
-          query = '';
-        },
-      ),
-    ];
-  }
+//   @override
+//   List<Widget> buildActions(BuildContext context) {
+//     return [
+//       IconButton(
+//         icon: Icon(Icons.clear),
+//         onPressed: () {
+//           query = '';
+//         },
+//       ),
+//     ];
+//   }
 
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, null);
-      },
-    );
-  }
+//   @override
+//   Widget buildLeading(BuildContext context) {
+//     return IconButton(
+//       icon: Icon(Icons.arrow_back),
+//       onPressed: () {
+//         close(context, null);
+//       },
+//     );
+//   }
 
-  @override
-  Widget buildResults(BuildContext context) {
-    return buildSearchResults();
-  }
+//   @override
+//   Widget buildResults(BuildContext context) {
+//     return buildSearchResults();
+//   }
 
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return buildSearchResults();
-  }
+//   @override
+//   Widget buildSuggestions(BuildContext context) {
+//     return buildSearchResults();
+//   }
 
-  Widget buildSearchResults() {
-    return ListView.builder(
-      itemCount: itemList.length,
-      itemBuilder: (context, index) {
-        final data = itemList[index];
-        return ListTile(
-          title: Text(data.name),
-          subtitle: Text(data.item),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Detailspage(
-                  name: data.name,
-                  num: data.numbr,
-                  item: data.item,
-                  sellprice: data.sellprice,
-                  costprice: data.costprice,
-                  image: data.image!,
-                ),
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
-}
+//   Widget buildSearchResults() {
+//     return ListView.builder(
+//       itemCount: itemList.length,
+//       itemBuilder: (context, index) {
+//         final data = itemList[index];
+//         return ListTile(
+//           title: Text(data.name),
+//           subtitle: Text(data.item),
+//           onTap: () {
+//             Navigator.push(
+//               context,
+//               MaterialPageRoute(
+//                 builder: (context) => Detailspage(
+//                   name: data.name,
+//                   num: data.numbr,
+//                   item: data.item,
+//                   sellprice: data.sellprice,
+//                   costprice: data.costprice,
+//                   image: data.image!,
+//                 ),
+//               ),
+//             );
+//           },
+//         );
+//       },
+//     );
+ // }
+//}

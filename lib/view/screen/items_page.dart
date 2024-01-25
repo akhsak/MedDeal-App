@@ -122,7 +122,7 @@ class _ItemspageState extends State<Itemspage> {
               Text(
                 'Categories',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 5, 25, 61),
+                  color:  Color.fromARGB(255, 50, 82, 137),
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/view/viewpage/details.dart';
-import 'package:stockapp/view/viewpage/editpage.dart';
+import 'package:stockapp/view/screen/details.dart';
+import 'package:stockapp/view/screen/edit_page.dart';
 
 class Searchitemss extends StatefulWidget {
   Searchitemss({Key? key}) : super(key: key);
@@ -33,11 +33,11 @@ class _SearchitemssState extends State<Searchitemss> {
     } else {
       result = itemlistnotifier.value
           .where(
-            (ItemsModel items) => 
-            items.item.toLowerCase().contains(enteredName.toLowerCase())||
-            items.sellprice.toLowerCase().contains(enteredName.toLowerCase()),  )
+            (ItemsModel items) =>
+                items.name.toLowerCase().contains(enteredName.toLowerCase()) ||
+                items.item.toLowerCase().contains(enteredName.toLowerCase()),
+          )
           .toList();
-          
     }
 
     setState(() {
@@ -114,7 +114,6 @@ class _SearchitemssState extends State<Searchitemss> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(data.item),
-                                
                               ],
                             ),
                             trailing: Row(

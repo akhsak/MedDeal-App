@@ -1,25 +1,20 @@
 
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, prefer_const_constructors_in_immutables, must_be_immutable
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/view/viewpage/details.dart';
-import 'package:stockapp/view/viewpage/editpage.dart';
-import 'package:stockapp/view/viewpage/search.dart';
-import 'package:stockapp/view/welcmescreen/loginscreen.dart';
+import 'package:stockapp/view/screen/details.dart';
+import 'package:stockapp/view/screen/edit_page.dart';
+import 'package:stockapp/view/screen/search.dart';
+import 'package:stockapp/view/screen/login_screen.dart';
 import 'package:stockapp/widget/drawer_page.dart';
 
-class Homepage extends StatefulWidget {
+class Homepage extends StatelessWidget {
   Homepage({Key? key}) : super(key: key);
 
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
-
-class _HomepageState extends State<Homepage> {
   List<String> imageList = [
     'assets/medical-banner-with-doctor-wearing-coat.jpg',
     'assets/medical-banner-with-doctor-wearing-coat.jpg',

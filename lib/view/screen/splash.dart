@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
-import 'package:stockapp/view/welcmescreen/loginscreen.dart';
+import 'package:stockapp/view/screen/login_screen.dart';
 import 'package:stockapp/widget/bottombar.dart';
 
 class Splashpage extends StatefulWidget {

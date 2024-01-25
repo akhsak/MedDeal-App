@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/view/viewpage/details.dart';
-import 'package:stockapp/view/viewpage/editpage.dart';
+import 'package:stockapp/view/screen/details.dart';
+import 'package:stockapp/view/screen/edit_page.dart';
 
 class Equipmentspage extends StatefulWidget {
   const Equipmentspage({Key? key}) : super(key: key);
@@ -34,8 +34,10 @@ class _EquipmentspageState extends State<Equipmentspage> {
           String searchQuery = searchController.text.toLowerCase();
           List<ItemsModel> filteredItemList = itemList
               .where((item) =>
-                  item.name.toLowerCase().contains(searchQuery) ||
-                  item.name.toUpperCase().contains(searchQuery))
+                  item.name.toLowerCase().contains(searchQuery)
+                  // ||
+                 // item.name.toUpperCase().contains(searchQuery)
+                 )
               .toList();
 
           return Column(

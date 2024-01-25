@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/view/settings/appinfo.dart';
 import 'package:stockapp/view/settings/terms.dart';
-import 'package:stockapp/view/welcmescreen/loginscreen.dart';
+import 'package:stockapp/view/screen/login_screen.dart';
 import 'package:stockapp/widget/drawer.dart';
 
 class DrawerHeaderWidget extends StatelessWidget {

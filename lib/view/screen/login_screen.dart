@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
-import 'package:stockapp/view/welcmescreen/splash.dart';
+import 'package:stockapp/view/screen/splash.dart';
 
 class ScreenLogin extends StatelessWidget {
   ScreenLogin({Key? key}) : super(key: key);
@@ -99,7 +99,8 @@ class ScreenLogin extends StatelessWidget {
                             } else {
                             }
                           },
-                          icon: Icon(Icons.login),
+                          icon:
+                           Icon(Icons.login),
                           label: Text('Login'),
                         ),
                       ],

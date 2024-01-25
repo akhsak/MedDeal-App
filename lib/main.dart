@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/add_provider.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/view/welcmescreen/splash.dart';
+import 'package:stockapp/view/screen/splash.dart';
 
 const savekeyname = 'UserLogin';
 Future<void> main() async{
@@ -21,9 +23,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:Splashpage(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context)=>AddProvider())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home:Splashpage(),
+      ),
     );
   }
 }

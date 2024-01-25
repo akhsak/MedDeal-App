@@ -40,7 +40,8 @@ Future<void> deleteAllitems() async {
 
 calculateTotalCost(List<ItemsModel> items) {
   double totalCost = 0;
-  for (var itemm in items) {
+  for (int i = 0; i < items.length; i++) {
+    var itemm = items[i];
     totalCost += double.parse(itemm.costprice);
   }
   return totalCost;

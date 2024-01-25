@@ -46,7 +46,7 @@ class _AddpageState extends State<Addpage> {
             style: TextStyle(
                 color: Color.fromRGBO(248, 248, 249, 1),
                 fontWeight: FontWeight.bold)),
-        backgroundColor: Color.fromRGBO(12, 2, 85, 1),
+        backgroundColor:  Color.fromARGB(255, 50, 82, 137),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -183,20 +183,17 @@ class _AddpageState extends State<Addpage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
-                Row(
-                  children: [
-                    Visibility(
-                      visible: _formKey.currentState?.validate() ?? false,
-                      child: Text('Please fill in all the fields'),
-                    ),
-                  ],
-                ),
+              
                 SizedBox(height: 20),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {
-                      onAddItemButtonClicked();
+                    onPressed: (
+
+                    ) {
+                      if (_formKey.currentState!.validate()) {
+                           onAddItemButtonClicked();
+
+                      }
                     },
                     child: Text('Save'),
                   ),
