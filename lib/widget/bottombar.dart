@@ -1,6 +1,7 @@
-
- // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/bottom_provider.dart';
 
 import 'package:stockapp/view/screen/add_page.dart';
 import 'package:stockapp/view/screen/chart_page.dart';
@@ -8,47 +9,36 @@ import 'package:stockapp/view/screen/home_page.dart';
 import 'package:stockapp/view/screen/items_page.dart';
 import 'package:stockapp/view/screen/profit_page.dart';
 
-class Bottombar extends StatefulWidget {
-  const Bottombar({
+class Bottombar extends StatelessWidget {
+  Bottombar({
     super.key,
-    
   });
 
-  @override
-  State<Bottombar> createState() => _BottombarState();
-}
-
-class _BottombarState extends State<Bottombar> {
   List pages = [
     Homepage(),
     Itemspage(),
     ProfitPage(),
     PieChart(),
   ];
-  int myIndex = 0;
-
-  void onTap(int index) {
-    setState(() {
-      myIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    final pro = Provider.of<BottomProvider>(context, listen: false);
     return SafeArea(
       child: Scaffold(
-        body: pages[myIndex],
+        body: Consumer<BottomProvider>(
+          builder: (context, value, child) => pages[value.myIndex],
+        ),
         bottomNavigationBar: Padding(
-          
           padding: const EdgeInsets.all(22.10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: BottomNavigationBar(
               unselectedFontSize: 0,
               type: BottomNavigationBarType.fixed,
-              onTap: onTap,
+              onTap: pro.onTap,
               backgroundColor: const Color.fromARGB(24, 7, 100, 95),
-              currentIndex: myIndex,
+              currentIndex: pro.myIndex,
               selectedItemColor: const Color.fromARGB(255, 9, 49, 83),
               unselectedItemColor: const Color.fromARGB(255, 145, 176, 239),
               showSelectedLabels: true,
@@ -71,8 +61,8 @@ class _BottombarState extends State<Bottombar> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.history,               
-                         size: 25,
+                    Icons.history,
+                    size: 25,
                   ),
                   label: 'ᵖʳᵒᶠⁱᵗ',
                 ),
@@ -108,5 +98,3 @@ class _BottombarState extends State<Bottombar> {
     );
   }
 }
-        
-   

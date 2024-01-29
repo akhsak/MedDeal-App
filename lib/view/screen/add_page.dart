@@ -1,38 +1,22 @@
-
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, no_leading_underscores_for_local_identifiers, use_key_in_widget_constructors
-
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/add_provider.dart';
 import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/widget/bottombar.dart';
 import 'package:stockapp/widget/textformfield.dart';
 
-class Addpage extends StatefulWidget {
+class Addpage extends StatelessWidget {
   const Addpage({Key? key});
-
-  @override
-  State<Addpage> createState() => _AddpageState();
-}
-
-class _AddpageState extends State<Addpage> {
-  String selectedValue = 'Meaddeal';
-
-  final _namecontroller = TextEditingController();
-  final _numcontroller = TextEditingController();
-  final _sellingpricecontroller = TextEditingController();
-  final _costpricecontroller = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-  File? picked;
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    final pro = Provider.of<AddProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -46,29 +30,29 @@ class _AddpageState extends State<Addpage> {
             style: TextStyle(
                 color: Color.fromRGBO(248, 248, 249, 1),
                 fontWeight: FontWeight.bold)),
-        backgroundColor:  Color.fromARGB(255, 50, 82, 137),
+        backgroundColor: Color.fromARGB(255, 50, 82, 137),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Form(
-            key: _formKey,
+            key: pro.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
                   child: InkWell(
                     onTap: () {
-                      fromgallery();
+                      pro.fromgallery();
                     },
                     child: Container(
                       margin: EdgeInsets.only(bottom: 20),
                       height: 200,
                       width: screenWidth,
                       decoration: BoxDecoration(
-                        image: picked != null
+                        image: pro.picked != null
                             ? DecorationImage(
-                                image: FileImage(picked!),
+                                image: FileImage(pro.picked!),
                                 fit: BoxFit.fill,
                               )
                             : null,
@@ -76,7 +60,7 @@ class _AddpageState extends State<Addpage> {
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(color: Colors.grey),
                       ),
-                      child: picked == null
+                      child: pro.picked == null
                           ? Center(
                               child: Lottie.asset(
                                   'assets/Animation - addimage.json'))
@@ -88,14 +72,14 @@ class _AddpageState extends State<Addpage> {
                 Container(
                   child: CustomTextForm(
                     labelText: 'Item name',
-                    controller: _namecontroller,
+                    controller: pro.namecontroller,
                   ),
                 ),
                 SizedBox(height: 20),
                 Container(
                   child: CustomTextForm(
                     labelText: 'stall number',
-                    controller: _numcontroller,
+                    controller: pro.numcontroller,
                   ),
                 ),
                 SizedBox(height: 20),
@@ -114,9 +98,7 @@ class _AddpageState extends State<Addpage> {
                   dropdownColor: const Color.fromARGB(255, 208, 203, 203),
                   isExpanded: true,
                   onChanged: (String? newvalue) {
-                    setState(() {
-                      selectedValue = newvalue!.toString();
-                    });
+                    pro.addvalue(newvalue);
                   },
                   items: const [
                     DropdownMenuItem(
@@ -158,7 +140,7 @@ class _AddpageState extends State<Addpage> {
                       child: Container(
                         child: CustomTextForm(
                           labelText: 'selling price',
-                          controller: _sellingpricecontroller,
+                          controller: pro.sellingpricecontroller,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
@@ -172,7 +154,7 @@ class _AddpageState extends State<Addpage> {
                       child: Container(
                         child: CustomTextForm(
                           labelText: 'Cost price',
-                          controller: _costpricecontroller,
+                          controller: pro.costpricecontroller,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
@@ -183,16 +165,12 @@ class _AddpageState extends State<Addpage> {
                     ),
                   ],
                 ),
-              
                 SizedBox(height: 20),
                 Center(
                   child: ElevatedButton(
-                    onPressed: (
-
-                    ) {
-                      if (_formKey.currentState!.validate()) {
-                           onAddItemButtonClicked();
-
+                    onPressed: () {
+                      if (pro.formKey.currentState!.validate()) {
+                        onAddItemButtonClicked(context);
                       }
                     },
                     child: Text('Save'),
@@ -206,13 +184,14 @@ class _AddpageState extends State<Addpage> {
     );
   }
 
-  Future<void> onAddItemButtonClicked() async {
-    if (_formKey.currentState!.validate()) {
-      final _name = _namecontroller.text.trim();
-      final _num = _numcontroller.text.trim();
-      final _item = selectedValue;
-      final _sellprice = _sellingpricecontroller.text.trim();
-      final _costprice = _costpricecontroller.text.trim();
+  Future<void> onAddItemButtonClicked(context) async {
+    final pro = Provider.of<AddProvider>(context, listen: false);
+    if (pro.formKey.currentState!.validate()) {
+      final _name = pro.namecontroller.text.trim();
+      final _num = pro.numcontroller.text.trim();
+      final _item = pro.selectedValue;
+      final _sellprice = pro.sellingpricecontroller.text.trim();
+      final _costprice = pro.costpricecontroller.text.trim();
 
       final _addItem = ItemsModel(
         name: _name,
@@ -220,22 +199,19 @@ class _AddpageState extends State<Addpage> {
         item: _item,
         sellprice: _sellprice,
         costprice: _costprice,
-        image: picked?.path ?? '',
+        image: pro.picked?.path ?? '',
       );
       additems(_addItem);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => Bottombar()),
           (route) => false);
+      pro.namecontroller.clear();
+      pro.costpricecontroller.clear();
+      pro.numcontroller.clear();
+      pro.sellingpricecontroller.clear();
+      pro.costpricecontroller.clear();
+      pro.picked=null;
     }
   }
-
-  fromgallery() async {
-    final returnedimage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    setState(() {
-      picked = File(returnedimage!.path);
-    });
-  }
 }
-

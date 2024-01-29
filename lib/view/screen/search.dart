@@ -3,50 +3,18 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/search_provider.dart';
 import 'package:stockapp/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 
-class Searchitemss extends StatefulWidget {
+class Searchitemss extends StatelessWidget {
   Searchitemss({Key? key}) : super(key: key);
 
   @override
-  State<Searchitemss> createState() => _SearchitemssState();
-}
-
-class _SearchitemssState extends State<Searchitemss> {
-  List<ItemsModel> _searcheditem = [];
-
-  loaditem() async {
-    final item = itemlistnotifier.value;
-    setState(() {
-      _searcheditem = item;
-    });
-  }
-
-  _filter(String enteredName) {
-    List<ItemsModel> result = [];
-
-    if (enteredName.isEmpty) {
-      result = itemlistnotifier.value;
-    } else {
-      result = itemlistnotifier.value
-          .where(
-            (ItemsModel items) =>
-                items.name.toLowerCase().contains(enteredName.toLowerCase()) ||
-                items.item.toLowerCase().contains(enteredName.toLowerCase()),
-          )
-          .toList();
-    }
-
-    setState(() {
-      _searcheditem = result;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final pro=Provider.of<SearchProvider>(context,listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text('search'),
@@ -57,7 +25,7 @@ class _SearchitemssState extends State<Searchitemss> {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
               child: TextFormField(
-                onChanged: (value) => _filter(value),
+                onChanged: (value) => pro.filter(value),
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(10),
                   border: OutlineInputBorder(
@@ -81,103 +49,108 @@ class _SearchitemssState extends State<Searchitemss> {
             SizedBox(
               height: 50,
             ),
-            Expanded(
-              child: _searcheditem.isEmpty
-                  ? Lottie.asset(
-                      "assets/Animation - 1704946991285.json",
-                      width: 200,
-                    )
-                  : ListView.builder(
-                      itemCount: _searcheditem.length,
-                      itemBuilder: (context, index) {
-                        final data = _searcheditem[index];
-                        return Card(
-                          color: Color.fromARGB(255, 246, 246, 246),
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Detailspage(
-                                    name: data.name,
-                                    num: data.numbr,
-                                    item: data.item,
-                                    sellprice: data.sellprice,
-                                    costprice: data.costprice,
-                                    image: data.image!,
-                                  ),
-                                ),
-                              );
-                            },
-                            title: Text(data.name),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(data.item),
-                              ],
-                            ),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => Editpage(
-                                          costprice: data.costprice,
-                                          id: index,
-                                          items: data.item,
-                                          name: data.name,
-                                          numbr: data.numbr,
-                                          sellprice: data.sellprice,
-                                          imagePath: data.image!,
-                                        ),
+            Consumer<SearchProvider>(
+              builder: (context, value, child) {
+              
+                return Expanded(
+                  child: value.searcheditem.isEmpty
+                      ? Lottie.asset(
+                          "assets/Animation - 1704946991285.json",
+                          width: 200,
+                        )
+                      : ListView.builder(
+                          itemCount: value.searcheditem.length,
+                          itemBuilder: (context, index) {
+                            final data = value.searcheditem[index];
+                            return Card(
+                              color: Color.fromARGB(255, 246, 246, 246),
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Detailspage(
+                                        name: data.name,
+                                        num: data.numbr,
+                                        item: data.item,
+                                        sellprice: data.sellprice,
+                                        costprice: data.costprice,
+                                        image: data.image!,
                                       ),
-                                    );
-                                  },
-                                  icon: Icon(Icons.edit),
-                                  color: Colors.black,
+                                    ),
+                                  );
+                                },
+                                title: Text(data.name),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(data.item),
+                                  ],
                                 ),
-                                IconButton(
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: Text(
-                                              'Are you sure want to delete'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text('close'),
+                                trailing: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Editpage(
+                                              costprice: data.costprice,
+                                              id: index,
+                                              items: data.item,
+                                              name: data.name,
+                                              numbr: data.numbr,
+                                              sellprice: data.sellprice,
+                                              imagePath: data.image!,
                                             ),
-                                            TextButton(
-                                              onPressed: () {
-                                                deleteitems(index);
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text('delete'),
-                                            ),
-                                          ],
+                                          ),
                                         );
                                       },
-                                    );
-                                  },
-                                  icon: Icon(Icons.delete),
-                                  color: Colors.black,
+                                      icon: Icon(Icons.edit),
+                                      color: Colors.black,
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                  'Are you sure want to delete'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('close'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () {
+                                                    deleteitems(index);
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('delete'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                      icon: Icon(Icons.delete),
+                                      color: Colors.black,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            leading: CircleAvatar(
-                              backgroundImage: FileImage(File(data.image!)),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                                leading: CircleAvatar(
+                                  backgroundImage: FileImage(File(data.image!)),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                );
+              }
             ),
           ],
         ),

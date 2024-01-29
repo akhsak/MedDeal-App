@@ -108,8 +108,8 @@ class _ItemspageState extends State<Itemspage> {
     );
   }
 
-  void _showBottomSheet(BuildContext context) {
-    showModalBottomSheet(
+   _showBottomSheet(BuildContext context) {
+   return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {

@@ -50,7 +50,7 @@ class _SplashpageState extends State<Splashpage> {
       login();
     } else {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const Bottombar()));
+          context, MaterialPageRoute(builder: (context) => Bottombar()));
     }
   }
 }

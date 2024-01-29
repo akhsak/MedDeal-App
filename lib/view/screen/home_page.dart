@@ -127,12 +127,16 @@ class Homepage extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _searchController,
-                    onChanged: (value) {
-                      Navigator.push(
+                    onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Searchitemss()));
-                    },
+                              builder: (context) => Searchitemss())) ,
+                    // onChanged: (value) {
+                    //   Navigator.push(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //           builder: (context) => Searchitemss()));
+                    // },
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
                       hintText: 'search...',
@@ -147,9 +151,7 @@ class Homepage extends StatelessWidget {
               valueListenable: itemlistnotifier,
               builder:
                   (BuildContext ctx, List<ItemsModel> itemlist, Widget? child) {
-                final display = _searchController.text.isNotEmpty
-                    ? _searchList(itemlist)
-                    : itemlist;
+                final display = itemlist;
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
