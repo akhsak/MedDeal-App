@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/Profit_provider.dart';
 
 class ProfitPage extends StatefulWidget {
   const ProfitPage({Key? key}) : super(key: key);
@@ -13,36 +13,16 @@ class ProfitPage extends StatefulWidget {
 }
 
 class _ProfitPageState extends State<ProfitPage> {
-  late double profit;
-  late double cost;
-  double totalSpending = 0;
-  double totalEarning = 0;
-
   @override
   void initState() {
+    Provider.of<ProfitProvider>(context, listen: false).calculateTotalValues();
     super.initState();
-    calculateTotalValues();
-  }
-
-  Future<void> calculateTotalValues() async {
-    double totalCost = 0;
-    double totalSelling = 0;
-
-    for (ItemsModel item in itemlistnotifier.value) {
-      totalCost += double.parse(item.costprice);
-      totalSelling += double.parse(item.sellprice);
-    }
-
-    setState(() {
-      totalEarning = totalSelling;
-      totalSpending = totalCost;
-      profit = totalEarning - totalSpending;
-      cost = totalEarning;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final pro = Provider.of<ProfitProvider>(context, listen: false);
+
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -64,9 +44,9 @@ class _ProfitPageState extends State<ProfitPage> {
             children: [
               buildLottieAnimation(screenWidth),
               const SizedBox(height: 20),
-              buildStatRow('Spending', '$cost'),
+              buildStatRow('Spending', '${pro.cost}'),
               const SizedBox(height: 30),
-              buildStatRow('Earning', '$profit'),
+              buildStatRow('Earning', '${pro.profit}'),
               const SizedBox(height: 20),
             ],
           ),
