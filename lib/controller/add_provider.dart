@@ -12,19 +12,15 @@ class AddProvider extends ChangeNotifier {
   final sellingpricecontroller = TextEditingController();
   final costpricecontroller = TextEditingController();
 
-  
-
   addvalue(newvalue) {
-      selectedValue = newvalue!.toString();
+    selectedValue = newvalue!.toString();
     notifyListeners();
   }
 
-  
   fromgallery() async {
     final returnedimage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
-      picked =File(returnedimage!.path);
-      notifyListeners();
+    picked = File(returnedimage!.path);
+    notifyListeners();
   }
-
 }

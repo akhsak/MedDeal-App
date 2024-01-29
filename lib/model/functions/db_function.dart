@@ -1,5 +1,3 @@
-// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:stockapp/model/datamodel.dart';
@@ -29,13 +27,13 @@ Future<void> edit(int id, ItemsModel value) async {
 Future<void> deleteitems(int id) async {
   final itemsDB = await Hive.openBox<ItemsModel>('items_db');
   itemsDB.deleteAt(id);
-  getAllitems();
+   getAllitems();
 }
 
-Future<void> deleteAllitems() async {
+Future deleteAllitems() async {
   final itemsDB = await Hive.openBox<ItemsModel>('items_db');
   await itemsDB.clear();
-  getAllitems();
+   getAllitems();
 }
 
 calculateTotalCost(List<ItemsModel> items) {

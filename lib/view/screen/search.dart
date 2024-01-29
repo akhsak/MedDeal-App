@@ -4,8 +4,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/search_provider.dart';
-import 'package:stockapp/functions/db_function.dart';
+import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 
@@ -127,7 +128,7 @@ class Searchitemss extends StatelessWidget {
                                                 ),
                                                 TextButton(
                                                   onPressed: () {
-                                                    deleteitems(index);
+                                                   deleteitems(index);
                                                     Navigator.pop(context);
                                                   },
                                                   child: Text('delete'),

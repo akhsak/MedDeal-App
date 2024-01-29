@@ -1,7 +1,9 @@
 // ignore_for_file: file_names
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:stockapp/functions/db_function.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/db_provider.dart';
+import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stockapp/view/screen/details.dart';
@@ -20,6 +22,7 @@ class _EquipmentspageState extends State<Equipmentspage> {
 
   @override
   Widget build(BuildContext context) {
+    final pro=Provider.of<DbProvider>(context,listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Equipment List'),
@@ -126,7 +129,7 @@ class _EquipmentspageState extends State<Equipmentspage> {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                              deleteitems(index);
+                                            deleteitems(index);
                                               Navigator.pop(context);
                                             },
                                             child: const Text('delete'),

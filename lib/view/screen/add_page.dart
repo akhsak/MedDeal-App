@@ -5,16 +5,17 @@ import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/add_provider.dart';
-import 'package:stockapp/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/widget/bottombar.dart';
-import 'package:stockapp/widget/textformfield.dart';
+import 'package:stockapp/model/functions/db_function.dart';
+import 'package:stockapp/view/widget/bottombar.dart';
+import 'package:stockapp/view/widget/textformfield.dart';
 
 class Addpage extends StatelessWidget {
   const Addpage({Key? key});
 
   @override
   Widget build(BuildContext context) {
+
     double screenWidth = MediaQuery.of(context).size.width;
     final pro = Provider.of<AddProvider>(context, listen: false);
 
@@ -201,7 +202,7 @@ class Addpage extends StatelessWidget {
         costprice: _costprice,
         image: pro.picked?.path ?? '',
       );
-      additems(_addItem);
+     additems(_addItem);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => Bottombar()),

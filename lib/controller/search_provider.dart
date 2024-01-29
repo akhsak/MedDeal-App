@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stockapp/functions/db_function.dart';
+import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 
 class SearchProvider extends ChangeNotifier {

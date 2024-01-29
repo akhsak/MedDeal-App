@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/functions/db_function.dart';
+import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
-import 'package:stockapp/widget/bottombar.dart';
-import 'package:stockapp/widget/textformfield.dart';
+import 'package:stockapp/view/widget/bottombar.dart';
+import 'package:stockapp/view/widget/textformfield.dart';
 
 class Editpage extends StatefulWidget {
   var name;

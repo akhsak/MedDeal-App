@@ -4,7 +4,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:stockapp/functions/db_function.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/db_provider.dart';
+import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
@@ -21,6 +23,8 @@ class _SaniterspageState extends State<Saniterspage> {
 
   @override
   Widget build(BuildContext context) {
+  final pro=Provider.of<DbProvider>(context,listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Saniters List'),

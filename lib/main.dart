@@ -7,17 +7,18 @@ import 'package:provider/provider.dart';
 import 'package:stockapp/controller/Profit_provider.dart';
 import 'package:stockapp/controller/add_provider.dart';
 import 'package:stockapp/controller/bottom_provider.dart';
+import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/search_provider.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/view/screen/splash.dart';
 
 const savekeyname = 'UserLogin';
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
- if ( !Hive.isAdapterRegistered(ItemsModelAdapter().typeId)) {
-   Hive.registerAdapter(ItemsModelAdapter());
- }
+  if (!Hive.isAdapterRegistered(ItemsModelAdapter().typeId)) {
+    Hive.registerAdapter(ItemsModelAdapter());
+  }
   runApp(const MyApp());
 }
 
@@ -27,16 +28,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context)=>AddProvider()),
-      ChangeNotifierProvider(create: (context)=>BottomProvider()),
-     ChangeNotifierProvider(create: (context)=>SearchProvider()),
-          ChangeNotifierProvider(create: (context)=>ProfitProvider())
-
+      providers: [
+        ChangeNotifierProvider(create: (context) => AddProvider()),
+        ChangeNotifierProvider(create: (context) => BottomProvider()),
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
+        ChangeNotifierProvider(create: (context) => ProfitProvider()),
+        ChangeNotifierProvider(create: (context) => DbProvider())
       ],
-      
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:Splashpage(),
+        home: Splashpage(),
       ),
     );
   }

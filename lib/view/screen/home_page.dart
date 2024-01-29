@@ -4,13 +4,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stockapp/functions/db_function.dart';
+import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 import 'package:stockapp/view/screen/search.dart';
 import 'package:stockapp/view/screen/login_screen.dart';
-import 'package:stockapp/widget/drawer_page.dart';
+import 'package:stockapp/view/widget/drawer_page.dart';
 
 class Homepage extends StatelessWidget {
   Homepage({Key? key}) : super(key: key);
@@ -25,6 +25,7 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     getAllitems();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
