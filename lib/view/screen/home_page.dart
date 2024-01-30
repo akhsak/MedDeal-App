@@ -2,7 +2,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, prefer_const_constructors_in_immutables, must_be_immutable
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+//import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/model/datamodel.dart';
@@ -15,11 +15,11 @@ import 'package:stockapp/view/widget/drawer_page.dart';
 class Homepage extends StatelessWidget {
   Homepage({Key? key}) : super(key: key);
 
-  List<String> imageList = [
-    'assets/medical-banner-with-doctor-wearing-coat.jpg',
-    'assets/medical-banner-with-doctor-wearing-coat.jpg',
-    'assets/medical-banner-with-doctor-wearing-coat.jpg',
-  ];
+  // List<String> imageList = [
+  //   'assets/medical-banner-with-doctor-wearing-coat.jpg',
+  //   'assets/medical-banner-with-doctor-wearing-coat.jpg',
+  //   'assets/medical-banner-with-doctor-wearing-coat.jpg',
+  // ];
 
   final TextEditingController _searchController = TextEditingController();
 
@@ -28,15 +28,16 @@ class Homepage extends StatelessWidget {
     
     getAllitems();
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: Color.fromARGB(255, 43, 90, 152),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 43, 90, 152),
       ),
       endDrawer: Drawer(
+        
         elevation: 100,
-        shadowColor: const Color.fromARGB(255, 227, 227, 226),
+        shadowColor: Color.fromARGB(255, 80, 80, 79),
         child: Container(
-          color: Color(0xFFFFFFFF),
+          color: Color.fromARGB(255, 255, 254, 254),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -45,6 +46,7 @@ class Homepage extends StatelessWidget {
                 child: Text(
                   "settings",
                   style: TextStyle(
+                    color: Color.fromARGB(255, 43, 90, 152),
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
@@ -69,7 +71,7 @@ class Homepage extends StatelessWidget {
                       Text(
                         'Hello!',
                         style: TextStyle(
-                            color: const Color.fromARGB(255, 0, 0, 0),
+                            color: Color.fromARGB(255, 254, 254, 254),
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
@@ -77,7 +79,7 @@ class Homepage extends StatelessWidget {
                       Text(
                         'MedDeaL',
                         style: TextStyle(
-                            color: const Color.fromARGB(255, 0, 0, 0),
+                            color:Color.fromARGB(255, 249, 249, 250),
                             fontWeight: FontWeight.bold,
                             fontSize: 24),
                       )
@@ -87,36 +89,36 @@ class Homepage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 25),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 250,
-                child: CarouselSlider(
-                  items: imageList.map((item) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 500,
-                          child: Image.asset(
-                            item,
-                            fit: BoxFit.cover,
-                          ),
-                        );
-                      },
-                    );
-                  }).toList(),
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    enlargeCenterPage: true,
-                    aspectRatio: 2.0,
-                    viewportFraction: 1.0,
-                    initialPage: 0,
-                  ),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(10),
+            //   child: SizedBox(
+            //     width: MediaQuery.of(context).size.width,
+            //     height: 250,
+            //     child: CarouselSlider(
+            //       items: imageList.map((item) {
+            //         return Builder(
+            //           builder: (BuildContext context) {
+            //             return SizedBox(
+            //               width: MediaQuery.of(context).size.width,
+            //               height: 500,
+            //               child: Image.asset(
+            //                 item,
+            //                 fit: BoxFit.cover,
+            //               ),
+            //             );
+            //           },
+            //         );
+            //       }).toList(),
+            //       options: CarouselOptions(
+            //         autoPlay: true,
+            //         enlargeCenterPage: true,
+            //         aspectRatio: 2.0,
+            //         viewportFraction: 1.0,
+            //         initialPage: 0,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Container(
@@ -196,14 +198,14 @@ class Homepage extends StatelessWidget {
                               data.item,
                               style: TextStyle(
                                 fontSize: 11,
-                                color: Colors.grey,
+                                color: Color.fromARGB(255, 8, 8, 8),
                               ),
                             ),
                             Text(
                               'sell price: ${data.sellprice}',
                               style: TextStyle(
                                 fontSize: 11,
-                                color: Colors.grey,
+                                color: const Color.fromARGB(255, 5, 5, 5),
                               ),
                             ),
                           ],
@@ -229,7 +231,7 @@ class Homepage extends StatelessWidget {
                                 );
                               },
                               icon: Icon(Icons.edit),
-                              color: Colors.black,
+                              color: const Color.fromARGB(255, 246, 244, 244),
                             ),
                             IconButton(
                               onPressed: () {

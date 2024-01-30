@@ -24,6 +24,7 @@ class DrawerItem extends StatelessWidget {
       title: Text(
         text,
         style: TextStyle(
+          color: Color.fromARGB(255, 43, 90, 152),
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
@@ -31,7 +32,7 @@ class DrawerItem extends StatelessWidget {
       trailing: Icon(
         Icons.arrow_forward_ios,
         size: 20,
-        color: Color.fromARGB(255, 0, 0, 0),
+        color: Color.fromARGB(255, 43, 90, 152),
       ),
     );
   }

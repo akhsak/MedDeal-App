@@ -4,12 +4,12 @@ import 'package:stockapp/model/datamodel.dart';
 
 ValueNotifier<List<ItemsModel>> itemlistnotifier = ValueNotifier([]);
 
-void additems(ItemsModel value) async {
-  final itemsDB = await Hive.openBox<ItemsModel>('items_db');
-  await itemsDB.add(value);
-  itemlistnotifier.value.add(value);
-  itemlistnotifier.notifyListeners();
-}
+// void additems(ItemsModel value) async {
+//   final itemsDB = await Hive.openBox<ItemsModel>('items_db');
+//   await itemsDB.add(value);
+//   itemlistnotifier.value.add(value);
+//   itemlistnotifier.notifyListeners();
+// }
 
 Future<void> getAllitems() async {
   final itemsDB = await Hive.openBox<ItemsModel>('items_db');

@@ -1,19 +1,25 @@
-// import 'package:hive/hive.dart';
-// import 'package:stockapp/model/datamodel.dart';
+ import 'package:hive/hive.dart';
+ import 'package:stockapp/model/datamodel.dart';
 
-// class DbServices {
+class DbServices {
 
-// Future<List<ItemsModel>> getAllitems() async {
-//   final itemsDB = await Hive.openBox<ItemsModel>('items_db');
-//   return itemsDB.values.toList();
-// }
+Future<List<ItemsModel>> getAllitems() async {
+  final itemsDB = await Hive.openBox<ItemsModel>('items_db');
+  return itemsDB.values.toList();
+}
+
+  additems(ItemsModel value) async {
+    final itemsDB = await Hive.openBox<ItemsModel>('items_db');
+    await itemsDB.add(value);
+  }
+}
 
 //    additems(ItemsModel value) async {
 //     final itemsDB = await Hive.openBox<ItemsModel>('items_db');
 //     await itemsDB.add(value);
 //     print('aaaa');
 //   }
-//   Future deleteitems(int index) async {
+// //   Future deleteitems(int index) async {
 //   final itemsDB = await Hive.openBox<ItemsModel>('items_db');
 //   await itemsDB.deleteAt(index);
 //   // getAllitems();

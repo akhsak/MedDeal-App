@@ -38,7 +38,10 @@ class _ItemspageState extends State<Itemspage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+     // backgroundColor: Color.fromARGB(255, 43, 90, 152),
+      appBar: AppBar(
+      //  backgroundColor: Color.fromARGB(255, 43, 90, 152),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -53,7 +56,7 @@ class _ItemspageState extends State<Itemspage> {
                       Text(
                         'Hello!',
                         style: TextStyle(
-                            color: const Color.fromARGB(255, 0, 0, 0),
+                            color: Color.fromARGB(255, 43, 90, 152),
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
@@ -61,7 +64,7 @@ class _ItemspageState extends State<Itemspage> {
                       Text(
                         'MedDeaL',
                         style: TextStyle(
-                            color: const Color.fromARGB(255, 0, 0, 0),
+                            color: Color.fromARGB(255, 43, 90, 152),
                             fontWeight: FontWeight.bold,
                             fontSize: 24),
                       )
@@ -90,7 +93,7 @@ class _ItemspageState extends State<Itemspage> {
                         _showBottomSheet(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueAccent,
+                        backgroundColor: Color.fromARGB(255, 43, 90, 152),
                       ),
                       child: Text(
                         "Categories",
@@ -122,7 +125,7 @@ class _ItemspageState extends State<Itemspage> {
               Text(
                 'Categories',
                 style: TextStyle(
-                  color:  Color.fromARGB(255, 50, 82, 137),
+                  color:  Color.fromARGB(255, 43, 90, 152),
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
@@ -160,7 +163,7 @@ class _ItemspageState extends State<Itemspage> {
 
   Widget _buildCategoryCard(CategoryData category) {
     return Card(
-      color: Colors.blueAccent,
+      color: Color.fromARGB(255, 43, 90, 152),
       elevation: 6.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),

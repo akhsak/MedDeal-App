@@ -11,59 +11,63 @@ import 'package:stockapp/view/widget/drawer.dart';
 class DrawerHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return DrawerHeader(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 25,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Appinfopage(),
-              ));
-            },
-            child: DrawerItem(text: "App info", icon: Icons.info),
-          ),
-          Divider(),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Termsprivacy(),
-              ));
-            },
-            child: DrawerItem(
-              text: "Terms and Conditions",
-              icon: Icons.document_scanner_rounded,
+    return SingleChildScrollView(
+      scrollDirection:Axis.vertical ,
+      child: DrawerHeader(
+        
+        child: Column(
+          children: [
+            SizedBox(
+              height: 25,
             ),
-          ),
-          Divider(),
-          GestureDetector(
-            onTap: () {
-              showResetAppAlertDialog(context);
-            },
-            child: DrawerItem(
-              text: "Reset App",
-              icon: Icons.restore_from_trash_outlined,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Appinfopage(),
+                ));
+              },
+              child: DrawerItem(text: "App info", icon: Icons.info),
             ),
-          ),
-          Divider(),
-          GestureDetector(
-            onTap: () {
-              signout(context);
-            },
-            child: DrawerItem(text: "Logout", icon: Icons.exit_to_app),
-          ),
-          Divider(),
-          SizedBox(height: 30),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              "version : 1.0.1",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Divider(),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Termsprivacy(),
+                ));
+              },
+              child: DrawerItem(
+                text: "Terms and Conditions",
+                icon: Icons.document_scanner_rounded,
+              ),
             ),
-          ),
-        ],
+            Divider(),
+            GestureDetector(
+              onTap: () {
+                showResetAppAlertDialog(context);
+              },
+              child: DrawerItem(
+                text: "Reset App",
+                icon: Icons.restore_from_trash_outlined,
+              ),
+            ),
+            Divider(),
+            GestureDetector(
+              onTap: () {
+                signout(context);
+              },
+              child: DrawerItem(text: "Logout", icon: Icons.exit_to_app),
+            ),
+            Divider(),
+            SizedBox(height: 30),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                "version : 1.0.1",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

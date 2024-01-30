@@ -27,10 +27,10 @@ class _ProfitPageState extends State<ProfitPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 50, 82, 137),
+        backgroundColor: Color.fromARGB(255, 43, 90, 152),
         title: const Center(
           child: Text(
-            'Profit',
+            'Profitpage',
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -69,7 +69,7 @@ class _ProfitPageState extends State<ProfitPage> {
   Widget buildStatRow(String label, String value) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.blueAccent,
+        color: Color.fromARGB(255, 12, 69, 166),
         borderRadius: BorderRadius.circular(10),
       ),
       padding: const EdgeInsets.all(16.0),

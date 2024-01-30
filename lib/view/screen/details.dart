@@ -25,7 +25,7 @@ class Detailspage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:  Color.fromARGB(255, 50, 82, 137),
+        backgroundColor:  Color.fromARGB(255, 43, 90, 152),
         title: Text('Details', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         leading: IconButton(

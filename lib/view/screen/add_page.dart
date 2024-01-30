@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/add_provider.dart';
+import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/datamodel.dart';
 import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/view/widget/bottombar.dart';
@@ -31,7 +32,7 @@ class Addpage extends StatelessWidget {
             style: TextStyle(
                 color: Color.fromRGBO(248, 248, 249, 1),
                 fontWeight: FontWeight.bold)),
-        backgroundColor: Color.fromARGB(255, 50, 82, 137),
+        backgroundColor:  Color.fromARGB(255, 43, 90, 152),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -202,7 +203,7 @@ class Addpage extends StatelessWidget {
         costprice: _costprice,
         image: pro.picked?.path ?? '',
       );
-     additems(_addItem);
+    Provider.of<DbProvider>(context,listen: false). additems(_addItem);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => Bottombar()),

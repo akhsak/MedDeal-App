@@ -94,6 +94,7 @@ class Bottombar extends StatelessWidget {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        
       ),
     );
   }

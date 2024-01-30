@@ -4,18 +4,18 @@ import 'package:stockapp/service/db_service.dart';
 
 class DbProvider extends ChangeNotifier {
   List <ItemsModel> meddeal=[];
- // DbServices dbservice = DbServices();
+  DbServices dbservice = DbServices();
 
-  // Future getAllitems()async{
-  //   meddeal = await dbservice.getAllitems(); 
-  //   notifyListeners();
-  // }
+  Future getAllitems()async{
+    meddeal = await dbservice.getAllitems(); 
+    notifyListeners();
+  }
 
-  // Future additems(ItemsModel value)async{
-  //   meddeal= await dbservice.additems(value);
-  //   getAllitems();
-
-  // }
+  Future additems(ItemsModel value)async{
+    meddeal= await dbservice.additems(value);
+    getAllitems();
+   notifyListeners();
+  }
 
   // Future deleteitems(int index)async{
   //   meddeal=await dbservice.deleteitems(index);

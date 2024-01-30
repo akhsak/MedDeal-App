@@ -75,7 +75,7 @@ class _EditpageState extends State<Editpage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Color.fromRGBO(12, 2, 85, 1),
+        backgroundColor: Color.fromARGB(255, 43, 90, 152),
       ),
       body: Container(
         child: ListView(

@@ -15,10 +15,18 @@ class Searchitemss extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pro=Provider.of<SearchProvider>(context,listen: false);
+    final pro = Provider.of<SearchProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: Text('search'),
+        backgroundColor: Color.fromARGB(255, 43, 90, 152),
+        title: Center(
+          child: Text(
+            'Search items',
+            style: TextStyle(color: Color.fromARGB(255, 244, 245, 247)),
+            
+          ),
+          
+        ),
       ),
       body: Container(
         child: Column(
@@ -50,109 +58,106 @@ class Searchitemss extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            Consumer<SearchProvider>(
-              builder: (context, value, child) {
-              
-                return Expanded(
-                  child: value.searcheditem.isEmpty
-                      ? Lottie.asset(
-                          "assets/Animation - 1704946991285.json",
-                          width: 200,
-                        )
-                      : ListView.builder(
-                          itemCount: value.searcheditem.length,
-                          itemBuilder: (context, index) {
-                            final data = value.searcheditem[index];
-                            return Card(
-                              color: Color.fromARGB(255, 246, 246, 246),
-                              child: ListTile(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Detailspage(
-                                        name: data.name,
-                                        num: data.numbr,
-                                        item: data.item,
-                                        sellprice: data.sellprice,
-                                        costprice: data.costprice,
-                                        image: data.image!,
-                                      ),
+            Consumer<SearchProvider>(builder: (context, value, child) {
+              return Expanded(
+                child: value.searcheditem.isEmpty
+                    ? Lottie.asset(
+                        "assets/Animation - 1704946991285.json",
+                        width: 200,
+                      )
+                    : ListView.builder(
+                        itemCount: value.searcheditem.length,
+                        itemBuilder: (context, index) {
+                          final data = value.searcheditem[index];
+                          return Card(
+                            color: Color.fromARGB(255, 246, 246, 246),
+                            child: ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Detailspage(
+                                      name: data.name,
+                                      num: data.numbr,
+                                      item: data.item,
+                                      sellprice: data.sellprice,
+                                      costprice: data.costprice,
+                                      image: data.image!,
                                     ),
-                                  );
-                                },
-                                title: Text(data.name),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(data.item),
-                                  ],
-                                ),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => Editpage(
-                                              costprice: data.costprice,
-                                              id: index,
-                                              items: data.item,
-                                              name: data.name,
-                                              numbr: data.numbr,
-                                              sellprice: data.sellprice,
-                                              imagePath: data.image!,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      icon: Icon(Icons.edit),
-                                      color: Colors.black,
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: Text(
-                                                  'Are you sure want to delete'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('close'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () {
-                                                   deleteitems(index);
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('delete'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      },
-                                      icon: Icon(Icons.delete),
-                                      color: Colors.black,
-                                    ),
-                                  ],
-                                ),
-                                leading: CircleAvatar(
-                                  backgroundImage: FileImage(File(data.image!)),
-                                ),
+                                  ),
+                                );
+                              },
+                              title: Text(data.name),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(data.item),
+                                ],
                               ),
-                            );
-                          },
-                        ),
-                );
-              }
-            ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Editpage(
+                                            costprice: data.costprice,
+                                            id: index,
+                                            items: data.item,
+                                            name: data.name,
+                                            numbr: data.numbr,
+                                            sellprice: data.sellprice,
+                                            imagePath: data.image!,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    icon: Icon(Icons.edit),
+                                    color: Colors.black,
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                'Are you sure want to delete'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('close'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  deleteitems(index);
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('delete'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    icon: Icon(Icons.delete),
+                                    color: Colors.black,
+                                  ),
+                                ],
+                              ),
+                              leading: CircleAvatar(
+                                backgroundImage: FileImage(File(data.image!)),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+              );
+            }),
           ],
         ),
       ),
