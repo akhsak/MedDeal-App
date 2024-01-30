@@ -15,7 +15,7 @@ class ProfitPage extends StatefulWidget {
 class _ProfitPageState extends State<ProfitPage> {
   @override
   void initState() {
-    Provider.of<ProfitProvider>(context, listen: false).calculateTotalValues();
+    Provider.of<ProfitProvider>(context, listen: false).calculateTotalValues(context);
     super.initState();
   }
 

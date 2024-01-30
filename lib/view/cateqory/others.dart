@@ -6,7 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 
@@ -29,11 +29,13 @@ class _OtherspageState extends State<Otherspag> {
       appBar: AppBar(
         title: const Text('Others List'),
       ),
-      body: ValueListenableBuilder(
-        valueListenable: itemlistnotifier,
-        builder:
-            (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
-          itemList = Itemlist.where((items) => items.item
+      body:Consumer<DbProvider>(
+        builder: (context, value, child) 
+        // valueListenable: itemlistnotifier,
+        // builder:
+        //     (BuildContext context, List<ItemsModel> Itemlist, Widget? child)
+             {
+          itemList = value.meddeal.where((items) => items.item
               .split(',')
               .map((category) => category.trim().toLowerCase())
               .contains('others')).toList();
@@ -145,7 +147,7 @@ class _OtherspageState extends State<Otherspag> {
                                                       child: Text('close')),
                                                   TextButton(
                                                       onPressed: () {
-                                                        deleteitems(index);
+                                                        pro.deleteitems(index);
                                                         Navigator.pop(context);
                                                       },
                                                       child: Text('delete'))

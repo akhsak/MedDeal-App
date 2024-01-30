@@ -2,10 +2,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, prefer_const_constructors_in_immutables, must_be_immutable
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 //import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 import 'package:stockapp/view/screen/search.dart';
@@ -26,7 +28,7 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    getAllitems();
+   Provider.of<DbProvider>(context).getAllitems();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 43, 90, 152),
       appBar: AppBar(
@@ -150,17 +152,18 @@ class Homepage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            ValueListenableBuilder(
-              valueListenable: itemlistnotifier,
-              builder:
-                  (BuildContext ctx, List<ItemsModel> itemlist, Widget? child) {
-                final display = itemlist;
+            Consumer<DbProvider>(
+            builder: (context, value, child) {
+              
+             
+             
+                final display = value.meddeal;
                 return ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: display.length,
                   itemBuilder: (context, index) {
-                    final reverseindex = itemlist.length - 1 - index;
+                    final reverseindex = value.meddeal.length - 1 - index;
                     final data = display[reverseindex];
                     return Card(
                       color: Color.fromARGB(255, 207, 220, 251),
@@ -250,7 +253,7 @@ class Homepage extends StatelessWidget {
                                         ),
                                         TextButton(
                                           onPressed: () {
-                                            deleteitems(reverseindex);
+                                         Provider.of<DbProvider>(context,listen: false).deleteitems(reverseindex);
                                             Navigator.pop(context);
                                           },
                                           child: Text('Delete'),
@@ -273,7 +276,9 @@ class Homepage extends StatelessWidget {
                     );
                   },
                 );
+            
               },
+
             ),
           ],
         ),

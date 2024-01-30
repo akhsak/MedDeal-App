@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 
@@ -29,12 +29,15 @@ class _SaniterspageState extends State<Saniterspage> {
       appBar: AppBar(
         title: const Text('Saniters List'),
       ),
-      body: ValueListenableBuilder(
-        valueListenable: itemlistnotifier,
-        builder:
-            (BuildContext context, List<ItemsModel> Itemlist, Widget? child) {
+      body: Consumer<DbProvider>(
+        builder: (context, value, child) 
+        // valueListenable: itemlistn
+        // otifier,
+        // builder:
+        //     (BuildContext context, List<ItemsModel> Itemlist, Widget? child)
+             {
           List<ItemsModel> filteredItemList =
-              Itemlist.where((items) => items.item.toLowerCase() == 'saniters')
+              value.meddeal.where((items) => items.item.toLowerCase() == 'saniters')
                   .toList();
 
           String searchQuery = searchController.text.toLowerCase();
@@ -145,7 +148,7 @@ class _SaniterspageState extends State<Saniterspage> {
                                                           const Text('close')),
                                                   TextButton(
                                                       onPressed: () {
-                                                        deleteitems(index);
+                                                        pro.deleteitems(index);
                                                         Navigator.pop(context);
                                                       },
                                                       child:

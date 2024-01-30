@@ -6,7 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/add_provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/view/widget/bottombar.dart';
 import 'package:stockapp/view/widget/textformfield.dart';

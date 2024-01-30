@@ -2,8 +2,10 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/model/data_model.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class PieChart extends StatelessWidget {
@@ -23,7 +25,7 @@ class PieChart extends StatelessWidget {
               PieSeries<_PieData, String>(
                   explode: true,
                   explodeIndex: 0,
-                  dataSource: convertItemsToPieData(itemlistnotifier.value),
+                  dataSource: convertItemsToPieData(Provider.of<DbProvider>(context,listen: false).meddeal),
                   xValueMapper: (_PieData data, _) => data.xData,
                   yValueMapper: (_PieData data, _) => data.yData,
                   dataLabelMapper: (_PieData data, _) => data.text,

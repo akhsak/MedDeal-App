@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 
@@ -28,11 +28,13 @@ class _MedicinepageState extends State<Medicinepage> {
       appBar: AppBar(
         title: const Text('Medicine List'),
       ),
-      body: ValueListenableBuilder(
-        valueListenable: itemlistnotifier,
-        builder:
-            (BuildContext context, List<ItemsModel> itemlist, Widget? child) {
-          itemList = itemlist
+       body: Consumer<DbProvider>(
+        builder: (context, value, child) 
+      //   valueListenable: itemlistnotifier,
+      //   builder:
+      //       (BuildContext context, List<ItemsModel> itemlist, Widget? child) 
+      {
+          itemList = value.meddeal
               .where((items) => items.item.toLowerCase().contains('medicine'))
               .toList();
 
@@ -142,7 +144,7 @@ class _MedicinepageState extends State<Medicinepage> {
                                                           const Text('close')),
                                                   TextButton(
                                                       onPressed: () {
-                                                       deleteitems(index);
+                                                      pro.deleteitems(index);
                                                         Navigator.pop(context);
                                                       },
                                                       child:

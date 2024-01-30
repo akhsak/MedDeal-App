@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-  part 'datamodel.g.dart';
+  part 'data_model.g.dart';
 
 @HiveType(typeId:3)
 class ItemsModel {

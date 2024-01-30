@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_unnecessary_containers, must_be_immutable, use_key_in_widget_constructors, unnecessary_import
 
 import 'dart:io';
@@ -7,8 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/db_provider.dart';
+import 'package:stockapp/controller/edit_provider.dart';
 import 'package:stockapp/model/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/view/widget/bottombar.dart';
 import 'package:stockapp/view/widget/textformfield.dart';
 
@@ -59,6 +61,7 @@ class _EditpageState extends State<Editpage> {
 
   @override
   Widget build(BuildContext context) {
+
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
@@ -89,19 +92,19 @@ class _EditpageState extends State<Editpage> {
                 Center(
                   child: InkWell(
                     onTap: () {
-                      fromGallery();
+             Provider.of<EditProvider>(context,listen: false).fromgallery();
                     },
                     child: Container(
                       margin: EdgeInsets.only(bottom: 20),
                       height: 200,
                       width: screenWidth,
                       decoration: BoxDecoration(
-                           image: picked != null
-                              ? DecorationImage(
-                                  image: FileImage(picked!),
-                                  fit: BoxFit.fill,
-                                )
-                              : null,
+                        image: picked != null
+                            ? DecorationImage(
+                                image: FileImage(picked!),
+                                fit: BoxFit.fill,
+                              )
+                            : null,
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(color: Colors.grey),
@@ -142,9 +145,9 @@ class _EditpageState extends State<Editpage> {
                     dropdownColor: Color.fromARGB(255, 111, 110, 112),
                     isExpanded: true,
                     onChanged: (String? newvalue) {
-                      setState(() {
-                        selectedValue = newvalue!.toString();
-                      });
+                      // setState(() {
+                      //   selectedValue = newvalue!.toString();
+                      // });
                     },
                     items: const [
                       DropdownMenuItem(
@@ -237,8 +240,8 @@ class _EditpageState extends State<Editpage> {
         num.isEmpty ||
         items.isEmpty ||
         sellprice.isEmpty ||
-        costprice.isEmpty ||
-        image.isEmpty) {
+        costprice.isEmpty 
+        ) {
       return;
     } else {
       final update = ItemsModel(
@@ -251,21 +254,21 @@ class _EditpageState extends State<Editpage> {
         image: image,
       );
 
-      edit(widget.id, update);
+      Provider.of<DbProvider>(context, listen: false).edit(update.id!, update);
       Navigator.of(context).pop();
     }
   }
 
-  fromGallery() async {
-    final returnImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+  // fromGallery() async {
+  //   final returnImage =
+  //       await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    if (returnImage == null) {
-      return;
-    }
+  //   if (returnImage == null) {
+  //     return;
+  //   }
 
-    setState(() {
-      picked = File(returnImage.path);
-    });
-  }
+  // setState(() {
+  //   picked = File(returnImage.path);
+  // });
+//  }
 }

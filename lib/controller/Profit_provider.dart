@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/model/data_model.dart';
 
 class ProfitProvider extends ChangeNotifier {
   late double profit;
@@ -8,11 +10,11 @@ class ProfitProvider extends ChangeNotifier {
   double totalSpending = 0;
   double totalEarning = 0;
 
-  Future<void> calculateTotalValues() async {
+  Future<void> calculateTotalValues(context) async {
     double totalCost = 0;
     double totalSelling = 0;
 
-    for (ItemsModel item in itemlistnotifier.value) {
+    for (ItemsModel item in Provider.of<DbProvider>(context,listen: false).meddeal) {
       totalCost += double.parse(item.costprice);
       totalSelling += double.parse(item.sellprice);
     }

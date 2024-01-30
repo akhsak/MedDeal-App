@@ -34,7 +34,7 @@ class Searchitemss extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
               child: TextFormField(
-                onChanged: (value) => pro.filter(value),
+                onChanged: (value) => pro.filter(context,value ),
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(10),
                   border: OutlineInputBorder(
@@ -134,7 +134,7 @@ class Searchitemss extends StatelessWidget {
                                               ),
                                               TextButton(
                                                 onPressed: () {
-                                                  deleteitems(index);
+                                                 Provider.of<DbProvider>(context,listen: false).deleteitems(index);
                                                   Navigator.pop(context);
                                                 },
                                                 child: Text('delete'),

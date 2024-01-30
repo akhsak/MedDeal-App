@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/functions/db_function.dart';
-import 'package:stockapp/model/datamodel.dart';
+import 'package:stockapp/model/data_model.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
@@ -27,11 +27,13 @@ class _EquipmentspageState extends State<Equipmentspage> {
       appBar: AppBar(
         title: const Text('Equipment List'),
       ),
-      body: ValueListenableBuilder(
-        valueListenable: itemlistnotifier,
-        builder:
-            (BuildContext context, List<ItemsModel> itemlist, Widget? child) {
-          itemList = itemlist
+      body: Consumer<DbProvider>(
+        builder: (context, value, child) 
+        // valueListenable: itemlistnotifier,
+        // builder:
+        //     (BuildContext context, List<ItemsModel> itemlist, Widget? child) 
+        {
+          itemList = value.meddeal
               .where((items) => items.item.toLowerCase().contains('equipments'))
               .toList();
           String searchQuery = searchController.text.toLowerCase();
@@ -129,7 +131,7 @@ class _EquipmentspageState extends State<Equipmentspage> {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                            deleteitems(index);
+                                            pro.deleteitems(index);
                                               Navigator.pop(context);
                                             },
                                             child: const Text('delete'),
