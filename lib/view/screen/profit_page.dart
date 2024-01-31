@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:stockapp/controller/Profit_provider.dart';
+import 'package:stockapp/controller/profit_provider.dart';
+
 
 class ProfitPage extends StatefulWidget {
   const ProfitPage({Key? key}) : super(key: key);

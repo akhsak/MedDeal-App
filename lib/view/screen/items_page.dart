@@ -19,7 +19,7 @@ class _ItemspageState extends State<Itemspage> {
   List<CategoryData> categories = [
     const CategoryData('Medicine', Icons.medical_services_outlined,
         Color.fromARGB(255, 230, 229, 228), Medicinepage()),
-    const CategoryData('Equipments', Icons.electrical_services,
+     CategoryData('Equipments', Icons.electrical_services,
         Color.fromARGB(255, 237, 236, 234), Equipmentspage()),
     const CategoryData('Saniters', Icons.equalizer_sharp,
         Color.fromARGB(255, 233, 235, 233), Saniterspage()),

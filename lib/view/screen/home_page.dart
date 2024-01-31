@@ -6,8 +6,7 @@ import 'package:provider/provider.dart';
 //import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/controller/db_provider.dart';
-import 'package:stockapp/model/functions/db_function.dart';
-import 'package:stockapp/model/data_model.dart';
+//import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 import 'package:stockapp/view/screen/search.dart';
@@ -286,13 +285,13 @@ class Homepage extends StatelessWidget {
     );
   }
 
-  List<ItemsModel> _searchList(List<ItemsModel> itemlist) {
-    final String search = _searchController.text.toLowerCase();
-    return itemlist.where((item) =>
-        item.name.toLowerCase().contains(search) 
-        ||    item.sellprice.toLowerCase().contains(search)
-        ).toList();
-  }
+  // List<ItemsModel> _searchList(List<ItemsModel> itemlist) {
+  //   final String search = _searchController.text.toLowerCase();
+  //   return itemlist.where((item) =>
+  //       item.name.toLowerCase().contains(search) 
+  //       ||    item.sellprice.toLowerCase().contains(search)
+  //       ).toList();
+  // }
 
   signout(BuildContext ctx) async {
     final sharedperfer = await SharedPreferences.getInstance();

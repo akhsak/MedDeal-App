@@ -3,21 +3,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
-import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/model/data_model.dart';
 import 'package:lottie/lottie.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 
-class Equipmentspage extends StatefulWidget {
-  const Equipmentspage({Key? key}) : super(key: key);
+class Equipmentspage extends StatelessWidget {
+   Equipmentspage({Key? key}) : super(key: key);
 
-  @override
-  State<Equipmentspage> createState() => _EquipmentspageState();
-}
-
-class _EquipmentspageState extends State<Equipmentspage> {
   TextEditingController searchController = TextEditingController();
+
   List<ItemsModel> itemList = [];
 
   @override
@@ -40,8 +35,7 @@ class _EquipmentspageState extends State<Equipmentspage> {
           List<ItemsModel> filteredItemList = itemList
               .where((item) =>
                   item.name.toLowerCase().contains(searchQuery)
-                  // ||
-                 // item.name.toUpperCase().contains(searchQuery)
+                 
                  )
               .toList();
 
@@ -58,7 +52,7 @@ class _EquipmentspageState extends State<Equipmentspage> {
                       icon: const Icon(Icons.clear),
                     ),
                   ),
-                  onChanged: (value) => setState(() {}),
+                  
                 ),
               ),
               Expanded(

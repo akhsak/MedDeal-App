@@ -6,18 +6,17 @@ import 'package:image_picker/image_picker.dart';
 class EditProvider extends ChangeNotifier {
 
 
- // class _EditpageState extends State<Editpage> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _numController = TextEditingController();
-  TextEditingController _sellpriceController = TextEditingController();
-  TextEditingController _costpriceController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController numController = TextEditingController();
+  TextEditingController sellpriceController = TextEditingController();
+  TextEditingController costpriceController = TextEditingController();
 
   List dropdownItems = [];
   File? picked;
   
   String selectedValue = '';
 
-  addvalue(newvalue) {
+    void addvalue(newvalue) {
     selectedValue = newvalue!.toString();
     notifyListeners();
   }
@@ -33,4 +32,4 @@ class EditProvider extends ChangeNotifier {
 
    
   
-}
+  }

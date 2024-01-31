@@ -4,12 +4,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/edit_provider.dart';
-import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/view/widget/bottombar.dart';
 import 'package:stockapp/view/widget/textformfield.dart';
@@ -38,22 +36,23 @@ class Editpage extends StatefulWidget {
 }
 
 class _EditpageState extends State<Editpage> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _numController = TextEditingController();
-  TextEditingController _sellpriceController = TextEditingController();
-  TextEditingController _costpriceController = TextEditingController();
-  List dropdownItems = [];
-  File? picked;
+  // TextEditingController nameController = TextEditingController();
+  // TextEditingController numController = TextEditingController();
+  // TextEditingController sellpriceController = TextEditingController();
+  // TextEditingController costpriceController = TextEditingController();
+  // List dropdownItems = [];
+  // File? picked;
 
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: widget.name);
-    _numController = TextEditingController(text: widget.numbr);
-    _sellpriceController = TextEditingController(text: widget.sellprice);
-    _costpriceController = TextEditingController(text: widget.costprice);
+    final pro = Provider.of<EditProvider>(context, listen: false);
+    pro.nameController = TextEditingController(text: widget.name);
+    pro.numController = TextEditingController(text: widget.numbr);
+    pro.sellpriceController = TextEditingController(text: widget.sellprice);
+    pro.costpriceController = TextEditingController(text: widget.costprice);
 
-    picked = widget.imagePath != '' ? File(widget.imagePath) : null;
+    pro.picked = widget.imagePath != '' ? File(widget.imagePath) : null;
     selectedValue = widget.items;
   }
 
@@ -61,6 +60,7 @@ class _EditpageState extends State<Editpage> {
 
   @override
   Widget build(BuildContext context) {
+    final editProvider = Provider.of<EditProvider>(context, listen: false);
 
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -92,36 +92,40 @@ class _EditpageState extends State<Editpage> {
                 Center(
                   child: InkWell(
                     onTap: () {
-             Provider.of<EditProvider>(context,listen: false).fromgallery();
+                      Provider.of<EditProvider>(context, listen: false)
+                          .fromgallery();
                     },
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      height: 200,
-                      width: screenWidth,
-                      decoration: BoxDecoration(
-                        image: picked != null
-                            ? DecorationImage(
-                                image: FileImage(picked!),
-                                fit: BoxFit.fill,
-                              )
+                    child: Consumer<EditProvider>(
+                        builder: (context, value, child) {
+                      return Container(
+                        margin: EdgeInsets.only(bottom: 20),
+                        height: 200,
+                        width: screenWidth,
+                        decoration: BoxDecoration(
+                          image: value.picked != null
+                              ? DecorationImage(
+                                  image: FileImage(value.picked!),
+                                  fit: BoxFit.fill,
+                                )
+                              : null,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25),
+                          border: Border.all(color: Colors.grey),
+                        ),
+                        child: value.picked == null
+                            ? Center(
+                                child: Lottie.asset(
+                                    'assets/Animation - addimage.json'))
                             : null,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: Colors.grey),
-                      ),
-                      child: picked == null
-                          ? Center(
-                              child: Lottie.asset(
-                                  'assets/Animation - addimage.json'))
-                          : null,
-                    ),
+                      );
+                    }),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: CustomTextForm(
                     labelText: 'itemname',
-                    controller: _nameController,
+                    controller: editProvider.nameController,
                   ),
                 ),
                 SizedBox(height: 20),
@@ -129,58 +133,61 @@ class _EditpageState extends State<Editpage> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: CustomTextForm(
                     labelText: 'stall number',
-                    controller: _numController,
+                    controller: editProvider.numController,
                   ),
                 ),
                 SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      hintText: "Select Item",
-                      hintStyle:
-                          TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
-                      border: OutlineInputBorder(),
+                  child: Consumer<EditProvider>(builder: (context, value, child) => 
+                     DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        hintText: "Select Item",
+                        hintStyle:
+                            TextStyle(color: Color.fromARGB(255, 30, 3, 56)),
+                        border: OutlineInputBorder(),
+                      ),
+                      dropdownColor: Color.fromARGB(255, 111, 110, 112),
+                      isExpanded: true,
+                      onChanged: (String? newvalue) {
+                        value.addvalue(newvalue);
+                        // setState(() {
+                        //   selectedValue = newvalue!.toString();
+                        // });
+                      },
+                      items: const [
+                        DropdownMenuItem(
+                          value: "Medicines",
+                          child: Text(
+                            "Medicines",
+                            style:
+                                TextStyle(color: Color.fromARGB(255, 19, 19, 19)),
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: "Equipments",
+                          child: Text(
+                            "Equipments",
+                            style: TextStyle(color: Color.fromARGB(255, 7, 6, 6)),
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: "Sanitizers",
+                          child: Text(
+                            "Sanitizers",
+                            style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          value: "Others",
+                          child: Text(
+                            "Others",
+                            style:
+                                TextStyle(color: Color.fromARGB(255, 12, 12, 12)),
+                          ),
+                        ),
+                      ],
                     ),
-                    dropdownColor: Color.fromARGB(255, 111, 110, 112),
-                    isExpanded: true,
-                    onChanged: (String? newvalue) {
-                      // setState(() {
-                      //   selectedValue = newvalue!.toString();
-                      // });
-                    },
-                    items: const [
-                      DropdownMenuItem(
-                        value: "Medicines",
-                        child: Text(
-                          "Medicines",
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 19, 19, 19)),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: "Equipments",
-                        child: Text(
-                          "Equipments",
-                          style: TextStyle(color: Color.fromARGB(255, 7, 6, 6)),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: "Sanitizers",
-                        child: Text(
-                          "Sanitizers",
-                          style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
-                        ),
-                      ),
-                      DropdownMenuItem(
-                        value: "Others",
-                        child: Text(
-                          "Others",
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 12, 12, 12)),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
                 SizedBox(height: 20),
@@ -191,7 +198,7 @@ class _EditpageState extends State<Editpage> {
                       Expanded(
                         child: CustomTextForm(
                           labelText: 'selling price',
-                          controller: _sellpriceController,
+                          controller: editProvider.sellpriceController,
                           prefixText: '₹',
                           keyboard: TextInputType.number,
                         ),
@@ -200,7 +207,7 @@ class _EditpageState extends State<Editpage> {
                       Expanded(
                         child: CustomTextForm(
                           labelText: 'cost price',
-                          controller: _costpriceController,
+                          controller: editProvider.costpriceController,
                           keyboard: TextInputType.number,
                           prefixText: '₹',
                         ),
@@ -229,19 +236,19 @@ class _EditpageState extends State<Editpage> {
   }
 
   Future<void> updateAll() async {
-    final name = _nameController.text.trim();
-    final num = _numController.text.trim();
-    final items = selectedValue;
-    final sellprice = _sellpriceController.text.trim();
-    final costprice = _costpriceController.text.trim();
-    final image = picked?.path ?? '';
+    final pro = Provider.of<EditProvider>(context, listen: false);
+    final name = pro.nameController.text.trim();
+    final num = pro.numController.text.trim();
+    final items = pro.selectedValue;
+    final sellprice = pro.sellpriceController.text.trim();
+    final costprice = pro.costpriceController.text.trim();
+    final image = pro.picked?.path ?? '';
 
     if (name.isEmpty ||
         num.isEmpty ||
         items.isEmpty ||
         sellprice.isEmpty ||
-        costprice.isEmpty 
-        ) {
+        costprice.isEmpty) {
       return;
     } else {
       final update = ItemsModel(
