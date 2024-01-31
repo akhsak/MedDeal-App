@@ -17,14 +17,24 @@ class Itemspage extends StatefulWidget {
 
 class _ItemspageState extends State<Itemspage> {
   List<CategoryData> categories = [
-    const CategoryData('Medicine', Icons.medical_services_outlined,
-        Color.fromARGB(255, 230, 229, 228), Medicinepage()),
+  //   const CategoryData('Medicine', Icons.medical_services_outlined,
+  //       Color.fromARGB(255, 230, 229, 228), Medicinepage()),
+  //    CategoryData('Equipments', Icons.electrical_services,
+  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Equipments",)),
+  //   const CategoryData('Saniters', Icons.equalizer_sharp,
+  //       Color.fromARGB(255, 233, 235, 233), Saniterspage()),
+  //   const CategoryData(
+  //       'others', Icons.abc, Color.fromARGB(255, 245, 247, 248), Otherspag())
+  // 
+  
+     CategoryData('Medicine', Icons.electrical_services,
+        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Medicine",)),
      CategoryData('Equipments', Icons.electrical_services,
-        Color.fromARGB(255, 237, 236, 234), Equipmentspage()),
-    const CategoryData('Saniters', Icons.equalizer_sharp,
-        Color.fromARGB(255, 233, 235, 233), Saniterspage()),
-    const CategoryData(
-        'others', Icons.abc, Color.fromARGB(255, 245, 247, 248), Otherspag())
+        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Equipments",)),
+     CategoryData('Saniters', Icons.electrical_services,
+        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Saniters",)),
+     CategoryData('Equipments', Icons.electrical_services,
+        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Equipments",)),
   ];
 
   @override

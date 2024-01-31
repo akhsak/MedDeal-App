@@ -11,7 +11,7 @@ class ItemsProvider extends ChangeNotifier {
     const CategoryData('Medicine', Icons.medical_services_outlined,
         Color.fromARGB(255, 230, 229, 228), Medicinepage()),
      CategoryData('Equipments', Icons.electrical_services,
-        Color.fromARGB(255, 237, 236, 234), Equipmentspage()),
+        Color.fromARGB(255, 237, 236, 234), Categorypage(category: 'Equipments',)),
     const CategoryData('Saniters', Icons.equalizer_sharp,
         Color.fromARGB(255, 233, 235, 233), Saniterspage()),
     const CategoryData(

@@ -8,8 +8,9 @@ import 'package:lottie/lottie.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 
-class Equipmentspage extends StatelessWidget {
-   Equipmentspage({Key? key}) : super(key: key);
+class Categorypage extends StatelessWidget {
+  final String category;
+   Categorypage({required this.category, Key? key}) : super(key: key);
 
   TextEditingController searchController = TextEditingController();
 
@@ -20,7 +21,7 @@ class Equipmentspage extends StatelessWidget {
     final pro=Provider.of<DbProvider>(context,listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Equipment List'),
+        title:  Text('$category List'),
       ),
       body: Consumer<DbProvider>(
         builder: (context, value, child) 
@@ -29,7 +30,7 @@ class Equipmentspage extends StatelessWidget {
         //     (BuildContext context, List<ItemsModel> itemlist, Widget? child) 
         {
           itemList = value.meddeal
-              .where((items) => items.item.toLowerCase().contains('equipments'))
+              .where((ItemsModel items) => items.item.toLowerCase().contains(category.toLowerCase()))
               .toList();
           String searchQuery = searchController.text.toLowerCase();
           List<ItemsModel> filteredItemList = itemList
