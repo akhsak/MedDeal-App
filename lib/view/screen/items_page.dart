@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:stockapp/controller/item_provider.dart';
 import 'package:stockapp/model/items_model.dart';
 
-
 class Itemspage extends StatefulWidget {
   const Itemspage({Key? key}) : super(key: key);
 
@@ -15,30 +14,6 @@ class Itemspage extends StatefulWidget {
 }
 
 class _ItemspageState extends State<Itemspage> {
-  // List<CategoryData> categories = [
-
-  //   CategoryData('Medicine', Icons.electrical_services,
-  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Medicine",)),
-  //    CategoryData('Equipments', Icons.electrical_services,
-  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Equipments",)),
-  //    CategoryData('Sanitizer', Icons.electrical_services,
-  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Sanitizer",)),
-  //    CategoryData('Others', Icons.electrical_services,
-  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Others",)),
-  //    ];
-
-  //   const CategoryData('Medicine', Icons.medical_services_outlined,
-  //       Color.fromARGB(255, 230, 229, 228), Medicinepage()),
-  //    CategoryData('Equipments', Icons.electrical_services,
-  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Equipments",)),
-  //   const CategoryData('Saniters', Icons.equalizer_sharp,
-  //       Color.fromARGB(255, 233, 235, 233), Saniterspage()),
-  //   const CategoryData(
-  //       'others', Icons.abc, Color.fromARGB(255, 245, 247, 248), Otherspag())
-  // 
-  
-  
-
   @override
   void initState() {
     super.initState();
@@ -50,10 +25,8 @@ class _ItemspageState extends State<Itemspage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // backgroundColor: Color.fromARGB(255, 43, 90, 152),
       appBar: AppBar(
-      //  backgroundColor: Color.fromARGB(255, 43, 90, 152),
-      ),
+          ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -123,8 +96,8 @@ class _ItemspageState extends State<Itemspage> {
     );
   }
 
-   _showBottomSheet(BuildContext context) {
-   return showModalBottomSheet(
+  _showBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
@@ -137,14 +110,14 @@ class _ItemspageState extends State<Itemspage> {
               Text(
                 'Categories',
                 style: TextStyle(
-                  color:  Color.fromARGB(255, 43, 90, 152),
+                  color: Color.fromARGB(255, 43, 90, 152),
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 16.0),
-            Consumer<ItemsProvider>( builder: (context, value, child) => 
-                Expanded(
+              Consumer<ItemsProvider>(
+                builder: (context, value, child) => Expanded(
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -158,7 +131,8 @@ class _ItemspageState extends State<Itemspage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>value. categories[index].route,
+                              builder: (context) =>
+                                  value.categories[index].route,
                             ),
                           );
                         },

@@ -10,6 +10,11 @@ import 'package:stockapp/view/screen/login_screen.dart';
 import 'package:stockapp/view/widget/drawer.dart';
 
 class DrawerHeaderWidget extends StatelessWidget {
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -36,9 +41,11 @@ class DrawerHeaderWidget extends StatelessWidget {
                   builder: (context) => Termsprivacy(),
                 ));
               },
-              child: DrawerItem(
-                text: "Terms and Conditions",
-                icon: Icons.document_scanner_rounded,
+              child: SingleChildScrollView(
+                child: DrawerItem(
+                  text: "T & c",
+                  icon: Icons.document_scanner_rounded,
+                ),
               ),
             ),
             Divider(),
@@ -64,7 +71,7 @@ class DrawerHeaderWidget extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 "version : 1.0.1",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(color: Color.fromARGB(255, 43, 90, 152),fontWeight: FontWeight.bold),
               ),
             ),
           ],

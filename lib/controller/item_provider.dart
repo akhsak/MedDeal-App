@@ -13,6 +13,6 @@ class ItemsProvider extends ChangeNotifier {
      CategoryData('Sanitizer', Icons.electrical_services,
         Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Sanitizer",)),
      CategoryData('Others', Icons.electrical_services,
-        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Otherspag",)),
+        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Others",)),
   ];
 }

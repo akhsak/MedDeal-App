@@ -186,13 +186,13 @@ class Addpage extends StatelessWidget {
   }
 
   Future<void> onAddItemButtonClicked(context) async {
-    final pro = Provider.of<AddProvider>(context, listen: false);
-    if (pro.formKey.currentState!.validate()) {
-      final _name = pro.namecontroller.text.trim();
-      final _num = pro.numcontroller.text.trim();
-      final _item = pro.selectedValue;
-      final _sellprice = pro.sellingpricecontroller.text.trim();
-      final _costprice = pro.costpricecontroller.text.trim();
+    final addprovider = Provider.of<AddProvider>(context, listen: false);
+    if (addprovider.formKey.currentState!.validate()) {
+      final _name = addprovider.namecontroller.text.trim();
+      final _num = addprovider.numcontroller.text.trim();
+      final _item = addprovider.selectedValue;
+      final _sellprice = addprovider.sellingpricecontroller.text.trim();
+      final _costprice = addprovider.costpricecontroller.text.trim();
 
       final _addItem = ItemsModel(
         name: _name,
@@ -200,19 +200,19 @@ class Addpage extends StatelessWidget {
         item: _item,
         sellprice: _sellprice,
         costprice: _costprice,
-        image: pro.picked?.path ?? '',
+        image: addprovider.picked?.path ?? '',
       );
     Provider.of<DbProvider>(context,listen: false). additems(_addItem);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => Bottombar()),
           (route) => false);
-      pro.namecontroller.clear();
-      pro.costpricecontroller.clear();
-      pro.numcontroller.clear();
-      pro.sellingpricecontroller.clear();
-      pro.costpricecontroller.clear();
-      pro.picked=null;
+      addprovider.namecontroller.clear();
+      addprovider.costpricecontroller.clear();
+      addprovider.numcontroller.clear();
+      addprovider.sellingpricecontroller.clear();
+      addprovider.costpricecontroller.clear();
+      addprovider.picked=null;
     }
   }
 }

@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, use_build_context_synchronously, prefer_const_constructors_in_immutables, must_be_immutable
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -15,21 +14,17 @@ import 'package:stockapp/view/widget/drawer_page.dart';
 class Homepage extends StatelessWidget {
   Homepage({Key? key}) : super(key: key);
 
-
-
   final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    
-   Provider.of<DbProvider>(context).getAllitems();
+    Provider.of<DbProvider>(context).getAllitems();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 43, 90, 152),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 43, 90, 152),
       ),
       endDrawer: Drawer(
-        
         elevation: 100,
         shadowColor: Color.fromARGB(255, 80, 80, 79),
         child: Container(
@@ -75,7 +70,7 @@ class Homepage extends StatelessWidget {
                       Text(
                         'MedDeaL',
                         style: TextStyle(
-                            color:Color.fromARGB(255, 249, 249, 250),
+                            color: Color.fromARGB(255, 249, 249, 250),
                             fontWeight: FontWeight.bold,
                             fontSize: 24),
                       )
@@ -85,7 +80,6 @@ class Homepage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 25),
-           
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Container(
@@ -98,10 +92,9 @@ class Homepage extends StatelessWidget {
                   child: TextField(
                     controller: _searchController,
                     onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Searchitemss())) ,
-                 
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Searchitemss())),
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
                       hintText: 'search...',
@@ -113,10 +106,7 @@ class Homepage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Consumer<DbProvider>(
-            builder: (context, value, child) {
-              
-             
-             
+              builder: (context, value, child) {
                 final display = value.meddeal;
                 return ListView.builder(
                   shrinkWrap: true,
@@ -202,8 +192,10 @@ class Homepage extends StatelessWidget {
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
-                                      title: Text('Are you sure you want to delete?'),
-                                      content: Text('This action cannot be undone.'),
+                                      title: Text(
+                                          'Are you sure you want to delete?'),
+                                      content:
+                                          Text('This action cannot be undone.'),
                                       actions: [
                                         TextButton(
                                           onPressed: () {
@@ -213,7 +205,9 @@ class Homepage extends StatelessWidget {
                                         ),
                                         TextButton(
                                           onPressed: () {
-                                         Provider.of<DbProvider>(context,listen: false).deleteitems(reverseindex);
+                                            Provider.of<DbProvider>(context,
+                                                    listen: false)
+                                                .deleteitems(reverseindex);
                                             Navigator.pop(context);
                                           },
                                           child: Text('Delete'),
@@ -236,9 +230,7 @@ class Homepage extends StatelessWidget {
                     );
                   },
                 );
-            
               },
-
             ),
           ],
         ),
@@ -249,7 +241,7 @@ class Homepage extends StatelessWidget {
   // List<ItemsModel> _searchList(List<ItemsModel> itemlist) {
   //   final String search = _searchController.text.toLowerCase();
   //   return itemlist.where((item) =>
-  //       item.name.toLowerCase().contains(search) 
+  //       item.name.toLowerCase().contains(search)
   //       ||    item.sellprice.toLowerCase().contains(search)
   //       ).toList();
   // }
@@ -263,4 +255,3 @@ class Homepage extends StatelessWidget {
     );
   }
 }
-

@@ -1,23 +1,28 @@
+// import 'package:flutter/material.dart';
+
+
+// class CategoryProvider extends ChangeNotifier {
+   
+//   TextEditingController searchController = TextEditingController();
+
+   
+  
+// }
+// CategoryProvider.dart
 import 'package:flutter/material.dart';
-import 'package:stockapp/model/data_model.dart';
 
 class CategoryProvider extends ChangeNotifier {
-   
-   
   TextEditingController searchController = TextEditingController();
+  String searchQuery = '';
 
-  List<ItemsModel> get filteredItems => [];
-
-  void searchvalue(){
-
+  void updateSearchQuery(String query) {
+    searchQuery = query.toLowerCase();
+    notifyListeners();
   }
 
   void clearSearch() {
-
+    searchController.clear();
+    searchQuery = '';
+    notifyListeners();
   }
-
-  void filterItems(String value) {
-    
-  }
-  
 }

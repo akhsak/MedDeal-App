@@ -30,7 +30,9 @@ class DbProvider extends ChangeNotifier {
 
   Future deleteAllitems()async{
 await dbservice.deleteAllitems();
+print("deleted");
  getAllitems();
+ notifyListeners();
   }
 
 
