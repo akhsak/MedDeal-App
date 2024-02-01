@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'package:stockapp/controller/item_provider.dart';
 import 'package:stockapp/model/itemsmodel.dart';
-import 'package:stockapp/view/cateqory/equipments.dart';
-import 'package:stockapp/view/cateqory/medicine.dart';
-import 'package:stockapp/view/cateqory/others.dart';
-import 'package:stockapp/view/cateqory/saniters.dart';
+import 'package:stockapp/view/category/category_page.dart';
+
 
 class Itemspage extends StatefulWidget {
   const Itemspage({Key? key}) : super(key: key);
@@ -16,7 +16,18 @@ class Itemspage extends StatefulWidget {
 }
 
 class _ItemspageState extends State<Itemspage> {
-  List<CategoryData> categories = [
+  // List<CategoryData> categories = [
+
+  //   CategoryData('Medicine', Icons.electrical_services,
+  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Medicine",)),
+  //    CategoryData('Equipments', Icons.electrical_services,
+  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Equipments",)),
+  //    CategoryData('Sanitizer', Icons.electrical_services,
+  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Sanitizer",)),
+  //    CategoryData('Others', Icons.electrical_services,
+  //       Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Others",)),
+  //    ];
+
   //   const CategoryData('Medicine', Icons.medical_services_outlined,
   //       Color.fromARGB(255, 230, 229, 228), Medicinepage()),
   //    CategoryData('Equipments', Icons.electrical_services,
@@ -27,15 +38,7 @@ class _ItemspageState extends State<Itemspage> {
   //       'others', Icons.abc, Color.fromARGB(255, 245, 247, 248), Otherspag())
   // 
   
-     CategoryData('Medicine', Icons.electrical_services,
-        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Medicine",)),
-     CategoryData('Equipments', Icons.electrical_services,
-        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Equipments",)),
-     CategoryData('Saniters', Icons.electrical_services,
-        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Saniters",)),
-     CategoryData('Equipments', Icons.electrical_services,
-        Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Equipments",)),
-  ];
+  
 
   @override
   void initState() {
@@ -141,27 +144,29 @@ class _ItemspageState extends State<Itemspage> {
                 ),
               ),
               SizedBox(height: 16.0),
-              Expanded(
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16.0,
-                    mainAxisSpacing: 16.0,
+            Consumer<ItemsProvider>( builder: (context, value, child) => 
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 16.0,
+                      mainAxisSpacing: 16.0,
+                    ),
+                    itemCount: value.categories.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>value. categories[index].route,
+                            ),
+                          );
+                        },
+                        child: _buildCategoryCard(value.categories[index]),
+                      );
+                    },
                   ),
-                  itemCount: categories.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => categories[index].route,
-                          ),
-                        );
-                      },
-                      child: _buildCategoryCard(categories[index]),
-                    );
-                  },
                 ),
               ),
             ],

@@ -9,6 +9,7 @@ import 'package:stockapp/controller/add_provider.dart';
 import 'package:stockapp/controller/bottom_provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/edit_provider.dart';
+import 'package:stockapp/controller/item_provider.dart';
 import 'package:stockapp/controller/profit_provider.dart';
 import 'package:stockapp/controller/search_provider.dart';
 import 'package:stockapp/model/data_model.dart';
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SearchProvider()),
         ChangeNotifierProvider(create: (context) => ProfitProvider()),
         ChangeNotifierProvider(create: (context) => DbProvider()),
-        ChangeNotifierProvider(create: (context) => EditProvider())
+        ChangeNotifierProvider(create: (context) => EditProvider()),
+        ChangeNotifierProvider(create: (context) => ItemsProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

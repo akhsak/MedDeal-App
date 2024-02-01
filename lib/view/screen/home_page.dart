@@ -3,7 +3,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/controller/db_provider.dart';
 //import 'package:stockapp/model/data_model.dart';
@@ -16,11 +15,7 @@ import 'package:stockapp/view/widget/drawer_page.dart';
 class Homepage extends StatelessWidget {
   Homepage({Key? key}) : super(key: key);
 
-  // List<String> imageList = [
-  //   'assets/medical-banner-with-doctor-wearing-coat.jpg',
-  //   'assets/medical-banner-with-doctor-wearing-coat.jpg',
-  //   'assets/medical-banner-with-doctor-wearing-coat.jpg',
-  // ];
+
 
   final TextEditingController _searchController = TextEditingController();
 
@@ -90,36 +85,7 @@ class Homepage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 25),
-            // Padding(
-            //   padding: const EdgeInsets.all(10),
-            //   child: SizedBox(
-            //     width: MediaQuery.of(context).size.width,
-            //     height: 250,
-            //     child: CarouselSlider(
-            //       items: imageList.map((item) {
-            //         return Builder(
-            //           builder: (BuildContext context) {
-            //             return SizedBox(
-            //               width: MediaQuery.of(context).size.width,
-            //               height: 500,
-            //               child: Image.asset(
-            //                 item,
-            //                 fit: BoxFit.cover,
-            //               ),
-            //             );
-            //           },
-            //         );
-            //       }).toList(),
-            //       options: CarouselOptions(
-            //         autoPlay: true,
-            //         enlargeCenterPage: true,
-            //         aspectRatio: 2.0,
-            //         viewportFraction: 1.0,
-            //         initialPage: 0,
-            //       ),
-            //     ),
-            //   ),
-            // ),
+           
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Container(
@@ -135,12 +101,7 @@ class Homepage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => Searchitemss())) ,
-                    // onChanged: (value) {
-                    //   Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) => Searchitemss()));
-                    // },
+                 
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
                       hintText: 'search...',

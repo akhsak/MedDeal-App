@@ -118,9 +118,9 @@ class Addpage extends StatelessWidget {
                       ),
                     ),
                     DropdownMenuItem(
-                      value: "Saniters",
+                      value: "Sanitizer",
                       child: Text(
-                        "Saniters",
+                        "Sanitizer",
                         style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
                       ),
                     ),

@@ -172,9 +172,9 @@ class _EditpageState extends State<Editpage> {
                           ),
                         ),
                         DropdownMenuItem(
-                          value: "Sanitizers",
+                          value: "Sanitizer",
                           child: Text(
-                            "Sanitizers",
+                            "Sanitizer",
                             style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
                           ),
                         ),

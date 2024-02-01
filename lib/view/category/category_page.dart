@@ -1,4 +1,5 @@
-// ignore_for_file: file_names
+// ignore_for_file: prefer_const_constructors_in_immutables, library_private_types_in_public_api
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,59 +9,67 @@ import 'package:lottie/lottie.dart';
 import 'package:stockapp/view/screen/details.dart';
 import 'package:stockapp/view/screen/edit_page.dart';
 
-class Categorypage extends StatelessWidget {
+class Categorypage extends StatefulWidget {
   final String category;
-   Categorypage({required this.category, Key? key}) : super(key: key);
 
+  Categorypage({required this.category, Key? key}) : super(key: key);
+
+  @override
+  _CategorypageState createState() => _CategorypageState();
+}
+
+class _CategorypageState extends State<Categorypage> {
   TextEditingController searchController = TextEditingController();
-
-  List<ItemsModel> itemList = [];
 
   @override
   Widget build(BuildContext context) {
-    final pro=Provider.of<DbProvider>(context,listen: false);
+    final pro = Provider.of<DbProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
-        title:  Text('$category List'),
+        title: Text('${widget.category} List'),
       ),
-      body: Consumer<DbProvider>(
-        builder: (context, value, child) 
-        // valueListenable: itemlistnotifier,
-        // builder:
-        //     (BuildContext context, List<ItemsModel> itemlist, Widget? child) 
-        {
-          itemList = value.meddeal
-              .where((ItemsModel items) => items.item.toLowerCase().contains(category.toLowerCase()))
-              .toList();
-          String searchQuery = searchController.text.toLowerCase();
-          List<ItemsModel> filteredItemList = itemList
-              .where((item) =>
-                  item.name.toLowerCase().contains(searchQuery)
-                 
-                 )
-              .toList();
-
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: searchController,
-                  decoration: InputDecoration(
-                    hintText: 'Search...',
-                    suffixIcon: IconButton(
-                      onPressed: searchController.clear,
-                      icon: const Icon(Icons.clear),
-                    ),
-                  ),
-                  
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: searchController,
+              onChanged: (value) {
+                setState(() {}); // Trigger a rebuild to update the UI
+              },
+              decoration: InputDecoration(
+                hintText: 'Search...',
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    searchController.clear();
+                    setState(() {}); // Trigger a rebuild to update the UI
+                  },
+                  icon: const Icon(Icons.clear),
                 ),
               ),
-              Expanded(
+            ),
+          ),
+          Consumer<DbProvider>(
+            builder: (context, value, child) {
+              List<ItemsModel> itemList = value.meddeal
+                  .where((items) => items.item
+                      .toLowerCase()
+                      .contains(widget.category.toLowerCase()))
+                  .toList();
+
+              String searchQuery = searchController.text.toLowerCase();
+              List<ItemsModel> filteredItemList = itemList
+                  .where((items) =>
+                      items.name.toLowerCase().contains(searchQuery))
+                  .toList();
+
+              return Expanded(
                 child: filteredItemList.isEmpty
                     ? Lottie.asset(
-                      "assets/Animation - 1704946991285.json",width: 200,
-                    )
+                        "assets/Animation - 1704946991285.json",
+                        width: 200,
+                      )
                     : ListView.builder(
                         itemCount: filteredItemList.length,
                         itemBuilder: (context, index) {
@@ -126,7 +135,7 @@ class Categorypage extends StatelessWidget {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                            pro.deleteitems(index);
+                                              pro.deleteitems(index);
                                               Navigator.pop(context);
                                             },
                                             child: const Text('delete'),
@@ -146,10 +155,10 @@ class Categorypage extends StatelessWidget {
                           );
                         },
                       ),
-              ),
-            ],
-          );
-        },
+              );
+            },
+          ),
+        ],
       ),
     );
   }
