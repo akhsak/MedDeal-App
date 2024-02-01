@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 // import 'package:stockapp/controller/.dart';
 import 'package:stockapp/controller/add_provider.dart';
 import 'package:stockapp/controller/bottom_provider.dart';
+import 'package:stockapp/controller/cateogory_provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/edit_provider.dart';
 import 'package:stockapp/controller/item_provider.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => DbProvider()),
         ChangeNotifierProvider(create: (context) => EditProvider()),
         ChangeNotifierProvider(create: (context) => ItemsProvider()),
+        ChangeNotifierProvider(create: (context) => CategoryProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

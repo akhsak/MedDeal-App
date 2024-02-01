@@ -36,12 +36,7 @@ class Editpage extends StatefulWidget {
 }
 
 class _EditpageState extends State<Editpage> {
-  // TextEditingController nameController = TextEditingController();
-  // TextEditingController numController = TextEditingController();
-  // TextEditingController sellpriceController = TextEditingController();
-  // TextEditingController costpriceController = TextEditingController();
-  // List dropdownItems = [];
-  // File? picked;
+
 
   @override
   void initState() {

@@ -6,11 +6,6 @@ import 'package:stockapp/model/data_model.dart';
 class SearchProvider extends ChangeNotifier {
   List<ItemsModel> searcheditem = [];
 
-  // loaditem() async {
-  //   final item = itemlistnotifier.value;
-  //     searcheditem = item;
-  // }
-
   filter(context, String enteredName) {
     final getPrv = Provider.of<DbProvider>(context, listen: false);
     List<ItemsModel> result = [];

@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:stockapp/controller/cateogory_provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/data_model.dart';
 import 'package:lottie/lottie.dart';
@@ -34,7 +35,7 @@ class _CategorypageState extends State<Categorypage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: searchController,
+              controller:Provider.of<CategoryProvider>(context,listen: false). searchController,
               onChanged: (value) {
                 setState(() {}); // Trigger a rebuild to update the UI
               },
@@ -42,7 +43,7 @@ class _CategorypageState extends State<Categorypage> {
                 hintText: 'Search...',
                 suffixIcon: IconButton(
                   onPressed: () {
-                    searchController.clear();
+                   Provider.of<CategoryProvider>(context,listen: false).searchController.clear();
                     setState(() {}); // Trigger a rebuild to update the UI
                   },
                   icon: const Icon(Icons.clear),

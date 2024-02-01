@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/item_provider.dart';
-import 'package:stockapp/model/itemsmodel.dart';
-import 'package:stockapp/view/category/category_page.dart';
+import 'package:stockapp/model/items_model.dart';
 
 
 class Itemspage extends StatefulWidget {

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:stockapp/model/itemsmodel.dart';
+import 'package:stockapp/model/items_model.dart';
 import 'package:stockapp/view/category/category_page.dart';
 
 class ItemsProvider extends ChangeNotifier {
@@ -15,8 +15,4 @@ class ItemsProvider extends ChangeNotifier {
      CategoryData('Others', Icons.electrical_services,
         Color.fromARGB(255, 237, 236, 234), Categorypage(category: "Otherspag",)),
   ];
-
-  
-
-
- }
+}
