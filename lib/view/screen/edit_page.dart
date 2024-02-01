@@ -48,10 +48,10 @@ class _EditpageState extends State<Editpage> {
     pro.costpriceController = TextEditingController(text: widget.costprice);
 
     pro.picked = widget.imagePath != '' ? File(widget.imagePath) : null;
-    selectedValue = widget.items;
+    pro.selectedValue = widget.items;
   }
 
-  String selectedValue = '';
+ // String selectedValue = '';
 
   @override
   Widget build(BuildContext context) {

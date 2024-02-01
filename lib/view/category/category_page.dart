@@ -20,11 +20,11 @@ class Categorypage extends StatefulWidget {
 }
 
 class _CategorypageState extends State<Categorypage> {
-  TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final pro = Provider.of<DbProvider>(context, listen: false);
+    final catProvider = Provider.of<CategoryProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +35,7 @@ class _CategorypageState extends State<Categorypage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller:Provider.of<CategoryProvider>(context,listen: false). searchController,
+              controller:catProvider. searchController,
               onChanged: (value) {
                 setState(() {}); // Trigger a rebuild to update the UI
               },
@@ -43,7 +43,7 @@ class _CategorypageState extends State<Categorypage> {
                 hintText: 'Search...',
                 suffixIcon: IconButton(
                   onPressed: () {
-                   Provider.of<CategoryProvider>(context,listen: false).searchController.clear();
+                   catProvider.searchController.clear();
                     setState(() {}); // Trigger a rebuild to update the UI
                   },
                   icon: const Icon(Icons.clear),
@@ -59,7 +59,7 @@ class _CategorypageState extends State<Categorypage> {
                       .contains(widget.category.toLowerCase()))
                   .toList();
 
-              String searchQuery = searchController.text.toLowerCase();
+              String searchQuery =    catProvider .searchController.text.toLowerCase();
               List<ItemsModel> filteredItemList = itemList
                   .where((items) =>
                       items.name.toLowerCase().contains(searchQuery))
