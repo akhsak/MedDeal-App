@@ -7,7 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stockapp/main.dart';
 import 'package:stockapp/view/screen/login_screen.dart';
-import 'package:stockapp/view/widget/bottombar.dart';
+import 'package:stockapp/view/widget/bottom_bar.dart';
 
 class Splashpage extends StatefulWidget {
   const Splashpage({Key? key});

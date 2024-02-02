@@ -19,7 +19,7 @@ class EditProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  fromgallery() async {
+  imagefromgallery() async {
     final returnedimage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     picked = File(returnedimage!.path);

@@ -8,7 +8,6 @@ import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/search_provider.dart';
 // import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/view/screen/details.dart';
-import 'package:stockapp/view/screen/edit_page.dart';
 
 class Searchitemss extends StatelessWidget {
   Searchitemss({Key? key}) : super(key: key);

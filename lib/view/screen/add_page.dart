@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:stockapp/controller/add_provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/data_model.dart';
-import 'package:stockapp/view/widget/bottombar.dart';
+import 'package:stockapp/view/widget/bottom_bar.dart';
 import 'package:stockapp/view/widget/textformfield.dart';
 
 class Addpage extends StatelessWidget {

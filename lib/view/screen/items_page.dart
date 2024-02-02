@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/item_provider.dart';
 import 'package:stockapp/model/items_model.dart';
 
@@ -117,7 +118,7 @@ class _ItemspageState extends State<Itemspage> {
               ),
               SizedBox(height: 16.0),
               Consumer<ItemsProvider>(
-                builder: (context, value, child) => Expanded(
+                builder: (context,value, child) => Expanded(
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -156,26 +157,23 @@ class _ItemspageState extends State<Itemspage> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
-      child: GestureDetector(
-        onTap: () {},
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              category.icon,
-              color: category.color,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            category.icon,
+            color: category.color,
+          ),
+          SizedBox(height: 20.0),
+          Text(
+            category.title,
+            style: TextStyle(
+              color: const Color.fromARGB(255, 248, 248, 245),
+              fontWeight: FontWeight.bold,
+              fontSize: 16.0,
             ),
-            SizedBox(height: 20.0),
-            Text(
-              category.title,
-              style: TextStyle(
-                color: const Color.fromARGB(255, 248, 248, 245),
-                fontWeight: FontWeight.bold,
-                fontSize: 16.0,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/edit_provider.dart';
 import 'package:stockapp/model/data_model.dart';
-import 'package:stockapp/view/widget/bottombar.dart';
+import 'package:stockapp/view/widget/bottom_bar.dart';
 import 'package:stockapp/view/widget/textformfield.dart';
 
 class Editpage extends StatefulWidget {
@@ -88,7 +88,7 @@ class _EditpageState extends State<Editpage> {
                   child: InkWell(
                     onTap: () {
                       Provider.of<EditProvider>(context, listen: false)
-                          .fromgallery();
+                          .imagefromgallery();
                     },
                     child: Consumer<EditProvider>(
                         builder: (context, value, child) {
@@ -254,7 +254,7 @@ class _EditpageState extends State<Editpage> {
         image: image,
       );
 
-      Provider.of<DbProvider>(context, listen: false).edit(update.id!, update);
+      Provider.of<DbProvider>(context, listen: false).edititem(update.id!, update);
       Navigator.of(context).pop();
     }
   }
