@@ -7,75 +7,121 @@ import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/view/settings/appinfo.dart';
 import 'package:stockapp/view/settings/terms.dart';
 import 'package:stockapp/view/screen/login_screen.dart';
-import 'package:stockapp/view/widget/drawer.dart';
 
 class DrawerHeaderWidget extends StatelessWidget {
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection:Axis.vertical ,
-      child: DrawerHeader(
-        
-        child: Column(
-          children: [
-            SizedBox(
-              height: 25,
+    return DrawerHeader(
+      decoration: BoxDecoration(color: Colors.white),
+      child: ListView(
+        children: <Widget>[
+          ListTile(
+            title: const Text(
+              'App Info',
+              style: TextStyle(color: Color.fromARGB(255, 43, 90, 152)),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Appinfopage(),
-                ));
-              },
-              child: DrawerItem(text: "App info", icon: Icons.info),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Appinfopage()));
+            },
+            leading: const Icon(
+              Icons.info,
             ),
-            Divider(),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Termsprivacy(),
-                ));
-              },
-              child: SingleChildScrollView(
-                child: DrawerItem(
-                  text: "T & c",
-                  icon: Icons.document_scanner_rounded,
-                ),
-              ),
+          ),
+          Divider(
+            color: Color.fromARGB(255, 167, 173, 181),
+          ),
+          ListTile(
+            title: const Text(
+              'Terms&Condition',
+              style: TextStyle(color: Color.fromARGB(255, 43, 90, 152)),
             ),
-            Divider(),
-            GestureDetector(
-              onTap: () {
-                showResetAppAlertDialog(context);
-              },
-              child: DrawerItem(
-                text: "Reset App",
-                icon: Icons.restore_from_trash_outlined,
-              ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Termsprivacy()));
+            },
+            leading: const Icon(
+              Icons.rule,
             ),
-            Divider(),
-            GestureDetector(
-              onTap: () {
-                signout(context);
-              },
-              child: DrawerItem(text: "Logout", icon: Icons.exit_to_app),
+          ),
+          Divider(
+            color: Color.fromARGB(255, 167, 173, 181),
+          ),
+          ListTile(
+            title: const Text(
+              'Clear Data',
+              style: TextStyle(color: Color.fromARGB(255, 43, 90, 152)),
             ),
-            Divider(),
-            SizedBox(height: 30),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "version : 1.0.1",
-                style: TextStyle(color: Color.fromARGB(255, 43, 90, 152),fontWeight: FontWeight.bold),
-              ),
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('Clear Data'),
+                    content:
+                        const Text('Are you sure you want to clear all data ?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('CANCEL'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Provider.of<DbProvider>(context, listen: false)
+                              .deleteAllitems();
+
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          'CLEAR',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 43, 90, 152)),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            leading: const Icon(
+              Icons.delete,
+              //color: Colors.red,
             ),
-          ],
-        ),
+          ),
+          Divider(
+            color: Color.fromARGB(255, 167, 173, 181),
+          ),
+          ListTile(
+            title: const Text(
+              'Log Out',
+              style: TextStyle(color: Color.fromARGB(255, 43, 90, 152)),
+            ),
+            leading: const Icon(
+              Icons.exit_to_app,
+              // color:Color.fromARGB(255, 43, 90, 152),
+            ),
+            onTap: () {
+              signout(context);
+            },
+          ),
+          Divider(
+            color: Color.fromARGB(255, 167, 173, 181),
+          ),
+          SizedBox(height: 30),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "version : 1.0.1",
+              style: TextStyle(
+                  color: Color.fromARGB(255, 43, 90, 152),
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -86,32 +132,6 @@ class DrawerHeaderWidget extends StatelessWidget {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context1) => ScreenLogin()),
       (route) => false,
-    );
-  }
-
-  void showResetAppAlertDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Are you sure you want to reset the app?'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-          Provider.of<DbProvider>(context,listen: false).deleteAllitems();
-                Navigator.pop(context);
-              },
-              child: Text('Reset'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

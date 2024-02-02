@@ -22,9 +22,13 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 43, 90, 152),
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
         backgroundColor: Color.fromARGB(255, 43, 90, 152),
       ),
       endDrawer: Drawer(
+        backgroundColor: Colors.white,
         elevation: 100,
         shadowColor: Color.fromARGB(255, 80, 80, 79),
         child: Container(

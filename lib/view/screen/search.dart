@@ -23,9 +23,7 @@ class Searchitemss extends StatelessWidget {
           child: Text(
             'Search items',
             style: TextStyle(color: Color.fromARGB(255, 244, 245, 247)),
-            
           ),
-          
         ),
       ),
       body: Container(
@@ -34,7 +32,7 @@ class Searchitemss extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
               child: TextFormField(
-                onChanged: (value) => pro.filter(context,value ),
+                onChanged: (value) => pro.filter(context, value),
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(10),
                   border: OutlineInputBorder(
@@ -70,7 +68,7 @@ class Searchitemss extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final data = value.searcheditem[index];
                           return Card(
-                            color: Color.fromARGB(255, 246, 246, 246),
+                            color: Color.fromARGB(255, 80, 131, 199),
                             child: ListTile(
                               onTap: () {
                                 Navigator.push(
@@ -87,68 +85,52 @@ class Searchitemss extends StatelessWidget {
                                   ),
                                 );
                               },
-                              title: Text(data.name),
+                              title: Text(data.name,style: TextStyle(color: Colors.white)),
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(data.item),
+                                  Text(data.item,style:TextStyle(color: Colors.white,fontSize: 10),
+                                  ),
                                 ],
                               ),
                               trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Editpage(
-                                            costprice: data.costprice,
-                                            id: index,
-                                            items: data.item,
-                                            name: data.name,
-                                            numbr: data.numbr,
-                                            sellprice: data.sellprice,
-                                            imagePath: data.image!,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    icon: Icon(Icons.edit),
-                                    color: Colors.black,
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            title: Text(
-                                                'Are you sure want to delete'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text('close'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () {
-                                                 Provider.of<DbProvider>(context,listen: false).deleteitems(index);
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text('delete'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    },
-                                    icon: Icon(Icons.delete),
-                                    color: Colors.black,
-                                  ),
-                                ],
-                              ),
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                  'Are you sure want to delete'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('close'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Provider.of<DbProvider>(
+                                                            context,
+                                                            listen: false)
+                                                        .deleteitems(index);
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('delete'),
+                                                  
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                      icon: Icon(Icons.delete),
+                                      color: Color.fromARGB(255, 176, 79, 72),
+                                    ),
+                                  ]),
                               leading: CircleAvatar(
                                 backgroundImage: FileImage(File(data.image!)),
                               ),
