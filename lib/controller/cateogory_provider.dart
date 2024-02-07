@@ -1,28 +1,17 @@
-// import 'package:flutter/material.dart';
-
-
-// class CategoryProvider extends ChangeNotifier {
-   
-//   TextEditingController searchController = TextEditingController();
-
-   
-  
-// }
-// CategoryProvider.dart
 import 'package:flutter/material.dart';
 
 class CategoryProvider extends ChangeNotifier {
   TextEditingController searchController = TextEditingController();
-  String searchQuery = '';
+  String search = '';
 
-  void updateSearchQuery(String query) {
-    searchQuery = query.toLowerCase();
+  void updateSearch(String query) {
+    search = query.toLowerCase();
     notifyListeners();
   }
 
   void clearSearch() {
     searchController.clear();
-    searchQuery = '';
+    search = '';
     notifyListeners();
   }
 }

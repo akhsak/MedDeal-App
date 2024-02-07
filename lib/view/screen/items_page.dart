@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/item_provider.dart';
 import 'package:stockapp/model/items_model.dart';
 

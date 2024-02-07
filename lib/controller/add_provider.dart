@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddProvider extends ChangeNotifier {
-  String selectedValue = 'Meaddeal';
+  String selectedValue = 'stocks';
   final formKey = GlobalKey<FormState>();
   File? picked;
-  final namecontroller = TextEditingController();
-  final numcontroller = TextEditingController();
-  final sellingpricecontroller = TextEditingController();
-  final costpricecontroller = TextEditingController();
+  final nameController = TextEditingController();
+  final numController = TextEditingController();
+  final sellingpriceController = TextEditingController();
+  final costpriceController = TextEditingController();
 
   addvalue(newvalue) {
     selectedValue = newvalue!.toString();

@@ -34,7 +34,7 @@ class Categorypage extends StatelessWidget {
             child: TextField(
               controller: catProvider.searchController,
               onChanged: (value) {
-                catProvider.updateSearchQuery(value);
+                catProvider.updateSearch(value);
               },
               decoration: InputDecoration(
                 hintText: 'Search...',
@@ -57,7 +57,7 @@ class Categorypage extends StatelessWidget {
 
               List<ItemsModel> filteredItemList = itemLis
                   .where((item) =>
-                      item.name.toLowerCase().contains(catProvider.searchQuery))
+                      item.name.toLowerCase().contains(catProvider.search))
                   .toList();
 
               return Expanded(
@@ -96,39 +96,21 @@ class Categorypage extends StatelessWidget {
                                 children: [
                                   Text(data.numbr,
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 15)),
-                                  Text(data.item,
+                                          color: Colors.white, fontSize: 13)),
+                                  // Text('Items:${data.item}',
+                                  //     style: TextStyle(
+                                  //         color: Colors.white, fontSize: 12)),
+                                  Text('sell price: ${data.sellprice}',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 15)),
-                                  Text(data.sellprice,
+                                          color: Colors.white, fontSize: 12)),
+                                  Text('cost price:${data.costprice}',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 15)),
-                                  Text(data.costprice,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15)),
+                                          color: Colors.white, fontSize: 12)),
                                 ],
                               ),
                               trailing: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  // IconButton(
-                                  //   onPressed: () => Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (context) => Editpage(
-                                  //         costprice: data.costprice,
-                                  //         id: index,
-                                  //         items: data.item,
-                                  //         name: data.name,
-                                  //         numbr: data.numbr,
-                                  //         sellprice: data.sellprice,
-                                  //         imagePath: data.image!,
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  //   icon: const Icon(Icons.edit),
-                                  //   color: Colors.black,
-                                  // ),
                                   IconButton(
                                     onPressed: () => showDialog(
                                       context: context,

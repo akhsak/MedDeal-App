@@ -6,7 +6,6 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/search_provider.dart';
-// import 'package:stockapp/model/functions/db_function.dart';
 import 'package:stockapp/view/screen/details.dart';
 
 class Searchitemss extends StatelessWidget {

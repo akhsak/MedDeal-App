@@ -89,7 +89,6 @@ class DrawerHeaderWidget extends StatelessWidget {
             },
             leading: const Icon(
               Icons.delete,
-              //color: Colors.red,
             ),
           ),
           Divider(
@@ -102,7 +101,6 @@ class DrawerHeaderWidget extends StatelessWidget {
             ),
             leading: const Icon(
               Icons.exit_to_app,
-              // color:Color.fromARGB(255, 43, 90, 152),
             ),
             onTap: () {
               signout(context);

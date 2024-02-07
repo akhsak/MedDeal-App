@@ -23,7 +23,7 @@ class Bottombar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pro = Provider.of<BottomProvider>(context, listen: false);
+    final bottomprovider = Provider.of<BottomProvider>(context, listen: false);
     return SafeArea(
       child: Scaffold(
         body: Consumer<BottomProvider>(
@@ -36,9 +36,9 @@ class Bottombar extends StatelessWidget {
             child: BottomNavigationBar(
               unselectedFontSize: 0,
               type: BottomNavigationBarType.fixed,
-              onTap: pro.onTap,
+              onTap: bottomprovider.onTap,
               backgroundColor: const Color.fromARGB(24, 7, 100, 95),
-              currentIndex: pro.myIndex,
+              currentIndex: bottomprovider.myIndex,
               selectedItemColor: const Color.fromARGB(255, 9, 49, 83),
               unselectedItemColor: const Color.fromARGB(255, 145, 176, 239),
               showSelectedLabels: true,
@@ -94,7 +94,6 @@ class Bottombar extends StatelessWidget {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        
       ),
     );
   }

@@ -10,7 +10,7 @@ import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/controller/edit_provider.dart';
 import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/view/widget/bottom_bar.dart';
-import 'package:stockapp/view/widget/textformfield.dart';
+import 'package:stockapp/view/widget/textform_field.dart';
 
 class Editpage extends StatefulWidget {
   var name;
@@ -41,17 +41,16 @@ class _EditpageState extends State<Editpage> {
   @override
   void initState() {
     super.initState();
-    final pro = Provider.of<EditProvider>(context, listen: false);
-    pro.nameController = TextEditingController(text: widget.name);
-    pro.numController = TextEditingController(text: widget.numbr);
-    pro.sellpriceController = TextEditingController(text: widget.sellprice);
-    pro.costpriceController = TextEditingController(text: widget.costprice);
+    final editprovider = Provider.of<EditProvider>(context, listen: false);
+    editprovider.nameController = TextEditingController(text: widget.name);
+    editprovider.numController = TextEditingController(text: widget.numbr);
+    editprovider.sellpriceController = TextEditingController(text: widget.sellprice);
+    editprovider.costpriceController = TextEditingController(text: widget.costprice);
 
-    pro.picked = widget.imagePath != '' ? File(widget.imagePath) : null;
-    pro.selectedValue = widget.items;
+    editprovider.picked = widget.imagePath != '' ? File(widget.imagePath) : null;
+    editprovider.selectedValue = widget.items;
   }
 
- // String selectedValue = '';
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +89,7 @@ class _EditpageState extends State<Editpage> {
                       Provider.of<EditProvider>(context, listen: false)
                           .imagefromgallery();
                     },
-                    child: Consumer<EditProvider>(
+                    child: Consumer <EditProvider>(
                         builder: (context, value, child) {
                       return Container(
                         margin: EdgeInsets.only(bottom: 20),

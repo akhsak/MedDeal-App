@@ -20,14 +20,14 @@ class PieChart extends StatelessWidget {
               text: 'Analyser',
             ),
             legend: const Legend(isVisible: true),
-            series: <PieSeries<_PieData, String>>[
-              PieSeries<_PieData, String>(
+            series: <PieSeries<PieData, String>>[
+              PieSeries<PieData, String>(
                   explode: true,
                   explodeIndex: 0,
                   dataSource: convertItemsToPieData(Provider.of<DbProvider>(context,listen: false).meddeal),
-                  xValueMapper: (_PieData data, _) => data.xData,
-                  yValueMapper: (_PieData data, _) => data.yData,
-                  dataLabelMapper: (_PieData data, _) => data.text,
+                  xValueMapper: (PieData data, _) => data.xData,
+                  yValueMapper: (PieData data, _) => data.yData,
+                  dataLabelMapper: (PieData data, _) => data.text,
                   dataLabelSettings: const DataLabelSettings(isVisible: true)),
             ]),
       ),
@@ -36,14 +36,14 @@ class PieChart extends StatelessWidget {
 }
 
 
-class _PieData {
-  _PieData(this.xData, this.yData, this.text);
+class PieData {
+  PieData(this.xData, this.yData, this.text);
   final String xData;
   final num yData;
   final String text;
 }
 
-List<_PieData> convertItemsToPieData(List<ItemsModel> itemlistnotifier) {
+List<PieData> convertItemsToPieData(List<ItemsModel> itemlistnotifier) {
   Map<String, double> categoryCountMap = {};
 
   for (var itemm in itemlistnotifier) {
@@ -54,9 +54,9 @@ List<_PieData> convertItemsToPieData(List<ItemsModel> itemlistnotifier) {
     }
   }
 
-  List<_PieData> pieDataList = [];
+  List<PieData> pieDataList = [];
   categoryCountMap.forEach((category, count) {
-    pieDataList.add(_PieData(category, count, '$category: $count items'));
+    pieDataList.add(PieData(category, count, '$category: $count items'));
   });
 return pieDataList;
 }

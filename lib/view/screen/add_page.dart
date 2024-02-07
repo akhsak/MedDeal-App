@@ -8,7 +8,7 @@ import 'package:stockapp/controller/add_provider.dart';
 import 'package:stockapp/controller/db_provider.dart';
 import 'package:stockapp/model/data_model.dart';
 import 'package:stockapp/view/widget/bottom_bar.dart';
-import 'package:stockapp/view/widget/textformfield.dart';
+import 'package:stockapp/view/widget/textform_field.dart';
 
 class Addpage extends StatelessWidget {
   const Addpage({Key? key});
@@ -17,7 +17,7 @@ class Addpage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     double screenWidth = MediaQuery.of(context).size.width;
-    final pro = Provider.of<AddProvider>(context, listen: false);
+    final addprovider = Provider.of<AddProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -37,23 +37,23 @@ class Addpage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Form(
-            key: pro.formKey,
+            key: addprovider.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
                   child: InkWell(
                     onTap: () {
-                      pro.fromgallery();
+                      addprovider.fromgallery();
                     },
                     child: Container(
                       margin: EdgeInsets.only(bottom: 20),
                       height: 200,
                       width: screenWidth,
                       decoration: BoxDecoration(
-                        image: pro.picked != null
+                        image: addprovider.picked != null
                             ? DecorationImage(
-                                image: FileImage(pro.picked!),
+                                image: FileImage(addprovider.picked!),
                                 fit: BoxFit.fill,
                               )
                             : null,
@@ -61,7 +61,7 @@ class Addpage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(color: Colors.grey),
                       ),
-                      child: pro.picked == null
+                      child: addprovider.picked == null
                           ? Center(
                               child: Lottie.asset(
                                   'assets/Animation - addimage.json'))
@@ -73,14 +73,14 @@ class Addpage extends StatelessWidget {
                 Container(
                   child: CustomTextForm(
                     labelText: 'Item name',
-                    controller: pro.namecontroller,
+                    controller: addprovider.nameController,
                   ),
                 ),
                 SizedBox(height: 20),
                 Container(
                   child: CustomTextForm(
                     labelText: 'stall number',
-                    controller: pro.numcontroller,
+                    controller: addprovider.numController,
                   ),
                 ),
                 SizedBox(height: 20),
@@ -99,7 +99,7 @@ class Addpage extends StatelessWidget {
                   dropdownColor: const Color.fromARGB(255, 208, 203, 203),
                   isExpanded: true,
                   onChanged: (String? newvalue) {
-                    pro.addvalue(newvalue);
+                    addprovider.addvalue(newvalue);
                   },
                   items: const [
                     DropdownMenuItem(
@@ -141,7 +141,7 @@ class Addpage extends StatelessWidget {
                       child: Container(
                         child: CustomTextForm(
                           labelText: 'selling price',
-                          controller: pro.sellingpricecontroller,
+                          controller: addprovider.sellingpriceController,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
@@ -155,7 +155,7 @@ class Addpage extends StatelessWidget {
                       child: Container(
                         child: CustomTextForm(
                           labelText: 'Cost price',
-                          controller: pro.costpricecontroller,
+                          controller: addprovider.costpriceController,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
@@ -170,7 +170,7 @@ class Addpage extends StatelessWidget {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      if (pro.formKey.currentState!.validate()) {
+                      if (addprovider.formKey.currentState!.validate()) {
                         onAddItemButtonClicked(context);
                       }
                     },
@@ -188,11 +188,11 @@ class Addpage extends StatelessWidget {
   Future<void> onAddItemButtonClicked(context) async {
     final addprovider = Provider.of<AddProvider>(context, listen: false);
     if (addprovider.formKey.currentState!.validate()) {
-      final _name = addprovider.namecontroller.text.trim();
-      final _num = addprovider.numcontroller.text.trim();
+      final _name = addprovider.nameController.text.trim();
+      final _num = addprovider.numController.text.trim();
       final _item = addprovider.selectedValue;
-      final _sellprice = addprovider.sellingpricecontroller.text.trim();
-      final _costprice = addprovider.costpricecontroller.text.trim();
+      final _sellprice = addprovider.sellingpriceController.text.trim();
+      final _costprice = addprovider.costpriceController.text.trim();
 
       final _addItem = ItemsModel(
         name: _name,
@@ -207,11 +207,11 @@ class Addpage extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (context) => Bottombar()),
           (route) => false);
-      addprovider.namecontroller.clear();
-      addprovider.costpricecontroller.clear();
-      addprovider.numcontroller.clear();
-      addprovider.sellingpricecontroller.clear();
-      addprovider.costpricecontroller.clear();
+      addprovider.nameController.clear();
+      addprovider.costpriceController.clear();
+      addprovider.numController.clear();
+      addprovider.sellingpriceController.clear();
+      addprovider.costpriceController.clear();
       addprovider.picked=null;
     }
   }

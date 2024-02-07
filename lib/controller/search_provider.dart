@@ -7,13 +7,13 @@ class SearchProvider extends ChangeNotifier {
   List<ItemsModel> searcheditem = [];
 
   filter(context, String enteredName) {
-    final getPrv = Provider.of<DbProvider>(context, listen: false);
+    final searchprovider = Provider.of<DbProvider>(context, listen: false);
     List<ItemsModel> result = [];
 
     if (enteredName.isEmpty) {
-      result = getPrv.meddeal;
+      result = searchprovider.meddeal;
     } else {
-      result = getPrv.meddeal
+      result = searchprovider.meddeal
           .where(
             (ItemsModel items) =>
                 items.name.toLowerCase().contains(enteredName.toLowerCase()) ||
